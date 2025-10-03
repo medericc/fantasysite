@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 // ---- Types ----
-type NotePlayer = { prenom: string; nom: string; equipe: string; note: string; ranking: string }
+type NotePlayer = { prenom: string; nom: string; equipe: string; note: string; ranking: string; place: string }
 type AllStar = { prenom: string; nom: string; ligue: string; annee: string; equipe: string }
 type FirstTeam = { prenom: string; nom: string; ligue: string; annee: string }
 
@@ -186,8 +186,9 @@ const lfbAllStarCounts = allStars
           </AnimatePresence>
         )}
 
-        {/* Notes Saison */}
-       {selectedCategory === 'notes' && (
+       
+      {/* Notes Saison */}
+{selectedCategory === 'notes' && (
   <Table>
     <TableHeader className="bg-slate-800">
       <TableRow>
@@ -198,18 +199,34 @@ const lfbAllStarCounts = allStars
       </TableRow>
     </TableHeader>
     <TableBody>
-      {sortedNotes.map((p, idx) => (
-        <TableRow key={idx}>
-          {/* Place calculée dynamiquement */}
-          <TableCell className="font-bold">{idx + 1}</TableCell>
-          <TableCell>{p.prenom}</TableCell>
-          <TableCell>{p.nom}</TableCell>
-          <TableCell className="font-semibold text-yellow-600">{p.note}</TableCell>
-        </TableRow>
-      ))}
+      {sortedNotes.map((p, idx) => {
+        const noteNum = Number(p.note)
+        // calcul place (ex æquo inclus)
+        let place = idx + 1
+        if (idx > 0) {
+          const prevNote = Number(sortedNotes[idx - 1].note)
+          if (noteNum === prevNote) {
+            place = sortedNotes[idx - 1].place // on reprend la même place que la précédente
+          }
+        }
+        // on stocke la place directement dans l'objet courant (temporairement)
+        (sortedNotes[idx] as any).place = place
+
+        return (
+          <TableRow key={idx}>
+            <TableCell className="font-bold">{place}</TableCell>
+            <TableCell>{p.prenom}</TableCell>
+            <TableCell>{p.nom}</TableCell>
+            <TableCell className="font-semibold text-yellow-600">
+              {noteNum.toFixed(1)}
+            </TableCell>
+          </TableRow>
+        )
+      })}
     </TableBody>
   </Table>
 )}
+
 
         {/* All-Stars */}
         {selectedCategory === 'allStars' && (

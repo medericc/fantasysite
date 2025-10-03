@@ -1,43 +1,23 @@
-// app/page.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
 import Papa from 'papaparse'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 // ---- Types ----
-type SimplePlayer = { id: number; joueuse: string; equipe: string }
-
-type LeagueData = {
-  notes: NotePlayer[]
-  allStars: {
-    nord?: SimplePlayer[]
-    sud?: SimplePlayer[]
-    est?: SimplePlayer[]
-    ouest?: SimplePlayer[]
-  }
-  firstTeam: SimplePlayer[]
-}
-
-type SampleData = {
-  LF2: LeagueData
-  LFB: LeagueData
-}
-
-type League = keyof SampleData
-type Category = keyof LeagueData
 type NotePlayer = { prenom: string; nom: string; equipe: string; note: string; ranking: string }
-type AllStar = { prenom: string; nom: string; ligue: string; annee: string }
+type AllStar = { prenom: string; nom: string; ligue: string; annee: string; equipe: string }
 type FirstTeam = { prenom: string; nom: string; ligue: string; annee: string }
 
+type Category = 'notes' | 'allStars' | 'firstTeam'
 
 export default function FirstPickStats() {
   const [selectedLeague, setSelectedLeague] = useState<'LFB' | 'LF2'>('LF2')
-  const [selectedCategory, setSelectedCategory] = useState<'notes' | 'allStars' | 'firstTeam'>('notes')
+  const [selectedCategory, setSelectedCategory] = useState<Category>('notes')
   const [selectedYear, setSelectedYear] = useState<string>('2024')
 
   const [lfbNotes, setLfbNotes] = useState<NotePlayer[]>([])
@@ -50,22 +30,57 @@ export default function FirstPickStats() {
     Papa.parse('/lfb_notes.csv', {
       header: true,
       download: true,
-      complete: (result) => setLfbNotes(result.data as NotePlayer[]),
+      complete: (result) => {
+        const rows = (result.data as any[]).map(r => ({
+          prenom: r.forename,
+          nom: r.name,
+          equipe: r.equipe,
+          note: r.rating?.replace(',', '.') ?? '',
+          ranking: r.match ?? ''
+        }))
+        setLfbNotes(rows)
+      },
     })
     Papa.parse('/lf2_notes.csv', {
       header: true,
       download: true,
-      complete: (result) => setLf2Notes(result.data as NotePlayer[]),
+      complete: (result) => {
+        const rows = (result.data as any[]).map(r => ({
+          prenom: r.forename,
+          nom: r.name,
+          equipe: r.equipe,
+          note: r.rating?.replace(',', '.') ?? '',
+          ranking: r.match ?? ''
+        }))
+        setLf2Notes(rows)
+      },
     })
     Papa.parse('/allstars.csv', {
       header: true,
       download: true,
-      complete: (result) => setAllStars(result.data as AllStar[]),
+      complete: (result) => {
+        const rows = (result.data as any[]).map(r => ({
+          prenom: r.prenom,
+          nom: r.nom,
+          ligue: r.ligue,
+          annee: r.annee,
+          equipe: r.equipe
+        }))
+        setAllStars(rows)
+      },
     })
     Papa.parse('/firstteam.csv', {
       header: true,
       download: true,
-      complete: (result) => setFirstTeams(result.data as FirstTeam[]),
+      complete: (result) => {
+        const rows = (result.data as any[]).map(r => ({
+          prenom: r.prenom,
+          nom: r.nom,
+          ligue: r.ligue,
+          annee: r.annee
+        }))
+        setFirstTeams(rows)
+      },
     })
   }, [])
 
@@ -73,12 +88,25 @@ export default function FirstPickStats() {
   const currentNotes = selectedLeague === 'LFB' ? lfbNotes : lf2Notes
   const currentAllStars = allStars.filter(p => p.ligue === selectedLeague && p.annee === selectedYear)
   const currentFirstTeam = firstTeams.filter(p => p.ligue === selectedLeague && p.annee === selectedYear)
+const sortedNotes = [...currentNotes].sort(
+  (a, b) => Number(b.note) - Number(a.note)
+)
+
+  // années disponibles (FirstTeam sans 2022)
+  const availableYears = ['2023', '2024']
+const lfbAllStarCounts = allStars
+  .filter(p => p.ligue === 'LFB')
+  .reduce((acc, p) => {
+    const key = `${p.prenom} ${p.nom}`
+    acc[key] = (acc[key] || 0) + 1
+    return acc
+  }, {} as Record<string, number>)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <main className="container mx-auto px-4 py-8">
         
-        {/* League selector (toujours en haut) */}
+        {/* League selector */}
         <div className="flex justify-center mb-6">
           <div className="flex space-x-4">
             <Button
@@ -134,7 +162,12 @@ export default function FirstPickStats() {
               className="flex justify-center mb-6"
             >
               <div className="flex space-x-2">
-                {['2022', '2023', '2024'].map((year) => (
+                {(
+  selectedCategory === 'firstTeam'
+    ? availableYears
+    : (selectedLeague === 'LFB' ? ['2022','2023','2024'] : ['2023','2024'])
+).map((year) => (
+
                   <Button
                     key={year}
                     variant={selectedYear === year ? "default" : "outline"}
@@ -162,17 +195,15 @@ export default function FirstPickStats() {
                 <TableHead className="text-slate-100">Nom</TableHead>
                 <TableHead className="text-slate-100">Équipe</TableHead>
                 <TableHead className="text-slate-100">Note</TableHead>
-               
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentNotes.map((p, idx) => (
+              {sortedNotes.map((p, idx) => (
                 <TableRow key={idx}>
                   <TableCell>{p.prenom}</TableCell>
                   <TableCell>{p.nom}</TableCell>
                   <TableCell>{p.equipe}</TableCell>
                   <TableCell className="font-semibold text-yellow-600">{p.note}</TableCell>
-                  
                 </TableRow>
               ))}
             </TableBody>
@@ -185,7 +216,13 @@ export default function FirstPickStats() {
             {currentAllStars.map((p, idx) => (
               <Card key={idx}>
                 <CardContent className="p-4">
-                  {p.prenom} {p.nom} - {p.ligue} ({p.annee})
+                  {p.prenom} {p.nom} {selectedLeague === 'LFB' && (
+  <span className="text-sm text-gray-500 ml-2">
+  ({lfbAllStarCounts[`${p.prenom} ${p.nom}`]} sélection
+  {lfbAllStarCounts[`${p.prenom} ${p.nom}`] > 1 ? 's' : ''})
+</span>
+
+)}
                 </CardContent>
               </Card>
             ))}
@@ -197,13 +234,11 @@ export default function FirstPickStats() {
           <div className="grid gap-4">
             {currentFirstTeam.map((p, i) => (
               <Card key={i}>
-                <CardContent className="flex items-center p-4">
-                  <div className="w-10 h-10 flex items-center justify-center bg-yellow-500 text-white rounded-full mr-4">
-                    {i + 1}
-                  </div>
+                <CardContent className="flex items-center p-4 text-center">
+                  
                   <div>
-                    <h3 className="font-bold">{p.prenom} {p.nom}</h3>
-                    <p className="text-sm text-slate-600">{p.ligue} - {p.annee}</p>
+                    <h3 className="font-bold text-center">{p.prenom} {p.nom}</h3>
+                   
                   </div>
                 </CardContent>
               </Card>

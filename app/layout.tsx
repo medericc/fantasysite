@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "First Pick - Stats et Classements Basket LFB & LF2",
+  title: "Stats et Classements Basket LFB & LF2",
   description:
      "First Pick, le média spécialisé basket féminin : analyse des saisons LFB et LF2, classements, notes générées par notre modèle d'intelligence artificielle, sélections All-Stars et équipes de l'année.",
   keywords: [

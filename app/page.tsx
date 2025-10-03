@@ -187,28 +187,29 @@ const lfbAllStarCounts = allStars
         )}
 
         {/* Notes Saison */}
-        {selectedCategory === 'notes' && (
-          <Table>
-            <TableHeader className="bg-slate-800">
-              <TableRow>
-                <TableHead className="text-slate-100">Prénom</TableHead>
-                <TableHead className="text-slate-100">Nom</TableHead>
-                <TableHead className="text-slate-100">Équipe</TableHead>
-                <TableHead className="text-slate-100">Note</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {sortedNotes.map((p, idx) => (
-                <TableRow key={idx}>
-                  <TableCell>{p.prenom}</TableCell>
-                  <TableCell>{p.nom}</TableCell>
-                  <TableCell>{p.equipe}</TableCell>
-                  <TableCell className="font-semibold text-yellow-600">{p.note}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        )}
+       {selectedCategory === 'notes' && (
+  <Table>
+    <TableHeader className="bg-slate-800">
+      <TableRow>
+        <TableHead className="text-slate-100">Place</TableHead>
+        <TableHead className="text-slate-100">Prénom</TableHead>
+        <TableHead className="text-slate-100">Nom</TableHead>
+        <TableHead className="text-slate-100">Note</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      {sortedNotes.map((p, idx) => (
+        <TableRow key={idx}>
+          {/* Place calculée dynamiquement */}
+          <TableCell className="font-bold">{idx + 1}</TableCell>
+          <TableCell>{p.prenom}</TableCell>
+          <TableCell>{p.nom}</TableCell>
+          <TableCell className="font-semibold text-yellow-600">{p.note}</TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+)}
 
         {/* All-Stars */}
         {selectedCategory === 'allStars' && (

@@ -16,7 +16,7 @@ type FirstTeam = { prenom: string; nom: string; ligue: string; annee: string }
 type Category = 'notes' | 'allStars' | 'firstTeam'
 
 export default function FirstPickStats() {
-  const [selectedLeague, setSelectedLeague] = useState<'LFB' | 'LF2'>('LF2')
+  const [selectedLeague, setSelectedLeague] = useState<'LFB' | 'LF2'>('LFB')
   const [selectedCategory, setSelectedCategory] = useState<Category>('notes')
   const [selectedYear, setSelectedYear] = useState<string>('2024')
 

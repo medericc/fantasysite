@@ -1,103 +1,216 @@
-import Image from "next/image";
+// app/page.tsx
+'use client'
 
-export default function Home() {
+import { useState, useEffect } from 'react'
+import Papa from 'papaparse'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+
+// ---- Types ----
+type SimplePlayer = { id: number; joueuse: string; equipe: string }
+
+type LeagueData = {
+  notes: NotePlayer[]
+  allStars: {
+    nord?: SimplePlayer[]
+    sud?: SimplePlayer[]
+    est?: SimplePlayer[]
+    ouest?: SimplePlayer[]
+  }
+  firstTeam: SimplePlayer[]
+}
+
+type SampleData = {
+  LF2: LeagueData
+  LFB: LeagueData
+}
+
+type League = keyof SampleData
+type Category = keyof LeagueData
+type NotePlayer = { prenom: string; nom: string; equipe: string; note: string; ranking: string }
+type AllStar = { prenom: string; nom: string; ligue: string; annee: string }
+type FirstTeam = { prenom: string; nom: string; ligue: string; annee: string }
+
+
+export default function FirstPickStats() {
+  const [selectedLeague, setSelectedLeague] = useState<'LFB' | 'LF2'>('LF2')
+  const [selectedCategory, setSelectedCategory] = useState<'notes' | 'allStars' | 'firstTeam'>('notes')
+  const [selectedYear, setSelectedYear] = useState<string>('2024')
+
+  const [lfbNotes, setLfbNotes] = useState<NotePlayer[]>([])
+  const [lf2Notes, setLf2Notes] = useState<NotePlayer[]>([])
+  const [allStars, setAllStars] = useState<AllStar[]>([])
+  const [firstTeams, setFirstTeams] = useState<FirstTeam[]>([])
+
+  // ---- Load CSVs once ----
+  useEffect(() => {
+    Papa.parse('/lfb_notes.csv', {
+      header: true,
+      download: true,
+      complete: (result) => setLfbNotes(result.data as NotePlayer[]),
+    })
+    Papa.parse('/lf2_notes.csv', {
+      header: true,
+      download: true,
+      complete: (result) => setLf2Notes(result.data as NotePlayer[]),
+    })
+    Papa.parse('/allstars.csv', {
+      header: true,
+      download: true,
+      complete: (result) => setAllStars(result.data as AllStar[]),
+    })
+    Papa.parse('/firstteam.csv', {
+      header: true,
+      download: true,
+      complete: (result) => setFirstTeams(result.data as FirstTeam[]),
+    })
+  }, [])
+
+  // ---- Filtering ----
+  const currentNotes = selectedLeague === 'LFB' ? lfbNotes : lf2Notes
+  const currentAllStars = allStars.filter(p => p.ligue === selectedLeague && p.annee === selectedYear)
+  const currentFirstTeam = firstTeams.filter(p => p.ligue === selectedLeague && p.annee === selectedYear)
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+      <main className="container mx-auto px-4 py-8">
+        
+        {/* League selector (toujours en haut) */}
+        <div className="flex justify-center mb-6">
+          <div className="flex space-x-4">
+            <Button
+              variant={selectedLeague === 'LFB' ? "default" : "outline"}
+              className={`rounded-full px-10 ${
+                selectedLeague === 'LFB'
+                  ? 'bg-yellow-600 hover:bg-yellow-600 text-white'
+                  : ''
+              }`}
+              onClick={() => setSelectedLeague('LFB')}
+            >
+              LFB
+            </Button>
+            <Button
+              variant={selectedLeague === 'LF2' ? "default" : "outline"}
+              className={`rounded-full px-10 ${
+                selectedLeague === 'LF2'
+                  ? 'bg-yellow-600 hover:bg-yellow-600 text-white'
+                  : ''
+              }`}
+              onClick={() => setSelectedLeague('LF2')}
+            >
+              LF2
+            </Button>
+          </div>
         </div>
+
+        {/* Sélecteur de catégorie */}
+        <div className="flex justify-center mb-6">
+          <Select
+            value={selectedCategory}
+            onValueChange={(val: Category) => setSelectedCategory(val)}
+          >
+            <SelectTrigger className="w-[200px] bg-white dark:bg-slate-800">
+              <SelectValue placeholder="Sélectionner" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="notes">Notes Saison</SelectItem>
+              <SelectItem value="allStars">All-Stars</SelectItem>
+              <SelectItem value="firstTeam">First Team</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Si All-Stars ou First Team → menu années */}
+        {(selectedCategory === 'allStars' || selectedCategory === 'firstTeam') && (
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="flex justify-center mb-6"
+            >
+              <div className="flex space-x-2">
+                {['2022', '2023', '2024'].map((year) => (
+                  <Button
+                    key={year}
+                    variant={selectedYear === year ? "default" : "outline"}
+                    className={`rounded-full px-6 ${
+                      selectedYear === year
+                        ? 'bg-yellow-600 text-white'
+                        : ''
+                    }`}
+                    onClick={() => setSelectedYear(year)}
+                  >
+                    {year}
+                  </Button>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        {/* Notes Saison */}
+        {selectedCategory === 'notes' && (
+          <Table>
+            <TableHeader className="bg-slate-800">
+              <TableRow>
+                <TableHead className="text-slate-100">Prénom</TableHead>
+                <TableHead className="text-slate-100">Nom</TableHead>
+                <TableHead className="text-slate-100">Équipe</TableHead>
+                <TableHead className="text-slate-100">Note</TableHead>
+               
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {currentNotes.map((p, idx) => (
+                <TableRow key={idx}>
+                  <TableCell>{p.prenom}</TableCell>
+                  <TableCell>{p.nom}</TableCell>
+                  <TableCell>{p.equipe}</TableCell>
+                  <TableCell className="font-semibold text-yellow-600">{p.note}</TableCell>
+                  
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )}
+
+        {/* All-Stars */}
+        {selectedCategory === 'allStars' && (
+          <div className="grid md:grid-cols-2 gap-4">
+            {currentAllStars.map((p, idx) => (
+              <Card key={idx}>
+                <CardContent className="p-4">
+                  {p.prenom} {p.nom} - {p.ligue} ({p.annee})
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+
+        {/* First Team */}
+        {selectedCategory === 'firstTeam' && (
+          <div className="grid gap-4">
+            {currentFirstTeam.map((p, i) => (
+              <Card key={i}>
+                <CardContent className="flex items-center p-4">
+                  <div className="w-10 h-10 flex items-center justify-center bg-yellow-500 text-white rounded-full mr-4">
+                    {i + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-bold">{p.prenom} {p.nom}</h3>
+                    <p className="text-sm text-slate-600">{p.ligue} - {p.annee}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  )
 }

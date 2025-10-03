@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "First Pick - Stats et Classements Basket LFB & LF2",
   description:
-    "First Pick, le média basket qui analyse les saisons LFB et LF2 : All-Stars, équipes de l'année et meilleurs ratings grâce à notre intelligence artificielle.",
+     "First Pick, le média spécialisé basket féminin : analyse des saisons LFB et LF2, classements, notes générées par notre modèle d'intelligence artificielle, sélections All-Stars et équipes de l'année.",
   keywords: [
     "basket",
     "LFB",
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "First Pick - Stats et Classements Basket LFB & LF2",
     description:
-      "Découvrez les All-Stars, les équipes de l'année et les meilleurs ratings des championnats LFB et LF2 avec First Pick.",
-    url: "https://firstpick.fr", // 👉 mets ton vrai domaine ici
+      "Découvrez les meilleurs ratings des championnats LFB et LF2, les All-Stars et les équipes de l'année avec First Pick.",
+    url: "https://lfbfantasy.com", // 👉 mets ton vrai domaine ici
     siteName: "First Pick",
     images: [
       {
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "First Pick - Stats et Classements Basket",
     description:
-      "Toutes les stats LFB & LF2 : All-Stars, First Team, et ratings IA par First Pick.",
+      "Toutes les stats LFB & LF2 : ratings IA, All-Stars et First Team par First Pick.",
     images: ["/og-image.jpg"],
   },
   icons: {

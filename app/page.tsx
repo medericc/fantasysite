@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 // ---- Types ----
-type NotePlayer = { prenom: string; nom: string; equipe: string; note: string; ranking: string; place: string }
+type NotePlayer = { prenom: string; nom: string; equipe: string; note: string; ranking: string; place: number }
 type AllStar = { prenom: string; nom: string; ligue: string; annee: string; equipe: string }
 type FirstTeam = { prenom: string; nom: string; ligue: string; annee: string }
 
@@ -36,7 +36,8 @@ export default function FirstPickStats() {
           nom: r.name,
           equipe: r.equipe,
           note: r.rating?.replace(',', '.') ?? '',
-          ranking: r.match ?? ''
+          ranking: r.match ?? '',
+      place: 0
         }))
         setLfbNotes(rows)
       },
@@ -50,7 +51,8 @@ export default function FirstPickStats() {
           nom: r.name,
           equipe: r.equipe,
           note: r.rating?.replace(',', '.') ?? '',
-          ranking: r.match ?? ''
+          ranking: r.match ?? '',
+      place: 0
         }))
         setLf2Notes(rows)
       },

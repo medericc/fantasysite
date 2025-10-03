@@ -110,10 +110,10 @@ const lfbAllStarCounts = allStars
         
         {/* League selector */}
         <div className="flex justify-center mb-6">
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 2xl:space-x-6">
             <Button
               variant={selectedLeague === 'LFB' ? "default" : "outline"}
-              className={`rounded-full px-10 ${
+              className={`rounded-full px-10 2xl:px-20 ${
                 selectedLeague === 'LFB'
                   ? 'bg-yellow-600 hover:bg-yellow-600 text-white'
                   : ''
@@ -123,16 +123,16 @@ const lfbAllStarCounts = allStars
               LFB
             </Button>
             <Button
-              variant={selectedLeague === 'LF2' ? "default" : "outline"}
-              className={`rounded-full px-10 ${
-                selectedLeague === 'LF2'
-                  ? 'bg-yellow-600 hover:bg-yellow-600 text-white'
-                  : ''
-              }`}
-              onClick={() => setSelectedLeague('LF2')}
-            >
-              LF2
-            </Button>
+      variant={selectedLeague === 'LF2' ? "default" : "outline"}
+      className={`rounded-full px-10 2xl:px-20 ${
+        selectedLeague === 'LF2'
+          ? 'bg-yellow-600 hover:bg-yellow-600 text-white'
+          : ''
+      }`}
+      onClick={() => setSelectedLeague('LF2')}
+    >
+      LF2
+    </Button>
           </div>
         </div>
 

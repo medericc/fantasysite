@@ -1,104 +1,131 @@
-forename,name,equipe,Match 1,match,rating
-Genesia,Mayele,Flammes,10,1,10
-Nina,Seilly,Flammes,"8,4605",1,"8,4605"
-Lena,Monasse,Flammes,"7,127",1,"7,127"
-Jasmine,Mamouni,Flammes,"7,5345",1,"7,5345"
-Desiree,Bakabadio,Flammes,"8,077",1,"8,077"
-Margaux,Baxs,Flammes,"5,0815",1,"5,0815"
-Anae,Leleu,Flammes,"5,224",1,"5,224"
-Djeneba,Ndiaye,Flammes,"6,414",1,"6,414"
-Maty,Fall,Flammes,"9,145",1,"9,145"
-Alaina,Rice,Flammes,"9,149",1,"9,149"
-Ludivine,Marie,BLMA,"9,164",1,"9,164"
-Stacy,Chovino,BLMA,"7,77",1,"7,77"
-Jade,Ferré,BLMA,"7,8995",1,"7,8995"
-Jenny,Fouasseau,BLMA,"7,227",1,"7,227"
-Marie-Bernadette,Mbuyamba,BLMA,"6,825",1,"6,825"
-Dieyneba,Niang,BLMA,"6,5255",1,"6,5255"
-Jade,Marmillod,BLMA,5,1,5
-Axelle,Mikorek,BLMA,10,1,10
-Justine,Mouyokolo,Basket Landes,"7,8245",1,"7,8245"
-Yo'myris,Morris,Basket Landes,"7,4495",1,"7,4495"
-Camille,Lenglet,Basket Landes,"6,882",1,"6,882"
-Marguerite,Effa,Basket Landes,"6,783",1,"6,783"
-Nathalie,Desset,Basket Landes,"6,306",1,"6,306"
-Maëlys,Sanctussy,Basket Landes,"6,509",1,"6,509"
-Emilie,Raynaud,Basket Landes,"9,5705",1,"9,5705"
-Dorcas,Nganfina,Basket Landes,"7,33",1,"7,33"
-Stepha,M'baye,Basket Landes,"8,327",1,"8,327"
-Rachel,Clet,Landerneau,"7,857",1,"7,857"
-Mariama,N'diaye,Landerneau,"6,4775",1,"6,4775"
-Eiza,Louveton,Landerneau,"6,2205",1,"6,2205"
-Rose,Micheaux,Landerneau,"6,3255",1,"6,3255"
-Evie,Poulain,Landerneau,5,1,5
-Inès,Nezerwa,Landerneau,10,1,10
-Johanna,Muzet,Landerneau,"7,381",1,"7,381"
-Eloise,Pavrette,Landerneau,"7,296",1,"7,296"
-Lou,Bobst,Landerneau,"5,9335",1,"5,9335"
-Sena,Sert,Roche Vendée,"6,8885",1,"6,8885"
-Naelle,Bernard,Roche Vendée,"7,092",1,"7,092"
-Aurélie,Jean Louis,Roche Vendée,"6,5565",1,"6,5565"
-Alison,Lewis,Roche Vendée,"7,4375",1,"7,4375"
-Ramouna,Vitta,Roche Vendée,5,1,5
-Astrid,Courbot,Roche Vendée,"7,16",1,"7,16"
-Kathy-Emma,Otto,Roche Vendée,"7,1965",1,"7,1965"
-Camille,Sevaux,Roche Vendée,"6,7",1,"6,7"
-Emma,Broliron,Roche Vendée,"8,4555",1,"8,4555"
-Louane,Foirest,Roche Vendée,"6,5415",1,"6,5415"
-Alix,Gibrat,Roche Vendée,"6,2805",1,"6,2805"
-Ange,Thermoz Lorciere,Roche Vendée,"5,1525",1,"5,1525"
-Thelma,Leray,Roche Vendée,"6,3025",1,"6,3025"
-Neyvaeh,Marcin,Roche Vendée,"5,711",1,"5,711"
-Eleana,Moise,Chartres,"8,611",1,"8,611"
-Kendall,Cooper,Chartres,"7,078",1,"7,078"
-Pauline,Lithard,Chartres,"8,505",1,"8,505"
-Adele,Dreano-Trecant,Chartres,"8,274",1,"8,274"
-Mame,Gueye,Chartres,"6,6365",1,"6,6365"
-Bigué,Sarr,Chartres,"6,9",1,"6,9"
-Léa,Djoko,Chartres,5,1,5
-Stella,Mavuanga,Chartres,"6,7915",1,"6,7915"
-Fleur,Devillers,Bourges,"5,0205",1,"5,0205"
-Aicha,Camara,Bourges,10,1,10
-Michaela,Vanderklugt,Bourges,"8,629",1,"8,629"
-Clarisse,Vergiat,Bourges,"8,1035",1,"8,1035"
-Julie,Marson,Bourges,"9,9635",1,"9,9635"
-Manaelle,Yerbe,Bourges,"8,3685",1,"8,3685"
-Cristal,Sontia Zeutsop,Bourges,"6,8425",1,"6,8425"
-Amance,Kerbaul,Bourges,"6,3935",1,"6,3935"
-Verdine,Tahesha Warner,Bourges,"6,255",1,"6,255"
-Zarah,Velleyen,Lyon,"5,0215",1,"5,0215"
-Julie,Tetart,Lyon,10,1,10
-Martina,Bestagno,Lyon,"7,943",1,"7,943"
-Sara,Crudo,Lyon,"7,217",1,"7,217"
-Arzhelenn,Chavoutier,Lyon,"7,03",1,"7,03"
-Kimsy,Demontoux,Lyon,"6,673",1,"6,673"
-Amina,Traore,Lyon,"5,12",1,"5,12"
-Maud,Stervinou,Lyon,"6,0965",1,"6,0965"
-Lauryn,Vieira,Charnay,"8,6725",1,"8,6725"
-Khadidiatou,Diouf,Charnay,"8,5605",1,"8,5605"
-Eva,Faillot,Charnay,"8,487",1,"8,487"
-Bright,Kerryne Aman,Charnay,"7,239",1,"7,239"
-Anya,Poole,Charnay,"6,84",1,"6,84"
-Margot,Ounounou,Charnay,"7,4205",1,"7,4205"
-Sarah,Saint-Martin,Charnay,"5,042",1,"5,042"
-Stella,Kessler,Charnay,"5,9095",1,"5,9095"
-Clarance,Kongo,Charnay,"5,1",1,"5,1"
-Manon,Simplot,Charnay,5,1,5
-Ashunae,Durant,Charnay,"8,8145",1,"8,8145"
-Morgane,Armant,Charnay,"9,408",1,"9,408"
-Melissa,Guillet,Charnay,"9,5605",1,"9,5605"
-Tilise,Boisseron,Charnay,"8,476",1,"8,476"
-Ainoah,Rio,Charnay,"8,2445",1,"8,2445"
-Maelynn,Elmira-Eudaric,Charnay,"8,054",1,"8,054"
-Maroussia,Droguet,Charnay,"6,614",1,"6,614"
-Amex-Anne,Deschamps,Charnay,"5,0525",1,"5,0525"
-Hatoumata,Diakite,Charnay,"9,1265",1,"9,1265"
-Davina,Kasongo,Charnay,10,1,10
-Shelby,Saint Juste,Charnay,"7,865",1,"7,865"
-Cindy,Perdriau,Charnay,"7,1615",1,"7,1615"
-Amali,Montout,Charnay,"7,804",1,"7,804"
-Clémence,Collin,Charnay,"7,4545",1,"7,4545"
-Joelly,Belleka,Charnay,"6,816",1,"6,816"
-Victoria,Majekodunmi,Charnay,"6,673",1,"6,673"
-Cameron,Kolissoko,Charnay,"5,111",1,"5,111"
-Ti'lan,Boler,Charnay,5,1,5
+forename,name,equipe,Match 1,Match 2,match,rating
+Genesia,Mayele,Flammes,10,7.9225,2,8.96125
+Nina,Seilly,Flammes,8.4605,6.1465,2,7.3035
+Lena,Monasse,Flammes,7127,5,2,3566
+Jasmine,Mamouni,Flammes,7.5345,5.6385,2,6.5865
+Desiree,Bakabadio,Flammes,8.077,8.8505,2,8.46375
+Khadijah,Brown,dddd,,6.4835,1,6.4835
+Astou,Gaye,ddd,,8.0755,1,8.0755
+Margaux,Baxs,Flammes,5.0815,,1,5.0815
+Anae,Leleu,Flammes,5.224,,1,5.224
+Djeneba,Ndiaye,Flammes,6414,8.964,2,3211.482
+Maty,Fall,Flammes,9.145,7.9685,2,8.55675
+Alaina,Rice,Flammes,9.149,5.4645,2,7.30675
+Ludivine,Marie,BLMA,9.164,10,2,9.582
+Stacy,Chovino,BLMA,7.77,8.579,2,8.1745
+Jade,Ferré,BLMA,7.8995,7.62,2,7.75975
+Jenny,Fouasseau,BLMA,7.227,7.864,2,7.5455
+Marie-Bernadette,Mbuyamba,BLMA,6.825,,1,6.825
+Dieyneba,Niang,BLMA,6.5255,6.676,2,6.60075
+Clara,Causeur,dddd,,7.642,1,7.642
+Jade,Marmillod,BLMA,5,5,2,5
+Axelle,Mikorek,BLMA,10,7.5815,2,8.79075
+Justine,Mouyokolo,Basket Landes,7.8245,6.3705,2,7.0975
+Yo'myris,Morris,Basket Landes,7.4495,6.468,2,6.95875
+Camille,Lenglet,Basket Landes,6.882,6.5205,2,6.70125
+Marguerite,Effa,Basket Landes,6.783,7.2165,2,6.99975
+Nathalie,Desset,Basket Landes,6.306,6.1535,2,6.22975
+Maëlys,Sanctussy,Basket Landes,6.509,5.0145,2,5.76175
+Manon,Von Banck,Basket Landes,,5,1,5
+EC,Maquiesse,Basket Landes,,5.095,1,5.095
+Emilie,Raynaud,Basket Landes,9.5705,7.036,2,8.30325
+Dorcas,Nganfina,Basket Landes,7.33,5.5955,2,6.46275
+Stepha,M'baye,Basket Landes,8.327,8.809,2,8.568
+Rachel,Clet,Landerneau,7.857,7.2045,2,7.53075
+Mariama,N'diaye,Landerneau,6.4775,5.309,2,5.89325
+Eiza,Louveton,Landerneau,6.2205,6.793,2,6.50675
+Rose,Micheaux,Landerneau,6.3255,8.369,2,7.34725
+Evie,Poulain,Landerneau,5,,1,5
+Inès,Nezerwa,Landerneau,10,10,2,10
+Johanna,Muzet,Landerneau,7.381,6.8845,2,7.13275
+Eloise,Pavrette,Landerneau,7.296,8.2445,2,7.77025
+Lou,Bobst,Landerneau,5.9335,8.7735,2,7.3535
+Sena,Sert,Roche Vendée,6.8885,5,2,5.94425
+Naelle,Bernard,Roche Vendée,7.092,6.173,2,6.6325
+Aurélie,Jean Louis,Roche Vendée,6.5565,6.1445,2,6.3505
+Alison,Lewis,Roche Vendée,7.4375,8.2195,2,7.8285
+Ramouna,Vitta,Roche Vendée,5,5.2265,2,5.11325
+Astrid,Courbot,Roche Vendée,7.16,6.2265,2,6.69325
+Kathy-Emma,Otto,Roche Vendée,7.1965,7.73,2,7.46325
+Camille,Sevaux,Roche Vendée,6.7,10,2,8.35
+Emma,Broliron,Roche Vendée,8.4555,6.822,2,7.63875
+Louane,Foirest,Roche Vendée,6.5415,,1,6.5415
+Alix,Gibrat,Roche Vendée,6.2805,,1,6.2805
+Ange,Thermoz Lorciere,Roche Vendée,5.1525,6.3125,2,5.7325
+Thelma,Leray,Roche Vendée,6.3025,5.468,2,5.88525
+Neyvaeh,Marcin,Roche Vendée,5.711,7.744,2,6.7275
+Eleana,Moise,Chartres,8.611,6.32,2,7.4655
+Kendall,Cooper,Chartres,7.078,6.629,2,6.8535
+Pauline,Lithard,Chartres,8.505,6.49,2,7.4975
+Adele,Dreano-Trecant,Chartres,8.274,5.491,2,6.8825
+Mame,Gueye,Chartres,6.6365,6.441,2,6.53875
+Bigué,Sarr,Chartres,6.9,5.053,2,5.9765
+Léa,Djoko,Chartres,5,6.873,2,5.9365
+Stella,Mavuanga,Chartres,6.7915,7.0805,2,6.936
+Fleur,Devillers,Bourges,5.0205,6.7085,2,5.8645
+Aicha,Camara,Bourges,10,7.2405,2,8.62025
+Michaela,Vanderklugt,Bourges,8.629,6.5315,2,7.58025
+Clarisse,Vergiat,Bourges,8.1035,6.3345,2,7.219
+Julie,Marson,Bourges,9.9635,6.1525,2,8.058
+Manaelle,Yerbe,Bourges,8.3685,10,2,9.18425
+Cristal,Sontia Zeutsop,Bourges,6.8425,5.7245,2,6.2835
+Amance,Kerbaul,Bourges,6.3935,7.982,2,7.18775
+Verdine,Tahesha Warner,Bourges,6.255,6.2365,2,6.24575
+Zarah,Velleyen,Lyon,5.0215,9.2555,2,7.1385
+Julie,Tetart,Lyon,10,7.1665,2,8.58325
+Martina,Bestagno,Lyon,7.943,6.8875,2,7.41525
+Sara,Crudo,Lyon,7.217,,1,7.217
+Arzhelenn,Chavoutier,Lyon,7.03,6.8245,2,6.92725
+Kimsy,Demontoux,Lyon,6.673,5.4185,2,6.04575
+Anouk,Brun,ddddd,,5.4435,1,5.4435
+Ilona,Hattab,ddd,,6.877,1,6.877
+Lysa,Millavet,ddddd,,5.109,1,5.109
+Philippine,Delpech,dddfee,,5,1,5
+Amina,Traore,Lyon,5.12,6.656,2,5.888
+Maud,Stervinou,Lyon,6.0965,7.23,2,6.66325
+Lauryn,Vieira,Charnay,8.6725,8.331,2,8.50175
+Khadidiatou,Diouf,Charnay,8.5605,8.2545,2,8.4075
+Eva,Faillot,Charnay,8.487,7.529,2,8.008
+Bright,Kerryne Aman,Charnay,7.239,7.6605,2,7.44975
+Anya,Poole,Charnay,6.84,10,2,8.42
+Margot,Ounounou,Charnay,7.4205,9.29,2,8.35525
+Sarah,Saint-Martin,Charnay,5.042,7.3625,2,6.20225
+Stella,Kessler,Charnay,5.9095,7.3435,2,6.6265
+Clarance,Kongo,Charnay,5.1,5.099,2,5.0995
+Manon,Simplot,Charnay,5,5.408,2,5.204
+Ashunae,Durant,Charnay,8.8145,9.5125,2,9.1635
+Morgane,Armant,Charnay,9.408,9.202,2,9.305
+Melissa,Guillet,Charnay,9.5605,7.3045,2,8.4325
+Tilise,Boisseron,Charnay,8.476,5.23,2,6.853
+Ainoah,Rio,Charnay,8.2445,6.248,2,7.24625
+Maelynn,Elmira-Eudaric,Charnay,8.054,6.683,2,7.3685
+Maroussia,Droguet,Charnay,6.614,7.6045,2,7.10925
+Amex-Anne,Deschamps,Charnay,5.0525,5.964,2,5.50825
+Hatoumata,Diakite,Charnay,9.1265,10,2,9.56325
+Davina,Kasongo,Charnay,10,5.4965,2,7.74825
+Shelby,Saint Juste,Charnay,7.865,7.488,2,7.6765
+Cindy,Perdriau,Charnay,7.1615,5.928,2,6.54475
+Amali,Montout,Charnay,7.804,8.5055,2,8.15475
+Clémence,Collin,Charnay,7.4545,5,2,6.22725
+Joelly,Belleka,Charnay,6.816,8.2255,2,7.52075
+Victoria,Majekodunmi,Charnay,6.673,7.3165,2,6.99475
+Cameron,Kolissoko,Charnay,5.111,8.4175,2,6.76425
+Ti'lan,Boler,Charnay,5,7.9935,2,6.49675
+Samantha,Peytour,Charnay,7.326,10,2,8.663
+Daniela,Dibanzilua,Charnay,8.321,9.384,2,8.8525
+Carinne,Ngukoug Silatsa,Charnay,8.058,9.0765,2,8.56725
+Nabala,Fofana,Charnay,6.3495,7.345,2,6.84725
+Jade,Philips,Charnay,10,8.514,2,9.257
+Marine,Mulumba,Charnay,7.8325,7.375,2,7.60375
+Charlie,Girod,Charnay,,6.4765,1,6.4765
+Pauline,Perret,Charnay,,5,1,5
+Prescillia ,Lezin,dddd,6.3425,,1,6.3425
+Davina,Kasongo,Charnay,,5.4965,1,5.4965
+Lena,Timera,Charnay,6.755,8.4505,2,7.60275
+Emma,Villas-Gomis,Charnay,8.2615,7.7565,2,8.009
+Juliette,Sadura,Charnay,5,6.6645,2,5.83225
+Lina,Fimbo,Charnay,5.478,6.4665,2,5.97225
+Kolby,Morgan,Charnay,9.2565,7.434,2,8.34525
+Aby,Diallo,Charnay,7.252,6.773,2,7.0125
+Pauline,Lanfant,Charnay,8.978,7.0885,2,8.03325
+Fabienne,Constant,ddd,9.515,,1,9.515

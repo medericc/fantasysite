@@ -219,7 +219,7 @@ const lfbAllStarCounts = allStars
             <TableCell className="font-bold">{place}</TableCell>
             <TableCell>{p.prenom}</TableCell>
             <TableCell>{p.nom}</TableCell>
-          <TableCell className="font-semibold text-yellow-600">
+          <TableCell className="font-semibold text-yellow-600 text-center">
   {Number.isInteger(noteNum) ? noteNum : noteNum.toFixed(1)}
 </TableCell>
 

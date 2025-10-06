@@ -9,15 +9,15 @@ Isabelle,Strunc,Flammes,7.631,7.355,2,7.493
 Maia,Hirsch,Flammes,6.6875,8.6005,2,7.644
 Tenin,Magassa,Flammes,5,7.2075,2,6.10375
 Vaciana,Gomis,Flammes,5.2915,5,2,5.14575
-Julie,Pospisilova,BLMA,6.844,,1,6.844
-Sarah,Cisse,BLMA,7.491,,1,7.491
+Julie,Pospisilova,BLMA,6.844,9.9445,2,8.39425
+Sarah,Cisse,BLMA,7.491,7.242,2,7.3665
 "
-Nell",Angloma,BLMA,8.8635,,1,8.8635
-Samantha,Breen,BLMA,6.7225,,1,6.7225
-Romane,Bernies,BLMA,8,,1,8
-Qadashah,Hoppie,BLMA,10,,1,10
-Garance,Rabot,BLMA,5.803,,1,5.803
-Christelle,Diallo,BLMA,7.107,,1,7.107
+Nell",Angloma,BLMA,8.8635,9.265,2,9.06425
+Samantha,Breen,BLMA,6.7225,10,2,8.36125
+Romane,Bernies,BLMA,8,9.7815,2,8.89075
+Qadashah,Hoppie,BLMA,10,8.622,2,9.311
+Garance,Rabot,BLMA,5.803,6.9115,2,6.35725
+Christelle,Diallo,BLMA,7.107,6.129,2,6.618
 Julie,Wojta,Basket Landes,6.6265,10,2,8.31325
 Marie,Pardon,Basket Landes,6.589,5,2,5.7945
 Camille,Droguet,Basket Landes,8.4875,8.0805,2,8.284
@@ -68,7 +68,7 @@ Alicia,Tournebize,Bourges,6.6005,,1,6.6005
 Laetitia,Guapo,Bourges,5,7.523,2,6.2615
 Ines,Pitarch-Granel,Bourges,7.906,5.7345,2,6.82025
 Nancy,Fora,Bourges,7.6115,7.317,2,7.46425
-Maeva,Djalbi-Tabdi,Bourges,,5.858,,
+Maeva,Djalbi-Tabdi,Bourges,,5.858,1,5.858
 Dayshanette ,Harris,Lyon,7.743,8.4275,2,8.08525
 Ainhoa ,Risacher,Lyon,6.2345,6.454,2,6.34425
 Jess-Mine ,Zodia,Lyon,7.818,9.755,2,8.7865
@@ -95,3 +95,11 @@ Iva,Slonsjak,TMB,,6.8485,1,6.8485
 Bella,Murekatete,TMB,,6.45,1,6.45
 Manoe,Cisse,TMB,,6.063,1,6.063
 Fatoumata,Toure,TMB,,5.7605,1,5.7605
+Sokhna,Fall,ESBVA,,9.8005,1,9.8005
+Emmanuelle,Tahane,ESBVA,,8.979,1,8.979
+Marie-Eve,Paget,ESBVA,,8.7465,1,8.7465
+Ameryst,Alston,ESBVA,,9.08,1,9.08
+Alexis,Peterson,ESBVA,,7.81,1,7.81
+Terezia,Palenikova,ESBVA,,7.2605,1,7.2605
+Alexia,Chery,ESBVA,,5,1,5
+M-M,Milapie,ESBVA,,6.513,1,6.513

@@ -11,7 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 // ---- Types ----
 type NotePlayer = { prenom: string; nom: string; equipe: string; note: string; ranking: string; place: number }
 type AllStar = { prenom: string; nom: string; ligue: string; annee: string; equipe: string }
-type FirstTeam = { prenom: string; nom: string; ligue: string; annee: string }
+type FirstTeam = { prenom: string; nom: string; ligue: string; annee: string; rang: string }
 
 type Category = 'notes' | 'allStars' | 'firstTeam'
 
@@ -79,7 +79,8 @@ export default function FirstPickStats() {
           prenom: r.prenom,
           nom: r.nom,
           ligue: r.ligue,
-          annee: r.annee
+          annee: r.annee,
+      rang: r.rang
         }))
         setFirstTeams(rows)
       },
@@ -251,21 +252,32 @@ const lfbAllStarCounts = allStars
         )}
 
         {/* First Team */}
-        {selectedCategory === 'firstTeam' && (
-          <div className="grid gap-4">
-            {currentFirstTeam.map((p, i) => (
-              <Card key={i}>
-                <CardContent className="flex items-center p-4 text-center">
-                  
-                  <div>
-                    <h3 className="font-bold text-center">{p.prenom} {p.nom}</h3>
-                   
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+       {selectedCategory === 'firstTeam' && (
+  <div className="grid gap-4">
+    {currentFirstTeam.map((p, i) => (
+      <Card key={i}>
+        <CardContent className="flex items-center justify-between p-4">
+          <div>
+            <h3 className="font-bold text-center">{p.prenom} {p.nom}</h3>
           </div>
-        )}
+          {p.rang && (
+            <span
+              className={`
+                rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-sm
+                ${p.rang === '1' ? 'bg-yellow-600' :
+                  p.rang === '2' ? 'bg-gray-500' :
+                  'bg-amber-300 text-black'}
+              `}
+            >
+              {p.rang}
+            </span>
+          )}
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+)}
+
       </main>
     </div>
   )

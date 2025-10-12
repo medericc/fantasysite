@@ -264,9 +264,9 @@ const lfbAllStarCounts = allStars
             <span
               className={`
                 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-sm
-                ${p.rang === '1' ? 'bg-yellow-600' :
+                ${p.rang === '1' ? 'bg-amber-300' :
                   p.rang === '2' ? 'bg-gray-500' :
-                  'bg-amber-300 text-black'}
+                  'bg-yellow-600 text-black'}
               `}
             >
               {p.rang}

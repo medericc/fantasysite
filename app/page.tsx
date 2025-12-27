@@ -18,7 +18,7 @@ type Category = 'notes' | 'allStars' | 'firstTeam'
 export default function FirstPickStats() {
   const [selectedLeague, setSelectedLeague] = useState<'LFB' | 'LF2'>('LFB')
   const [selectedCategory, setSelectedCategory] = useState<Category>('notes')
-  const [selectedYear, setSelectedYear] = useState<string>('2024')
+  const [selectedYear, setSelectedYear] = useState<string>('2025')
 
   const [lfbNotes, setLfbNotes] = useState<NotePlayer[]>([])
   const [lf2Notes, setLf2Notes] = useState<NotePlayer[]>([])
@@ -168,8 +168,12 @@ const lfbAllStarCounts = allStars
                 {(
   selectedCategory === 'firstTeam'
     ? availableYears
-    : (selectedLeague === 'LFB' ? ['2022','2023','2024'] : ['2023','2024'])
-).map((year) => (
+    : (selectedLeague === 'LFB'
+        ? ['2022','2023','2024','2025']
+        : ['2023','2024','2025']
+      )
+)
+.map((year) => (
 
                   <Button
                     key={year}

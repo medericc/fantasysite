@@ -1,7 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
-import "./globals.css"
+import "../globals.css"
 import { Analytics } from "@vercel/analytics/next"
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,14 +69,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-900`}
       >
-        {/* Header bandeau */}
-        <header className="w-full bg-yellow-600 py-4 shadow-md">
-          <div className="container mx-auto text-center">
-            <h1 className="text-xl md:text-3xl font-bold text-white tracking-wide">
-              RÉCOMPENSES FIRST PICK
-            </h1>
-          </div>
-        </header>
+        
 
         {/* Contenu principal */}
         <main className="min-h-screen">{children}</main>

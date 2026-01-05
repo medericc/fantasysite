@@ -3,9 +3,14 @@
 import { useState, useEffect } from 'react'
 import Papa from 'papaparse'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Trophy, Star, Award, TrendingUp, ChevronRight, Users, Target, Calendar } from 'lucide-react'
+import {  Brain,
+  History,
+  HelpCircle,
+  Calculator,
+  RefreshCw, Trophy, Star, Award, TrendingUp, ChevronRight, Users, Target, Calendar } from 'lucide-react'
 import { useRouter } from "next/navigation"
 import { CANONICAL_YEAR } from "@/lib/season"
+
 // ---- Types ----
 type NotePlayer = { prenom: string; nom: string; equipe: string; note: string; ranking: string; place: number }
 type AllStar = { prenom: string; nom: string; ligue: string; annee: string; equipe: string }
@@ -565,6 +570,150 @@ const topPlayer =
             )}
           </motion.div>
         )}
+{/* ===== TEXTE SEO ===== */}
+<motion.section
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3 }}
+  className=" mt-16 px-4"
+>
+  <div className="bg-white dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
+    <div className="text-center mb-8">
+      <div className="inline-flex items-center justify-center p-3 rounded-full bg-gradient-to-r from-yellow-600/10 to-amber-500/10 mb-4">
+        <Trophy className="w-8 h-8 text-yellow-600" />
+      </div>
+      <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-3">
+        Classements basket féminin {selectedLeague}
+      </h2>
+      <div className="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-yellow-600 to-amber-500 text-white text-sm font-semibold">
+        Saison {selectedYear}
+      </div>
+    </div>
+
+    <div className="space-y-4 text-slate-600 dark:text-slate-300">
+      <p className="leading-relaxed">
+        First Pick propose des classements exclusifs des joueuses de {selectedLeague},
+        basés sur un modèle d'intelligence artificielle combinant statistiques
+        individuelles, performances collectives et impact réel sur le jeu.
+      </p>
+
+      <div className="bg-gradient-to-r from-slate-50 to-white dark:from-slate-800/30 dark:to-slate-700/30 rounded-xl p-5 border border-slate-200 dark:border-slate-700">
+        <div className="flex items-start gap-3">
+          <Brain className="w-6 h-6 text-yellow-600 mt-1 flex-shrink-0" />
+          <p className="leading-relaxed">
+            Contrairement aux outils classiques, notre modèle d'IA évalue l'impact réel d'une performance 
+            en fonction de la physionomie du match. Nous mesurons la contribution d'une joueuse 
+            proportionnellement au volume global de la rencontre. L'objectif est simple : noter l'influence 
+            directe sur le match, quel que soit le score final.
+          </p>
+        </div>
+      </div>
+
+      <p className="leading-relaxed">
+        Les distinctions <span className="font-semibold text-yellow-600">All-Stars</span> et <span className="font-semibold text-amber-600">First Team</span> mettent en lumière les joueuses les plus
+        performantes de la saison, offrant une vision claire des leaders
+        du basket féminin français. Ce travail vise à valoriser la performance et à proposer
+        une lecture moderne et transparente des championnats.
+      </p>
+
+      <p className="leading-relaxed font-medium text-slate-700 dark:text-slate-200">
+        Consultez également les saisons précédentes pour suivre l'évolution des joueuses
+        et comparer les performances d'une année sur l'autre.
+      </p>
+    </div>
+
+    {/* Navigation des saisons */}
+    <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700 ">
+      <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-2">
+        <History className="w-5 h-5 text-yellow-600" />
+        Autres saisons {selectedLeague}
+      </h3>
+      <div className="flex flex-wrap gap-2">
+        {['2025']
+          .filter(y => y !== selectedYear)
+          .map((y) => (
+            <a
+              key={y}
+              href={`/${selectedLeague.toLowerCase()}/${selectedCategory}/${y}`}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-500 hover:text-white transition-all duration-300 group"
+            >
+              <Calendar className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+              <span>Saison {y}</span>
+              <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
+            </a>
+          ))}
+      </div>
+    </div>
+  </div>
+</motion.section>
+
+<motion.section
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.4 }}
+  className=" mt-8 px-4"
+>
+  <div className="bg-gradient-to-br from-slate-50 to-white dark:from-slate-800/50 dark:to-slate-900/50 rounded-2xl shadow-xl p-6 md:p-8">
+    <div className="flex items-center gap-3 mb-6">
+      <div className="p-2 rounded-lg bg-gradient-to-r from-yellow-600 to-amber-500">
+        <HelpCircle className="w-6 h-6 text-white" />
+      </div>
+      <h2 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white">
+        Questions fréquentes
+      </h2>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 hover:border-yellow-500/50 transition-colors">
+          <h3 className="font-bold text-lg text-slate-800 dark:text-white mb-3 flex items-center gap-2">
+            <Calculator className="w-5 h-5 text-yellow-600" />
+            Comment sont calculées les notes ?
+          </h3>
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+            Les notes sont générées par notre modèle d'intelligence artificielle analysant 
+            les statistiques individuelles, l'impact collectif et la régularité de chaque joueuse.
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 hover:border-yellow-500/50 transition-colors">
+          <h3 className="font-bold text-lg text-slate-800 dark:text-white mb-3 flex items-center gap-2">
+            <RefreshCw className="w-5 h-5 text-yellow-600" />
+            Fréquence des mises à jour
+          </h3>
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+            Les classements sont recalculés après chaque journée de championnat pour une 
+            analyse toujours à jour des performances.
+          </p>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 hover:border-yellow-500/50 transition-colors">
+          <h3 className="font-bold text-lg text-slate-800 dark:text-white mb-3 flex items-center gap-2">
+            <Star className="w-5 h-5 text-yellow-600" />
+            All-Stars vs First Team
+          </h3>
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+            Les All-Stars récompensent les meilleures joueuses de la mi-saison, 
+            tandis que la First Team représente les cinq meilleures de la saison complète.
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 hover:border-yellow-500/50 transition-colors">
+          <h3 className="font-bold text-lg text-slate-800 dark:text-white mb-3 flex items-center gap-2">
+            <Target className="w-5 h-5 text-yellow-600" />
+            Objectif de l'analyse
+          </h3>
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+            Valoriser la performance individuelle dans son contexte collectif, 
+            pour une vision plus juste du basketball féminin français.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</motion.section>
 
         {/* Stats en bas de page */}
         <motion.div

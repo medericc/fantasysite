@@ -83,6 +83,39 @@ export default async function Page({
           }),
         }}
       />
+<Script
+  id="faq-schema"
+  type="application/ld+json"
+  strategy="afterInteractive"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment sont calculées les notes First Pick ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Les notes sont générées par notre propre modèle d’intelligence artificielle analysant statistiques, impact collectif et régularité."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "À quelle fréquence les classements sont-ils mis à jour ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Les classements sont mis à jour après chaque journée de championnat."
+          }
+        }
+      ]
+    }),
+  }}
+/>
+
+
 
       <FirstPickStats
         league={league.toUpperCase() as "LFB" | "LF2"}

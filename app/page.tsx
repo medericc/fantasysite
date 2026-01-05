@@ -297,7 +297,7 @@ export default function FirstPickStats() {
                         Classement des Notes
                       </h2>
                       <p className="text-slate-600 dark:text-slate-300">
-                        {selectedLeague} - Saison 2024/2025
+                        {selectedLeague} - Saison 2025/2026
                       </p>
                     </div>
                   </div>

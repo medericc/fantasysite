@@ -38,8 +38,7 @@ export default function MethodologiePage() {
 
         <p>
           L’intelligence artificielle First Pick applique des pondérations
-          dynamiques selon le rôle, le temps de jeu et l’importance des
-          rencontres. Cela permet d’éviter les biais liés au simple volume
+          dynamiques selon le rôle, le temps de jeu et la physionomie du match. Cela permet d’éviter les biais liés au simple volume
           statistique.
         </p>
 
@@ -53,15 +52,7 @@ export default function MethodologiePage() {
           de refléter la dynamique réelle des joueuses.
         </p>
 
-        <h2 className="text-2xl font-semibold text-slate-900 dark:text-white pt-6">
-          Limites et transparence
-        </h2>
-
-        <p>
-          Aucun modèle ne prétend à l’exactitude absolue. First Pick assume ses
-          limites et vise avant tout une lecture cohérente, reproductible et
-          honnête des performances.
-        </p>
+      
       </section>
     </main>
   )

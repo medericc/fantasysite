@@ -42,10 +42,8 @@ export default function AboutPage() {
         </h2>
 
         <p>
-          Le basket féminin manque encore de visibilité analytique et de
-          reconnaissance statistique. First Pick est né de cette volonté :
-          valoriser la performance réelle, comparer les saisons et offrir un
-          outil de référence aux passionnés, journalistes et acteurs du basket.
+          First Pick est né pour valoriser la performance réelle, comparer les saisons et offrir un
+          outil de référence aux passionnés et acteurs du basket.
         </p>
 
         <h2 className="text-2xl font-semibold text-slate-900 dark:text-white pt-6">
@@ -56,14 +54,13 @@ export default function AboutPage() {
           Les notes First Pick sont générées à partir d’un modèle
           d’intelligence artificielle développé en interne. Celui-ci analyse
           de multiples indicateurs : statistiques individuelles, régularité,
-          impact sur le résultat, contexte des rencontres et influence
+          impact sur le résultat, physionomie des rencontres et influence
           collective.
         </p>
 
         <p>
           Contrairement aux évaluations classiques, chaque performance est
-          replacée dans son contexte afin d’éviter les biais liés au volume ou
-          au temps de jeu. Les classements sont mis à jour régulièrement au fil
+          replacée dans son contexte. Les classements sont mis à jour régulièrement au fil
           de la saison.
         </p>
 
@@ -76,16 +73,6 @@ export default function AboutPage() {
           sont influencés par aucun club, agent ou partenaire. Notre objectif
           est de proposer une information fiable, compréhensible et accessible
           à tous.
-        </p>
-
-        <h2 className="text-2xl font-semibold text-slate-900 dark:text-white pt-6">
-          Notre vision
-        </h2>
-
-        <p>
-          À long terme, First Pick ambitionne de devenir une référence dans
-          l’analyse du basket féminin, en France et au-delà, en combinant
-          technologie, données et expertise terrain.
         </p>
       </section>
     </main>

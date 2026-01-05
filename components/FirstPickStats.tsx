@@ -44,14 +44,17 @@ const selectedYear = year
           header: true,
           download: true,
           complete: (result) => {
-            const rows = (result.data as any[]).map(r => ({
-              prenom: r.forename,
-              nom: r.name,
-              equipe: r.equipe,
-              note: r.rating?.replace(',', '.') ?? '',
-              ranking: r.match ?? '',
-              place: 0
-            }))
+           const rows = (result.data as any[])
+  .filter(r => r.forename && r.name && r.rating)
+  .map(r => ({
+    prenom: r.forename.trim(),
+    nom: r.name.trim(),
+    equipe: r.equipe ?? '',
+    note: r.rating.replace(',', '.'),
+    ranking: r.match ?? '',
+    place: 0,
+  }))
+
             setLfbNotes(rows)
           },
         })
@@ -131,8 +134,12 @@ const selectedYear = year
   const currentFirstTeam = firstTeams.filter(p => p.ligue === selectedLeague && p.annee === selectedYear)
   
   const sortedNotes = [...currentNotes].sort(
-    (a, b) => Number(b.note) - Number(a.note)
-  )
+  (a, b) => parseFloat(b.note) - parseFloat(a.note)
+)
+const topPlayer =
+  sortedNotes.length > 0 && !isNaN(Number(sortedNotes[0].note))
+    ? sortedNotes[0]
+    : null
 
   // Années disponibles
   const availableYears = ['2023', '2024']
@@ -152,7 +159,6 @@ const selectedYear = year
     if (rank === 3) return 'bg-gradient-to-r from-amber-700 to-amber-600'
     return 'bg-gradient-to-r from-slate-700 to-slate-600'
   }
-const topPlayer = sortedNotes[0]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
@@ -198,7 +204,17 @@ const topPlayer = sortedNotes[0]
     mb-4 sm:mb-5 md:mb-6
   "
 >
-  Notes mises à jour régulièrement après chaque journée.
+  {selectedCategory === 'notes' && topPlayer ? (
+    <>
+      Le classement est dominé par{" "}
+      <span className="font-semibold text-slate-700 dark:text-slate-200">
+        {topPlayer.prenom} {topPlayer.nom}
+      </span>
+      , meilleure note de la saison {selectedYear}.
+    </>
+  ) : (
+    <>Notes mises à jour régulièrement après chaque journée.</>
+  )}
 </p>
 
       </div>

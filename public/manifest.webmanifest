@@ -1,0 +1,22 @@
+{
+  "name": "First Pick – Basket Féminin",
+  "short_name": "First Pick W",
+  "description": "Stats, classements et analyses IA du basket féminin (LFB & LF2)",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#f59e0b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

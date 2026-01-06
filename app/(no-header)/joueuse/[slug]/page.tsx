@@ -98,19 +98,20 @@ function getRankColor(rang: string) {
 }
 function noteColorClass(note: number) {
   if (note >= 9)
-    return "from-blue-400 to-blue-500 shadow-blue-500/40"
+    return "from-yellow-500 to-amber-400 shadow-amber-500/40"
 
   if (note >= 8)
-    return "from-blue-500 to-blue-600 shadow-blue-600/40"
+    return "from-blue-500 to-cyan-500 shadow-blue-500/30"
 
   if (note >= 7)
-    return "from-blue-600 to-blue-700 shadow-blue-700/40"
+    return "from-slate-600 to-slate-700 shadow-slate-700/30"
 
   if (note >= 6)
-    return "from-blue-700 to-blue-800 shadow-blue-800/40"
+    return "from-slate-500 to-slate-600 shadow-slate-600/20"
 
-  return "from-blue-800 to-slate-900 shadow-slate-900/40"
+  return "from-slate-700 to-slate-800 shadow-slate-800/20"
 }
+
 
 
 /* =========================

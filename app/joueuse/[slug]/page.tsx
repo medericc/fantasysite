@@ -23,6 +23,13 @@ type AllStarRow = {
   annee: string
   equipe: string
 }
+type TeamSelectionRow = {
+  prenom: string
+  nom: string
+  ligue: string
+  annee: string
+  rang: string // "1" | "2" | "3"
+}
 
 /* =========================
    UTILS
@@ -117,6 +124,9 @@ export default async function PlayerPage({
   const allStars = loadCSV<AllStarRow>(
     path.join(process.cwd(), "public/allstars.csv")
   )
+const teamSelections = loadCSV<TeamSelectionRow>(
+  path.join(process.cwd(), "public/firstteam.csv")
+)
 
   /* ===== FILTER ===== */
   const notes = [...lfbNotes, ...lf2Notes]
@@ -138,13 +148,31 @@ export default async function PlayerPage({
 const records =
   playerRecords.find((p) => p.slug === slug)?.records || []
 
+  const teams = teamSelections.filter(
+  (p) =>
+    p.prenom?.toLowerCase() === prenom.toLowerCase() &&
+    p.nom?.toLowerCase() === nom.toLowerCase()
+)
+function teamLabel(rang: string) {
+  switch (rang) {
+    case "1":
+      return "First Team"
+    case "2":
+      return "Second Team"
+    case "3":
+      return "Third Team"
+    default:
+      return "Team"
+  }
+}
+
   /* =========================
      RENDER
   ========================= */
   return (
     <>
       {/* ===== SCHEMA PERSON ===== */}
-    <Script
+   <Script
   id="schema-athlete"
   type="application/ld+json"
   strategy="afterInteractive"
@@ -160,12 +188,22 @@ const records =
         "@type": "SportsOrganization",
         name: "Championnat LFB / LF2",
       },
-      achievement: records.length
-  ? records.map((r) => ({
-        "@type": "Achievement",
-        name: r.label,
-        description: r.value,
-      })): undefined,
+      achievement: [
+        ...(records.length
+          ? records.map((r) => ({
+              "@type": "Achievement",
+              name: r.label,
+              description: r.value,
+            }))
+          : []),
+        ...(teams.length
+          ? teams.map((t) => ({
+              "@type": "Achievement",
+              name: `${teamLabel(t.rang)} ${t.ligue}`,
+              description: `Sélection ${teamLabel(t.rang)} en ${t.ligue} — Saison ${t.annee}`,
+            }))
+          : []),
+      ],
       knowsAbout: [
         "Basket féminin",
         "LFB",
@@ -175,6 +213,7 @@ const records =
     }),
   }}
 />
+
 
 
       <main className="max-w-4xl mx-auto px-4 py-12">
@@ -249,6 +288,42 @@ const records =
             </ul>
           )}
         </section>
+
+        {/* ===== TEAMS ===== */}
+<section className="mb-10">
+  <h2 className="text-xl font-bold mb-4">
+    Sélections First Team
+  </h2>
+
+  {teams.length === 0 ? (
+    <p className="text-slate-500">
+      Aucune sélection First / Second / Third Team enregistrée.
+    </p>
+  ) : (
+    <ul className="space-y-2">
+      {teams.map((t, i) => (
+        <li
+          key={i}
+          className="bg-white dark:bg-slate-800 border px-4 py-2 rounded flex justify-between"
+        >
+          <span>
+            {teamLabel(t.rang)} — {t.ligue}
+          </span>
+          <span className="font-semibold">
+            Saison {t.annee}
+          </span>
+        </li>
+      ))}
+    </ul>
+  )}
+</section>
+{teams.length > 0 && (
+  <p className="text-slate-600 mt-4">
+    {prenom} {nom} a été sélectionnée à plusieurs reprises dans les équipes
+    de référence du championnat, notamment en{" "}
+    {teams.map((t) => `${teamLabel(t.rang)} ${t.ligue} ${t.annee}`).join(", ")}.
+  </p>
+)}
 {records.length > 0 && (
   <section className="mb-10">
     <h2 className="text-xl font-bold mb-4">
@@ -288,6 +363,7 @@ const records =
     niveau du basket féminin.
   </p>
 )}
+
 
         {/* ===== SEO TEXT ===== */}
         <section className="text-slate-600 space-y-4">

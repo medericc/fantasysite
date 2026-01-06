@@ -488,9 +488,15 @@ const topPlayer =
                           <div className="bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-xl p-5 border border-slate-200 dark:border-slate-700 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start justify-between">
                               <div>
-                                <h3 className="font-bold text-lg text-slate-800 dark:text-white group-hover:text-yellow-600 transition-colors">
-                                  {p.prenom} {p.nom}
-                                </h3>
+                               <h3 className="font-bold text-lg text-slate-800 dark:text-white transition-colors">
+  <a
+    href={`/joueuse/${slugify(`${p.prenom}-${p.nom}`)}`}
+    className="hover:underline group-hover:text-yellow-600"
+  >
+    {p.prenom} {p.nom}
+  </a>
+</h3>
+
                                 <p className="text-slate-600 dark:text-slate-300 text-sm mt-1">
                                   {p.equipe}
                                 </p>
@@ -556,7 +562,10 @@ const topPlayer =
                             <div className="flex items-center justify-between mb-4">
                               <div>
                                 <h3 className="font-bold text-lg text-slate-800 dark:text-white group-hover:text-amber-600 transition-colors">
-                                  {p.prenom} {p.nom}
+                              <a
+    href={`/joueuse/${slugify(`${p.prenom}-${p.nom}`)}`}
+    className="hover:underline group-hover:text-yellow-600"
+  >   {p.prenom} {p.nom}     </a>  
                                 </h3>
                                 <p className="text-slate-600 dark:text-slate-300 text-sm">
                                   {selectedLeague} - {p.annee}

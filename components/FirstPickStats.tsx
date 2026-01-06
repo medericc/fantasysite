@@ -155,7 +155,7 @@ const topPlayer =
     : null
 
   // Années disponibles
-  const availableYears = ['2023', '2024']
+  const availableYears = ['2024', '2025']
   
   const lfbAllStarCounts = allStars
     .filter(p => p.ligue === 'LFB')
@@ -336,8 +336,8 @@ const topPlayer =
                     selectedCategory === 'firstTeam'
                       ? availableYears
                       : (selectedLeague === 'LFB'
-                          ? ['2022','2023','2024','2025']
-                          : ['2023','2024','2025']
+                          ? ['2023','2024','2025','2026']
+                          : ['2024','2025','2026']
                         )
                   ).map((year) => (
                     <button
@@ -383,7 +383,7 @@ const topPlayer =
                         Classement des Notes
                       </h2>
                       <p className="text-slate-600 dark:text-slate-300">
-                        {selectedLeague} - Saison 2025/2026
+                        {selectedLeague} - Saison 2026/2026
                       </p>
                     </div>
                   </div>
@@ -657,7 +657,7 @@ const topPlayer =
         Autres saisons {selectedLeague}
       </h3>
       <div className="flex flex-wrap gap-2">
-        {['2025']
+        {['2026']
           .filter(y => y !== selectedYear)
           .map((y) => (
             <a

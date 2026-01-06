@@ -260,7 +260,7 @@ const noteNum =
         {/* Header avec navigation */}
         <div className="container mx-auto px-4 pt-8 pb-6">
           <a
-            href={`/${primaryLeague.toLowerCase()}/notes/2025`}
+            href={`/${primaryLeague.toLowerCase()}/notes/2026`}
             className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-yellow-600 transition-colors group mb-6"
           >
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />

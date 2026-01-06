@@ -1,4 +1,4 @@
-export const CANONICAL_YEAR = "2025"
+export const CANONICAL_YEAR = "2026"
 
 export function seasonUrl(
   league: string,

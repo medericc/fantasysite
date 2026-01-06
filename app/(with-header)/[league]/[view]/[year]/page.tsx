@@ -44,10 +44,10 @@ export async function generateMetadata(
 ========================= */
 export async function generateStaticParams() {
   return [
-    { league: "lfb", view: "notes", year: "2025" },
-    { league: "lfb", view: "allStars", year: "2025" },
-    { league: "lfb", view: "firstTeam", year: "2025" },
-    { league: "lf2", view: "notes", year: "2025" },
+    { league: "lfb", view: "notes", year: "2026" },
+    { league: "lfb", view: "allStars", year: "2026" },
+    { league: "lfb", view: "firstTeam", year: "2026" },
+    { league: "lf2", view: "notes", year: "2026" },
   ]
 }
 

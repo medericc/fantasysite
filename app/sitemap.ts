@@ -33,11 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
 
   /* =========================
-     NOTES (2025 ONLY)
+     NOTES (2026 ONLY)
   ========================= */
   ;(['lfb', 'lf2'] as const).forEach((league) => {
     routes.push({
-      url: `${baseUrl}/${league}/notes/2025`,
+      url: `${baseUrl}/${league}/notes/2026`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
@@ -48,8 +48,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
      ALL-STARS
   ========================= */
   const allStarsYears = {
-    lfb: ['2022', '2023', '2024', '2025'],
-    lf2: ['2023', '2024', '2025'],
+    lfb: ['2023', '2024', '2025', '2026'],
+    lf2: ['2024', '2025', '2026'],
   } as const
 
   ;(['lfb', 'lf2'] as const).forEach((league) => {
@@ -66,7 +66,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   /* =========================
      FIRST TEAM
   ========================= */
-  const firstTeamYears = ['2023', '2024'] as const
+  const firstTeamYears = ['2024', '2025'] as const
 
   ;(['lfb', 'lf2'] as const).forEach((league) => {
     firstTeamYears.forEach((year) => {

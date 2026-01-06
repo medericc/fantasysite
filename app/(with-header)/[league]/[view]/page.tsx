@@ -6,5 +6,5 @@ export default async function Page({
   params: Promise<{ league: string; view: string }>
 }) {
   const { league, view } = await params
-  redirect(`/${league}/${view}/2025`)
+  redirect(`/${league}/${view}/2026`)
 }

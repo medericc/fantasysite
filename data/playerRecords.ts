@@ -10,20 +10,21 @@ export type PlayerRecord = {
 
 export const playerRecords: PlayerRecord[] = [
   {
-    slug: "ainhoa-risacher",
+    slug: "alexis-peterson",
     records: [
-      {
-        label: "Plus jeune joueuse sélectionnée All-Star",
-        value: "19 ans",
-        season: "2024",
-        league: "LFB",
-      },
-      {
-        label: "Meilleure progression de note sur une saison",
-        value: "+1,8 points",
-        season: "2025",
-        league: "LFB",
-      },
+  
+    { label: "Seule meilleure scoreuse de LFB avec 47 % à 3 pts", value: "19,5 points", season: "2023", league: "LFB" },
+
+    { label: "Plus grand nombre de trophées points + passes", value: "2", league: "LFB" },
+
+    { label: "Joueuse la plus rapide à atteindre 1000 points en LFB", value: "3 saisons", league: "LFB" },
+   { label: "Seule joueuse à finir deux saisons à 15 pts et 5 ast en LFB", value: "2022 & 2023", league: "LFB" },
+   
+
+    { label: "Meilleure marqueuse de la LFB", value: "19,5 points",season: "2023", league: "LFB" },
+          { label: "Joueuse la plus décisive de la LFB", value: "22,3 pts+ast",season: "2022", league: "LFB" },
+         { label: "Joueuse la plus décisive de la LFB", value: "25,6 pts+ast",season: "2023", league: "LFB" },
+ 
     ],
   },
   {
@@ -35,9 +36,9 @@ export const playerRecords: PlayerRecord[] = [
 
     { label: "Meilleure moyenne de points à 20 ans en LFB", value: "15 points", league: "LFB" },
 
-    { label: "Plus jeune joueuse à atteindre 975 points en LFB", value: "20 ans", league: "LFB" },
+    { label: "Plus jeune joueuse à atteindre 975 points en LFB", value: "3 saisons", league: "LFB" },
 
-    { label: "Seule Européenne meilleure scoreuse de LFB avec 40 % à 3 pts", value: "16,4 points", league: "LFB" },
+    { label: "Seule européenne meilleure scoreuse de LFB avec 40 % à 3 pts", value: "16,4 points", season: "2025", league: "LFB" },
 
     { label: "Plus grand nombre de trophées points + passes", value: "2", league: "LFB" },
   { label: "Meilleure moyenne points + passes à 20 ans en LFB", value: "20,3 pts+ast", league: "LFB" },
@@ -59,7 +60,7 @@ export const playerRecords: PlayerRecord[] = [
 
 
 
-    { label: "Seule Européenne à finir une saison à 15 pts et 5 ast en LFB", value: "française", season: "2024", league: "LFB" },
+    { label: "Seule européenne à finir une saison à 15 pts et 5 ast en LFB", value: "française", season: "2024", league: "LFB" },
     { label: "Seule joueuse de l’histoire des Playoffs LFB à +20 pts de moyenne", value: "21 points",  league: "LFB" },
     { label: "Plus jeune joueuse à finir joueuse la plus décisive de la LFB", value: "21,3 pts+ast", season: "2024", league: "LFB" },
 

@@ -10,6 +10,7 @@ import {  Brain,
   RefreshCw, Trophy, Star, Award, TrendingUp, ChevronRight, Users, Target, Calendar } from 'lucide-react'
 import { useRouter } from "next/navigation"
 import { CANONICAL_YEAR } from "@/lib/season"
+import Link from 'next/link'
 
 // ---- Types ----
 type NotePlayer = { prenom: string; nom: string; equipe: string; note: string; ranking: string; place: number }
@@ -420,12 +421,12 @@ const topPlayer =
                               </td>
                               <td className="py-4 px-6">
                                 <div className="font-semibold text-slate-800 dark:text-white">
-                                  <a
-    href={`/joueuse/${slugify(`${p.prenom}-${p.nom}`)}`}
-    className="hover:underline"
-  >
-    {p.prenom} {p.nom}
-  </a>
+                                  <Link
+      href={`/joueuse/${slugify(`${p.prenom}-${p.nom}`)}`}
+      className="hover:underline"
+    >
+      {p.prenom} {p.nom}
+    </Link>
                                 </div>
                               </td>
                              
@@ -438,8 +439,13 @@ const topPlayer =
                                   }`}>
                                     {Number.isInteger(noteNum) ? noteNum : noteNum.toFixed(1)}
                                   </div>
-                                  <ChevronRight className="w-4 h-4 text-slate-400" />
-                                </div>
+                              <Link
+  href={`/joueuse/${slugify(`${p.prenom}-${p.nom}`)}`}
+  aria-label={`Voir la fiche de ${p.prenom} ${p.nom}`}
+  className="text-slate-400 hover:text-yellow-600 transition-colors"
+>
+  <ChevronRight className="w-5 h-5" />
+</Link>  </div>
                               </td>
                             </tr>
                           )

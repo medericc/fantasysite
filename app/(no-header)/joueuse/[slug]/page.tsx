@@ -172,16 +172,21 @@ export default async function PlayerPage({
   )
 
   /* ===== FILTER ===== */
-  const notes = [...lfbNotes, ...lf2Notes]
-    .filter(
-      (p) =>
-        p.forename?.toLowerCase() === prenom.toLowerCase() &&
-        p.name?.toLowerCase() === nom.toLowerCase()
-    )
-    .map((p) => ({
-      saison: "2026",
-      note: p.rating?.replace(",", "."),
-    }))
+ const notes = [
+  ...lfbNotes.map((p) => ({ ...p, ligue: "LFB" })),
+  ...lf2Notes.map((p) => ({ ...p, ligue: "LF2" })),
+]
+  .filter(
+    (p) =>
+      p.forename?.toLowerCase() === prenom.toLowerCase() &&
+      p.name?.toLowerCase() === nom.toLowerCase()
+  )
+  .map((p) => ({
+    saison: "2026",
+    note: Number(p.rating?.replace(",", ".")),
+    ligue: p.ligue as "LFB" | "LF2",
+  }))
+
 const noteNum =
   notes.length > 0 && notes[0].note
     ? Number(notes[0].note)
@@ -308,7 +313,7 @@ const noteNum =
       `}
     >
       <div className="text-sm text-white/80 mb-2">
-        Note IA 2025
+        Note IA 2026
       </div>
 
       <div className="text-4xl font-bold text-white mb-1">
@@ -348,9 +353,23 @@ const noteNum =
         >
           <div className="flex items-center gap-3">
             <Calendar className="w-5 h-5 text-slate-400" />
-            <span className="font-medium text-slate-800 dark:text-slate-200">
-              Saison {n.saison}
-            </span>
+            <div className="flex flex-col">
+  <span className="font-medium text-slate-800 dark:text-slate-200">
+    Saison {n.saison}
+  </span>
+
+  <span
+    className={`
+      text-xs font-medium mt-0.5
+      ${n.ligue === "LFB"
+        ? "text-slate-600"
+        : "text-slate-600"}
+    `}
+  >
+    {n.ligue}
+  </span>
+</div>
+
           </div>
           <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-600 to-amber-500 text-white font-bold">
             {Number(n.note).toFixed(1)}
@@ -394,11 +413,11 @@ const noteNum =
                 <div className="font-semibold text-slate-900 dark:text-white">
                   {s.ligue} — {s.annee}
                 </div>
-                <span className="text-xs font-medium text-yellow-600">
+                <span className="text-sm font-medium text-yellow-600">
                   All-Star
                 </span>
               </div>
-              <div className="text-sm text-slate-600 dark:text-slate-300">
+              <div className="text-xs text-slate-600 dark:text-slate-300">
                 {s.equipe}
               </div>
             </div>
@@ -437,7 +456,7 @@ const noteNum =
                   <div className="font-semibold text-slate-900 dark:text-white">
                     {teamLabel(t.rang)}
                   </div>
-                  <div className="text-sm text-slate-600 dark:text-slate-300">
+                  <div className="text-xs text-slate-600 dark:text-slate-300">
                     {t.ligue}
                   </div>
                 </div>

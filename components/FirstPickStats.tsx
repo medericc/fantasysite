@@ -132,6 +132,13 @@ const selectedYear = year
     { scroll: false }
   )
 }
+const slugify = (str: string) =>
+  str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "")
 
   // ---- Filtering ----
   const currentNotes = selectedLeague === 'LFB' ? lfbNotes : lf2Notes
@@ -412,7 +419,12 @@ const topPlayer =
                               </td>
                               <td className="py-4 px-6">
                                 <div className="font-semibold text-slate-800 dark:text-white">
-                                  {p.prenom} {p.nom}
+                                  <a
+    href={`/joueuse/${slugify(`${p.prenom}-${p.nom}`)}`}
+    className="hover:underline"
+  >
+    {p.prenom} {p.nom}
+  </a>
                                 </div>
                               </td>
                              

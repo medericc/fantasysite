@@ -328,6 +328,8 @@ const noteNum =
         <main className="container mx-auto px-4 pb-16 space-y-8">
 
   {/* ================= NOTES PAR SAISON (FULL WIDTH) ================= */}
+{/* ================= NOTES PAR SAISON (FULL WIDTH) ================= */}
+{notes.length > 0 && (
   <section className="bg-white dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-lg p-6">
     <div className="flex items-center gap-3 mb-6">
       <div className="p-2 rounded-lg bg-gradient-to-r from-yellow-600 to-amber-500">
@@ -338,34 +340,27 @@ const noteNum =
       </h2>
     </div>
 
-    {notes.length === 0 ? (
-      <div className="text-center py-8">
-        <BarChart3 className="w-12 h-12 text-slate-400 mx-auto mb-3" />
-        <p className="text-slate-500 dark:text-slate-400">
-          Aucune note disponible pour cette joueuse.
-        </p>
-      </div>
-    ) : (
-      <div className="space-y-3">
-        {notes.map((n, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-slate-50 to-white dark:from-slate-800/30 dark:to-slate-700/30 border border-slate-200 dark:border-slate-700"
-          >
-            <div className="flex items-center gap-3">
-              <Calendar className="w-5 h-5 text-slate-400" />
-              <span className="font-medium text-slate-800 dark:text-slate-200">
-                Saison {n.saison}
-              </span>
-            </div>
-            <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-600 to-amber-500 text-white font-bold">
-              {Number(n.note).toFixed(1)}
-            </div>
+    <div className="space-y-3">
+      {notes.map((n, i) => (
+        <div
+          key={i}
+          className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-slate-50 to-white dark:from-slate-800/30 dark:to-slate-700/30 border border-slate-200 dark:border-slate-700"
+        >
+          <div className="flex items-center gap-3">
+            <Calendar className="w-5 h-5 text-slate-400" />
+            <span className="font-medium text-slate-800 dark:text-slate-200">
+              Saison {n.saison}
+            </span>
           </div>
-        ))}
-      </div>
-    )}
+          <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-600 to-amber-500 text-white font-bold">
+            {Number(n.note).toFixed(1)}
+          </div>
+        </div>
+      ))}
+    </div>
   </section>
+)}
+
 
   {/* ================= ALL-STARS + TEAMS (SEULE GRILLE 2 COLONNES) ================= */}
   <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">

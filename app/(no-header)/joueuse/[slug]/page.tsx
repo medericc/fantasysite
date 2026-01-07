@@ -210,6 +210,28 @@ const noteNum =
   const totalAchievements = selections.length + teams.length + records.length
   const primaryLeague = selections[0]?.ligue || "LFB"
 
+
+  function getOrdinalRank(
+  allNotes: { note: number }[],
+  playerNote: number
+) {
+  const sorted = [...allNotes]
+    .map(n => n.note)
+    .filter(n => !isNaN(n))
+    .sort((a, b) => b - a)
+
+  const rank = sorted.findIndex(n => n === playerNote) + 1
+  return rank > 0 ? `${rank}e` : null
+}
+const allNotesByLeague = {
+  LFB: lfbNotes.map(n => ({
+    note: Number(n.rating?.replace(",", ".")),
+  })),
+  LF2: lf2Notes.map(n => ({
+    note: Number(n.rating?.replace(",", ".")),
+  })),
+}
+
   /* ===== RENDER ===== */
   return (
     <>
@@ -372,9 +394,13 @@ const noteNum =
 </div>
 
           </div>
-          <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-600 to-amber-500 text-white font-bold">
-            {Number(n.note).toFixed(1)}
-          </div>
+        <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-600 to-amber-500 text-white font-bold">
+  {getOrdinalRank(
+    allNotesByLeague[n.ligue],
+    n.note
+  )}
+</div>
+
         </div>
       ))}
     </div>

@@ -54,9 +54,19 @@ export const metadata: Metadata = {
       "Toutes les stats LFB & LF2 : ratings IA, All-Stars et First Team par First Pick.",
     images: ["/og-image.jpg"],
   },
+   themeColor: "#f59e0b",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "First Pick W",
+  },
   icons: {
     icon: "/favicon.ico",
-  },
+  },alternates: {
+  canonical: "https://lfbfantasy.com",
+},
+
 }
 
 export default function RootLayout({
@@ -66,16 +76,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-       <head>
-        {/* PWA */}
-        <link rel="manifest" href="/manifest.webmanifest" />
-        <meta name="theme-color" content="#f59e0b" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="First Pick W" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-
-      </head>
+     
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-900`}
       >

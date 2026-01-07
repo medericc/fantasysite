@@ -1,3 +1,5 @@
+export const runtime = 'nodejs'
+
 import type { MetadataRoute } from 'next'
 import fs from 'fs'
 import path from 'path'
@@ -14,13 +16,22 @@ type PlayerRow = {
    UTILS
 ========================= */
 function slugify(prenom: string, nom: string) {
-  return `${prenom.toLowerCase()}-${nom.toLowerCase().replace(/\s+/g, '-')}`
+  return `${prenom} ${nom}`
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
 }
+
 
 function loadCSV<T>(filePath: string): T[] {
   const file = fs.readFileSync(filePath, 'utf8')
   const parsed = Papa.parse<T>(file, { header: true })
-  return parsed.data.filter(Boolean)
+  return parsed.data.filter(
+  (row) => row && Object.values(row).some(Boolean)
+)
+
 }
 
 /* =========================

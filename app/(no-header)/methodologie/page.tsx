@@ -229,8 +229,8 @@ export default function MethodologiePage() {
                   </h3>
                   <p className="text-slate-700 dark:text-slate-300">
                     Les classements sont mis à jour régulièrement tout au long de la saison. 
-                    Les notes évoluent en fonction des performances récentes afin de refléter 
-                    la dynamique réelle des joueuses.
+                    Les calculs s'activent dès lors qu'un temps de jeu de cinq minutes est atteint pour traduire 
+                    l'apport concret des joueuses.
                   </p>
                 </div>
               </div>

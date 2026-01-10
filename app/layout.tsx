@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   keywords: [
     "basket",
     "LFB",
+ "lf2",
+     "lfb",
+     "basket féminin",
     "LF2",
     "stats basket",
     "all star",

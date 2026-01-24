@@ -539,7 +539,7 @@ const allNotesByLeague = {
 
     <p className="text-slate-700 dark:text-slate-300">
       Cette page centralise l'ensemble des performances et distinctions de{" "}
-      <strong>{prenom} {nom}</strong> en championnat {primaryLeague}.
+      <strong>{prenom} {nom}</strong> en championnats LFB et LF2.
     </p>
   </section>
 

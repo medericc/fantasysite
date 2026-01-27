@@ -7,27 +7,73 @@ export type MatchDay = {
   day: string;
   matches: Match[];
 };
-
+// /bs.html pas oublier ca
 export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
   LFB: [
     {
-      day: "J1",
+      day: "Journée 16",
       matches: [
         {
-          label: "Lyon vs BLMA",
-          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724078/bs.html"
+          label: "CBBS vs ESBVA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724082/bs.html"
+        },
+        {
+          label: "UFAB vs FCB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724083/bs.html"
+        },
+        {
+          label: "BLMA vs CB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724084/bs.html"
+        },
+        {
+          label: "LBB vs ASVEL",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724085/bs.html"
         }
+        // ,
+        // {
+        //   label: "Lyon vs BLMA",
+        //   url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724086/bs.html"
+        // },
+        // {
+        //   label: "Lyon vs BLMA",
+        //   url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724087/bs.html"
+        // },
       ]
     }
   ],
   LF2: [
     {
-      day: "J1",
+      day: "Journée 17",
       matches: [
+          {
+          label: "Nice vs INSEP",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713876/bs.html"
+        },
         {
-          label: "Toulouse vs Nice",
-          url: "https://www.ffbb.com/u/FFBB/..."
+          label: "BCTM vs Aulnoye",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713877/bs.html"
+        },
+        {
+          label: "STB vs BCMF",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713878/bs.html"
+        },
+        {
+          label: "MBA vs PVBC",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713879/bs.html"
+        },
+        {
+          label: "Reims vs USOM",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713880/bs.html"
+        },
+        {
+          label: "SIG vs Rouen",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713881/bs.html"
+        },
+        {
+          label: "SAH vs FB87",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713882/bs.html"
         }
+      
       ]
     }
   ]

@@ -9,7 +9,36 @@ export type MatchDay = {
 };
 // /bs.html pas oublier ca
 export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
-  LFB: [
+  LFB: [{
+      day: "Journée 15",
+      matches: [
+        {
+          label: "ASVEL vs BLMA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713757/bs.html"
+        },
+        {
+          label: "TB vs ESBVA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724077/bs.html"
+        },
+        {
+          label: "FCB vs CBBS",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724078/bs.html"
+        },
+        {
+          label: "BL vs UFAB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724079/bs.html"
+        }
+        ,
+        {
+          label: "CB vs TMB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724080/bs.html"
+        },
+        {
+          label: "RVB vs LBB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724081/bs.html"
+        },
+      ]
+    },
     {
       day: "Journée 16",
       matches: [

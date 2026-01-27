@@ -126,5 +126,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+routes.push({
+  url: `${baseUrl}/livestats`,
+  lastModified: now,
+  changeFrequency: 'daily',
+  priority: 0.95,
+})
+
   return routes
 }

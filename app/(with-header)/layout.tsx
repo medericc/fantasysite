@@ -26,7 +26,10 @@ export default function WithHeaderLayout({
           <nav className="mb-6">
             <ul className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-sm">
               {[
-                { href: "/about", label: "À propos" },
+                  { href: "/livestats", label: "Live Stats" },
+               
+                // { href: "/about", label: "À propos" },
+               
                 { href: "/methodologie", label: "Méthodologie" },
                 { href: "/contact", label: "Contact" },
                 { href: "/mentions-legales", label: "Mentions légales" },

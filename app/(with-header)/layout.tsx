@@ -28,7 +28,7 @@ export default function WithHeaderLayout({
               {[
                   { href: "/livestats", label: "Live Stats" },
                
-                // { href: "/about", label: "À propos" },
+                { href: "/about", label: "À propos" },
                
                 { href: "/methodologie", label: "Méthodologie" },
                 { href: "/contact", label: "Contact" },

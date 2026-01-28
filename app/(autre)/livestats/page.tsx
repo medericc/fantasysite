@@ -54,6 +54,8 @@ export default function Home() {
   const [playerInput, setPlayerInput] = useState("");
   const [playerQuery, setPlayerQuery] = useState("");
   const [open, setOpen] = useState(false);
+const [isPlayerNotFoundOpen, setIsPlayerNotFoundOpen] = useState(false);
+const [playerNotFoundMessage, setPlayerNotFoundMessage] = useState("");
 
   useEffect(() => {
     // setSelectedLink('');
@@ -83,6 +85,11 @@ export default function Home() {
         if (!a.player) return false;
         return normalize(a.player).startsWith(target);
       });
+if (filtered.length === 0) {
+  setPlayerNotFoundMessage(`"${playerInput}" n’est pas présent dans ce match`);
+  setIsPlayerNotFoundOpen(true);
+  return;
+}
 
       const csv = generateCSV(filtered);
       const rows = csv.split("\n").slice(1).map(r => r.split(","));
@@ -404,6 +411,32 @@ export default function Home() {
           </DialogHeader>
         </DialogContent>
       </Dialog>
+
+{/* Modale joueuse non présente */}
+<Dialog
+  open={isPlayerNotFoundOpen}
+  onOpenChange={setIsPlayerNotFoundOpen}
+>
+  <DialogContent className="w-[90%] max-w-md rounded-2xl bg-slate-800 border-slate-700 p-6 shadow-2xl">
+    <DialogHeader>
+      <div className="flex items-center justify-center gap-3 mb-4">
+        <div className="p-2 rounded-full bg-orange-900/40">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+            <span className="text-white font-bold">?</span>
+          </div>
+        </div>
+      </div>
+
+      <DialogTitle className="text-center text-xl font-bold text-white">
+        Joueuse introuvable
+      </DialogTitle>
+
+      <DialogDescription className="text-center mt-4 text-slate-300">
+        {playerNotFoundMessage}
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
 
     </div>
   );

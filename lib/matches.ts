@@ -114,6 +114,45 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
       
       ]
     }
+
+,
+    {
+      day: "Journée 18",
+      matches: [
+         {
+          label: "TMB vs UFA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713759/bs.html"
+        },
+        {
+          label: "ESBVA vs RVBC",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724093/bs.html"
+        },
+        {
+          label: "FCB vs ASVEL",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724094/bs.html"
+        },
+       
+        {
+          label: "BL vs CB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724096/bs.html"
+        }
+        ,
+        {
+          label: "BLMA vs CBBS",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724097/bs.html"
+        }
+        ,
+        {
+          label: "LB vs TB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724098/bs.html"
+        }
+      
+      ]
+    }
+
+
+
+
   ],
   LF2: [
     {
@@ -180,6 +219,40 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
         {
           label: "FB87 vs STB",
           url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713889/bs.html"
+        }
+      
+      ]
+    },
+    {
+      day: "Journée 19",
+      matches: [
+          {
+          label: "MBA vs INSEP",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713890/bs.html"
+        },
+        {
+          label: "Reims vs LFA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713891/bs.html"
+        },
+        {
+          label: "Nice vs SIG",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713892/bs.html"
+        },
+        {
+          label: "BCMF vs PVBC",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713893/bs.html"
+        },
+        {
+          label: "STB vs USO",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713894/bs.html"
+        },
+        {
+          label: "SAH vs RMB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713895/bs.html"
+        },
+        {
+          label: "BCTM vs FB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713896/bs.html"
         }
       
       ]

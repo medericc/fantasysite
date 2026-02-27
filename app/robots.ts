@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://lfbfantasy.com/sitemap.xml',
+    sitemap: 'https://www.lfbfantasy.com/sitemap.xml',
   }
 }

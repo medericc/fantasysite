@@ -247,7 +247,7 @@ const allNotesByLeague = {
             name: `${prenom} ${nom}`,
             gender: "Female",
             sport: "Basketball",
-            url: `https://lfbfantasy.com/joueuse/${slug}`,
+            url: `https://www.lfbfantasy.com/joueuse/${slug}`,
             affiliation: {
               "@type": "SportsOrganization",
               name: "Championnat LFB / LF2",

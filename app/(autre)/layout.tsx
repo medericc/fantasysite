@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'Retrouve toutes les actions détaillées d’une joueuse LFB ou LF2 : tirs, fautes, réussites, score.',
 alternates: {
-    canonical: 'https://lfbfantasy.com/livestats',
+    canonical: 'https://www.lfbfantasy.com/livestats',
   },
 }
 export default function NoHeaderLayout({

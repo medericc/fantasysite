@@ -79,7 +79,7 @@ export default async function Page({
                 : "First Team"
             } ${league.toUpperCase()} ${year}`,
             itemListOrder: "Descending",
-            url: `https://lfbfantasy.com/${league}/${view}/${year}`,
+            url: `https://www.lfbfantasy.com/${league}/${view}/${year}`,
           }),
         }}
       />

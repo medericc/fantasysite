@@ -38,7 +38,7 @@ function loadCSV<T>(filePath: string): T[] {
    SITEMAP
 ========================= */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://lfbfantasy.com'
+  const baseUrl = 'https://www.lfbfantasy.com'
   const routes: MetadataRoute.Sitemap = []
 
   const now = new Date()

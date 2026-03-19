@@ -430,5 +430,40 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
       
       ]
     }
+    ,
+    {
+      day: "Journée 23",
+      matches: [
+          {
+          label: "PVBC vs INSEP",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713918/bs.html"
+        },
+        {
+          label: "SAH vs LFA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713919/bs.html"
+        },
+        {
+          label: "STB vs SIG",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713920/bs.html"
+        },
+        {
+          label: "MBA vs BCTM",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713921/bs.html"
+        },
+        {
+          label: "CB vs Nice",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713922/bs.html"
+        },
+        {
+          label: "USOM vs Reims",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713923/bs.html"
+        },
+        {
+          label: "BCMF vs FB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713924/bs.html"
+        }
+      
+      ]
+    }
   ]
 };

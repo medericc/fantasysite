@@ -251,6 +251,40 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
       
       ]
     }
+,
+    {
+      day: "Journée 22",
+      matches: [
+         {
+          label: "ESBVA vs FCB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724116/bs.html"
+        },
+        {
+          label: "ASVEL vs BL",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724117/bs.html"
+        },
+        {
+          label: "RV vs CB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724118/bs.html"
+        },
+       
+        {
+          label: "TMB vs BLMA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724119/bs.html"
+        }
+        ,
+        {
+          label: "CBBS vs LBB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724120/bs.html"
+        }
+        ,
+        {
+          label: "UFA vs TB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2724121/bs.html"
+        }
+      
+      ]
+    }
 
 
 
@@ -499,5 +533,76 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
       
       ]
     }
+     ,
+    {
+      day: "Journée 24",
+      matches: [
+          {
+          label: "INSEP vs USOM",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713929/bs.html"
+        },
+        {
+          label: "Nice vs MBA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713925/bs.html"
+        },
+        {
+          label: "BCTM vs Reims",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713926/bs.html"
+        },
+        {
+          label: "LFA vs PVBC",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713928/bs.html"
+        },
+        {
+          label: "FB vs RMB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713930/bs.html"
+        },
+        {
+          label: "SIG vs BCMF",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713927/bs.html"
+        },
+        {
+          label: "SAH vs STB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713931/bs.html"
+        }
+      
+      ]
+    }
+      ,
+    {
+      day: "Journée 25",
+      matches: [
+          {
+          label: "CB vs FB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713938/bs.html"
+        },
+        {
+          label: "MBA vs SAH",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713937/bs.html"
+        },
+        {
+          label: "BCMF vs BCTM",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713935/bs.html"
+        },
+        {
+          label: "STB vs Nice",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713936/bs.html"
+        },
+        {
+          label: "PVBC vs SIG",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713934/bs.html"
+        },
+        {
+          label: "USOM vs FLA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713933/bs.html"
+        },
+        {
+          label: "RMB vs INSEP",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713932/bs.html"
+        }
+      
+      ]
+    }
+
   ]
 };

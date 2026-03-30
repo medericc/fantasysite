@@ -155,7 +155,7 @@ const topPlayer =
     : null
 
   // Années disponibles
-  const availableYears = ['2024', '2025']
+  const availableYears = ['2024', '2025','2026']
   
   const lfbAllStarCounts = allStars
     .filter(p => p.ligue === 'LFB')

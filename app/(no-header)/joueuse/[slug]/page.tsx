@@ -57,6 +57,16 @@ function deslugify(slug?: string | string[] | null) {
   const clean = slug.trim()
   if (!clean) return null
 
+  // --- EXCEPTIONS (Noms composés ou alias CSV) ---
+  const lowerClean = clean.toLowerCase();
+  if (lowerClean === "jess-mine-zodia") {
+    return { prenom: "Jess-Mine", nom: "ZODIA", aliases: ["Jess-Mine"] }
+  }
+  if (lowerClean === "murjanatu-musa" || lowerClean === "mj-musa") {
+    return { prenom: "Murjanatu", nom: "MUSA", aliases: ["MJ", "Murjanatu"] }
+  }
+  // -----------------------------------------------
+
   const parts = clean.split("-").filter(Boolean)
   if (parts.length === 0) return null
 
@@ -66,6 +76,7 @@ function deslugify(slug?: string | string[] | null) {
   return {
     prenom: prenom.charAt(0).toUpperCase() + prenom.slice(1),
     nom: nom.toUpperCase(),
+    aliases: [prenom] // Par défaut, on cherche juste le prénom déduit
   }
 }
 
@@ -156,7 +167,7 @@ export default async function PlayerPage({
     notFound()
   }
 
-  const { prenom, nom } = data
+  const { prenom, nom, aliases } = data
 
   /* ===== LOAD DATA ===== */
   const lfbNotes = loadCSV<NoteRow>(
@@ -179,7 +190,7 @@ export default async function PlayerPage({
 ]
   .filter(
     (p) =>
-      p.forename?.toLowerCase() === prenom.toLowerCase() &&
+      aliases.some(a => a.toLowerCase() === p.forename?.toLowerCase()) &&
       p.name?.toLowerCase() === nom.toLowerCase()
   )
   .map((p) => ({
@@ -195,7 +206,7 @@ const noteNum =
 
   const selections = allStars.filter(
     (p) =>
-      p.prenom?.toLowerCase() === prenom.toLowerCase() &&
+      aliases.some(a => a.toLowerCase() === p.prenom?.toLowerCase()) &&
       p.nom?.toLowerCase() === nom.toLowerCase()
   )
 
@@ -203,7 +214,7 @@ const noteNum =
 
   const teams = teamSelections.filter(
     (p) =>
-      p.prenom?.toLowerCase() === prenom.toLowerCase() &&
+      aliases.some(a => a.toLowerCase() === p.prenom?.toLowerCase()) &&
       p.nom?.toLowerCase() === nom.toLowerCase()
   )
 

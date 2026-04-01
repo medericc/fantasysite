@@ -568,41 +568,41 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
       
       ]
     }
-    //   ,
-    // {
-    //   day: "Journée 25",
-    //   matches: [
-    //       {
-    //       label: "CB vs FB",
-    //       url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713938/bs.html"
-    //     },
-    //     {
-    //       label: "MBA vs SAH",
-    //       url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713937/bs.html"
-    //     },
-    //     {
-    //       label: "BCMF vs BCTM",
-    //       url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713935/bs.html"
-    //     },
-    //     {
-    //       label: "STB vs Nice",
-    //       url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713936/bs.html"
-    //     },
-    //     {
-    //       label: "PVBC vs SIG",
-    //       url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713934/bs.html"
-    //     },
-    //     {
-    //       label: "USOM vs FLA",
-    //       url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713933/bs.html"
-    //     },
-    //     {
-    //       label: "RMB vs INSEP",
-    //       url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713932/bs.html"
-    //     }
+      ,
+    {
+      day: "Journée 25",
+      matches: [
+          {
+          label: "CB vs FB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713938/bs.html"
+        },
+        {
+          label: "MBA vs SAH",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713937/bs.html"
+        },
+        {
+          label: "BCMF vs BCTM",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713935/bs.html"
+        },
+        {
+          label: "STB vs Nice",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713936/bs.html"
+        },
+        {
+          label: "PVBC vs SIG",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713934/bs.html"
+        },
+        {
+          label: "USOM vs FLA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713933/bs.html"
+        },
+        {
+          label: "RMB vs INSEP",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2713932/bs.html"
+        }
       
-    //   ]
-    // }
+      ]
+    }
 
   ]
 };

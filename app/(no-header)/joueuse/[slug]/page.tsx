@@ -76,6 +76,12 @@ const manualOverrides: Record<
   ligue: "LF2",
   rank: "NC",
 }
+,
+  "justine-soulard": {
+  note: 7.2,
+  ligue: "LF2",
+  rank: "NC",
+}
   
 }
 function deslugify(slug?: string | string[] | null) {

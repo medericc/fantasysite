@@ -50,6 +50,16 @@ type TeamSelectionRow = {
 /* =========================
    UTILS
 ========================= */
+const manualOverrides: Record<
+  string,
+  { note: number; ligue: "LFB" | "LF2"; rank?: string }
+> = {
+  "celia-cardenal": {
+    note: 8.6,
+    ligue: "LF2",
+    rank: "NC",
+  },
+}
 function deslugify(slug?: string | string[] | null) {
   if (!slug) return null
   if (Array.isArray(slug)) return null
@@ -168,7 +178,8 @@ export default async function PlayerPage({
   }
 
   const { prenom, nom, aliases } = data
-
+const slugKey = Array.isArray(slug) ? null : slug?.toLowerCase()
+const override = slugKey ? manualOverrides[slugKey] : null
   /* ===== LOAD DATA ===== */
   const lfbNotes = loadCSV<NoteRow>(
     path.join(process.cwd(), "public/lfb_notes.csv")
@@ -184,20 +195,28 @@ export default async function PlayerPage({
   )
 
   /* ===== FILTER ===== */
- const notes = [
-  ...lfbNotes.map((p) => ({ ...p, ligue: "LFB" })),
-  ...lf2Notes.map((p) => ({ ...p, ligue: "LF2" })),
-]
-  .filter(
-    (p) =>
-      aliases.some(a => a.toLowerCase() === p.forename?.toLowerCase()) &&
-      p.name?.toLowerCase() === nom.toLowerCase()
-  )
-  .map((p) => ({
-    saison: "2026",
-    note: Number(p.rating?.replace(",", ".")),
-    ligue: p.ligue as "LFB" | "LF2",
-  }))
+const notes = override
+  ? [
+      {
+        saison: "2026",
+        note: override.note,
+        ligue: override.ligue,
+      },
+    ]
+  : [
+      ...lfbNotes.map((p) => ({ ...p, ligue: "LFB" })),
+      ...lf2Notes.map((p) => ({ ...p, ligue: "LF2" })),
+    ]
+      .filter(
+        (p) =>
+          aliases.some(a => a.toLowerCase() === p.forename?.toLowerCase()) &&
+          p.name?.toLowerCase() === nom.toLowerCase()
+      )
+      .map((p) => ({
+        saison: "2026",
+        note: Number(p.rating?.replace(",", ".")),
+        ligue: p.ligue as "LFB" | "LF2",
+      }))
 
 const noteNum =
   notes.length > 0 && notes[0].note
@@ -405,11 +424,13 @@ const allNotesByLeague = {
 </div>
 
           </div>
-        <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-600 to-amber-500 text-white font-bold">
-  {getOrdinalRank(
-    allNotesByLeague[n.ligue],
-    n.note
-  )}
+       <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-yellow-600 to-amber-500 text-white font-bold">
+  {override?.rank
+    ? override.rank
+    : getOrdinalRank(
+        allNotesByLeague[n.ligue],
+        n.note
+      )}
 </div>
 
         </div>

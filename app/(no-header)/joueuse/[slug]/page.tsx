@@ -64,7 +64,18 @@ const manualOverrides: Record<
   ligue: "LF2",
   rank: "NC",
 }
-  
+,
+  "charlie-girod": {
+  note: 6.3,
+  ligue: "LF2",
+  rank: "NC",
+}
+  ,
+  "ines-nezerwa": {
+  note: 8.5,
+  ligue: "LF2",
+  rank: "NC",
+}
   
 }
 function deslugify(slug?: string | string[] | null) {

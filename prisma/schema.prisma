@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+model alembic_version {
+  version_num String @id @db.VarChar(32)
+}
+
+model badge {
+  id      Int    @id @default(autoincrement())
+  user_id Int?   @unique(map: "UNIQ_FEF0481DA76ED395")
+  name    String @db.VarChar(255)
+  user    user?  @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "FK_FEF0481DA76ED395")
+}
+
+model choice {
+  id            Int             @id @default(autoincrement())
+  week_id       Int
+  player_id     Int
+  points        Float?
+  user_id       Int
+  player        player          @relation(fields: [player_id], references: [id], onUpdate: Restrict, map: "FK_C1AB5A9299E6F5DF")
+  user          user            @relation(fields: [user_id], references: [id], onUpdate: Restrict, map: "FK_C1AB5A92A76ED395")
+  week          week            @relation(fields: [week_id], references: [id], onUpdate: Restrict, map: "FK_C1AB5A92C86F3B2F")
+  player_choice player_choice[]
+
+  @@index([player_id], map: "IDX_C1AB5A9299E6F5DF")
+  @@index([user_id], map: "IDX_C1AB5A92A76ED395")
+  @@index([week_id], map: "IDX_C1AB5A92C86F3B2F")
+}
+
+model doctrine_migration_versions {
+  version        String    @id
+  executed_at    DateTime? @db.DateTime(0)
+  execution_time Int?
+}
+
+model game {
+  id           Int       @id @default(autoincrement())
+  team_home_id Int?
+  team_away_id Int
+  week_id      Int
+  match_date   DateTime? @db.DateTime(0)
+  team_away    team      @relation("AwayGames", fields: [team_away_id], references: [id])
+  team_home    team?     @relation("HomeGames", fields: [team_home_id], references: [id])
+  week         week      @relation(fields: [week_id], references: [id])
+
+  @@unique([team_home_id, team_away_id, week_id])
+  @@index([week_id])
+  @@index([team_away_id], map: "game_team_away_id_fkey")
+}
+
+model league {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(255)
+  team team[]
+  week week[]
+}
+
+model player {
+  id            Int             @id @default(autoincrement())
+  team_id       Int?
+  forename      String?         @db.VarChar(255)
+  name          String?         @db.VarChar(255)
+  rating        Float?
+  selected      Boolean
+  choice        choice[]
+  team          team?           @relation(fields: [team_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "FK_98197A65296CD8AE")
+  player_choice player_choice[]
+  player_rate   player_rate[]
+
+  @@index([team_id], map: "IDX_98197A65296CD8AE")
+}
+
+model player_choice {
+  player_id Int
+  choice_id Int
+  choice    choice @relation(fields: [choice_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "FK_5EABCC4C998666D1")
+  player    player @relation(fields: [player_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "FK_5EABCC4C99E6F5DF")
+
+  @@id([player_id, choice_id])
+  @@index([choice_id], map: "IDX_5EABCC4C998666D1")
+  @@index([player_id], map: "IDX_5EABCC4C99E6F5DF")
+}
+
+model player_rate {
+  id        Int    @id @default(autoincrement())
+  player_id Int
+  week_id   Int
+  rate      Float
+  player    player @relation(fields: [player_id], references: [id], onUpdate: Restrict, map: "FK_7DF66F0A99E6F5DF")
+  week      week   @relation(fields: [week_id], references: [id], onUpdate: Restrict, map: "FK_7DF66F0AC86F3B2F")
+
+  @@unique([player_id, week_id], map: "uniq_playerid_weekid")
+  @@index([player_id], map: "IDX_7DF66F0A99E6F5DF")
+  @@index([week_id], map: "IDX_7DF66F0AC86F3B2F")
+}
+
+model team {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(255)
+  league_id  Int
+  away_games game[]   @relation("AwayGames")
+  home_games game[]   @relation("HomeGames")
+  players    player[]
+  league     league   @relation(fields: [league_id], references: [id])
+
+  @@index([league_id])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model user {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique(map: "UNIQ_8D93D649E7927C74") @db.VarChar(180)
+  roles       String   @db.LongText
+  password    String   @db.VarChar(255)
+  pseudo      String?  @unique @db.VarChar(50)
+  ptl_lfb     Float    @default(0)
+  reset_token String?  @db.VarChar(255)
+  clerk_id    String?  @unique @db.VarChar(3600)
+  badge       badge?
+  choice      choice[]
+  secret      String?  @db.VarChar(191)
+}
+
+model week {
+  id          Int           @id @default(autoincrement())
+  name        String        @db.VarChar(255)
+  league_id   Int
+  choice      choice[]
+  game        game[]
+  player_rate player_rate[]
+  league      league        @relation(fields: [league_id], references: [id], onUpdate: Restrict, map: "FK_5B5A69C058AFC4DE")
+
+  @@index([league_id], map: "IDX_5B5A69C058AFC4DE")
+}

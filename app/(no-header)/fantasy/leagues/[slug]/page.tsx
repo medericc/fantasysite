@@ -142,9 +142,36 @@ const teamLogos: Record<string, string> = {
   "Basket Landes": "/landes.webp",
   "Lattes-Montpellier": "/lattes.webp",
   "Roche Vendée": "/roche.webp",
-  "Toulouse MB": "/toulouse.webp",
+
+
+
+
   "Charleville": "/flammes.webp",
   "Chartres BL": "/chartres.webp",
+
+    "Pole Espoir": "/pole-espoir.webp",
+  "Toulouse MB": "/toulousemb.webp",
+  "Trith PDH": "/trith.webp",
+  "Champagne BF": "/champagne.webp",
+  "AS Aulnoye": "/aulnoye.webp",
+
+  "Geisepolsheim": "/geispolsheim.webp",
+
+  "Cavigal Nice": "/cavigal.webp",
+  "USO Mondeville": "/mondeville.webp",
+
+
+  "BB La Tronche": "/tronche.webp",
+
+  "Feytiat Basket": "/feytiat.webp",
+  "BC Montbrison": "/montbrison.webp",
+  "Rouen Bihorel": "/rouen-bihorel.webp",
+  "Pays Voironnais": "/voironnais.webp",
+
+
+  "Monaco BA": "/monaco.webp",
+
+  "Saint-Amand": "/saint-amand.webp",
 };
 
 

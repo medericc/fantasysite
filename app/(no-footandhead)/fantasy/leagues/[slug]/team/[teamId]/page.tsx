@@ -35,7 +35,7 @@ export default function TeamPage() {
   const weekId = searchParams.get('weekId');
   const [teamName, setTeamName] = useState<string | null>(null);
 const [weekLocked, setWeekLocked] = useState(false);
-
+const [displayWeekId, setDisplayWeekId] = useState<number | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
   const [deck, setDeck] = useState<DeckPlayer[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -87,7 +87,18 @@ useEffect(() => {
     .then(res => res.json())
     .then(data => setBlockedIds(data.blocked));
 }, [weekId]);
+useEffect(() => {
+  if (!weekId) return;
 
+  fetch(`/api/week/display?weekId=${weekId}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data?.displayId) {
+        setDisplayWeekId(data.displayId);
+      }
+    })
+    .catch(err => console.error('Erreur récupération semaine:', err));
+}, [weekId]);
   useEffect(() => {
     const numericWeekId = weekId ? Number(weekId) : NaN;
     if (isNaN(numericWeekId)) return;
@@ -267,7 +278,9 @@ const teamOutlineColors: Record<string, string> = {
              <CardTitle className="text-xl md:mt-2">
   {teamName ? `${teamName}` : `#${teamId}`}
 </CardTitle>
-   <p className="text-gray-600">Semaine {weekId}</p>
+  <p className="text-gray-600">
+  Semaine {displayWeekId ?? '...'}
+</p>
               </CardHeader>
             </Card>
 

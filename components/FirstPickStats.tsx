@@ -598,6 +598,57 @@ const topPlayer =
             )}
           </motion.div>
         )}
+
+
+{/* ===== CTA FANTASY LEAGUE ===== */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.25 }}
+  className="mt-10 px-4"
+>
+  <div className="max-w-3xl mx-auto">
+    <Link
+      href="/fantasy"
+      className="group relative block overflow-hidden rounded-2xl bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-600 p-[2px] shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+    >
+      <div className="relative overflow-hidden rounded-[14px] bg-gradient-to-r from-slate-900 to-slate-800 px-6 py-5 md:px-8 md:py-6">
+        
+        {/* Effet lumineux */}
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/0 via-yellow-500/10 to-yellow-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        <div className="relative flex items-center justify-between gap-4">
+          
+          <div className="flex items-center gap-4">
+            <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 shadow-lg">
+              <Trophy className="w-6 h-6 text-white" />
+            </div>
+
+            <div className="text-left">
+              <p className="text-white font-bold text-base md:text-lg">
+                Participe à la Fantasy League
+              </p>
+              <p className="text-slate-300 text-sm mt-0.5">
+                LFB & LF2 · Compose ton équipe et défie la communauté
+              </p>
+            </div>
+          </div>
+
+          <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 group-hover:bg-yellow-500 transition-all duration-300">
+            <ChevronRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
+          </div>
+
+        </div>
+      </div>
+    </Link>
+  </div>
+</motion.div>
+
+
+
+
+
+
 {/* ===== TEXTE SEO ===== */}
 <motion.section
   initial={{ opacity: 0, y: 20 }}

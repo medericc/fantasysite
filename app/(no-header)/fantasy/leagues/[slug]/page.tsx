@@ -202,15 +202,20 @@ const handleRemove = async (playerId: number) => {
   }
 };
 
-  return (
-    <div className="min-h-screen flex flex-col">
+
+   return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 via-white to-gray-50">
       <Header />
       
-      <main className="flex-1 p-4 md:p-8 md:mt-10 md:max-w-3xl max-w-md mx-auto w-full space-y-6">
+      <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-8">
       
         {/* Sélecteur de semaine */}
-        <div className="space-y-2">
-         <Select
+        <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg border border-gray-100">
+          <div className="flex items-center gap-3 mb-3">
+           
+            <h2 className="text-lg font-bold text-gray-800">Sélection de la semaine</h2>
+          </div>
+          <Select
             value={selectedWeek?.id?.toString() || ''}
             onValueChange={(value) => {
               const id = parseInt(value, 10);
@@ -218,17 +223,17 @@ const handleRemove = async (playerId: number) => {
               setSelectedWeek(chosen ?? null);
             }}
           >
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full py-6 text-base rounded-xl border-2 border-gray-200 hover:border-yellow-500 focus:border-yellow-500 transition-colors">
               <SelectValue placeholder="Sélectionnez une semaine" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="rounded-xl">
               {weeks.map((week) => (
                 <SelectItem 
                   key={week.id} 
                   value={week.id.toString()}
-                  className={week.id === highlightWeekId ? "bg-yellow-50" : ""}
+                  className={week.id === highlightWeekId ? "bg-yellow-100 font-semibold" : ""}
                 >
-                 Journée {week.id}
+                  Journée {week.id}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -236,109 +241,151 @@ const handleRemove = async (playerId: number) => {
         </div>
 
         {/* Liste des matchs */}
-        <div className="space-y-3">
-        
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+          
+            <h2 className="text-lg font-bold text-gray-800">Matchs de la semaine</h2>
+          </div>
+          
           {matches.length === 0 ? (
-            <p className="text-sm text-gray-500 text-center py-4">
-              Aucun match prévu cette semaine
-            </p>
+            <div className="bg-white rounded-2xl shadow-md border border-gray-100">
+              <p className="text-sm text-gray-500 text-center py-8">
+                Aucun match prévu cette semaine
+              </p>
+            </div>
           ) : (
-            <div className="space-y-3">
-              {matches.map((match) => (
-                <Card key={match.id} className="hover:shadow-md transition-shadow">
-                  <CardContent className="p-1 grid grid-cols-3 items-center">
-                  <Button 
-  variant="link" 
-  className="justify-end"
-  onClick={() => router.push(`/fantasy/leagues/${slug}/team/${match.team_home.id}?weekId=${selectedWeek?.id}`)}
->
-  <Image
-    src={teamLogos[match.team_home.name] || "/Logo_LBWL.png"}
-    alt={match.team_home.name}
-    width={40} // ~taille 8
-    height={40}
-    className="h-10 w-auto cursor-pointer md:h-12"
-  />
-</Button>
+            <div className="space-y-4">
+            {matches.map((match) => (
+  <Card
+    key={match.id}
+    className="hover:shadow-xl transition-all duration-300 rounded-2xl border border-gray-100 bg-white"
+  >
+    <CardContent className="p-3 sm:p-4">
+      <div className="grid grid-cols-3 items-center gap-2">
 
-<div className="text-center">
-  <Badge variant="outline" className="px-3 py-1">
-    VS
-  </Badge>
-</div>
+        <Button
+          variant="link"
+          className="justify-center  cursor-pointer hover:scale-110 transition-transform duration-200"
+          onClick={() =>
+            router.push(
+              `/fantasy/leagues/${slug}/team/${match.team_home.id}?weekId=${selectedWeek?.id}`
+            )
+          }
+        >
+          <div className="flex items-center justify-center w-full">
+            <Image
+              src={teamLogos[match.team_home.name] || "/Logo_LBWL.png"}
+              alt={match.team_home.name}
+              width={80}
+              height={80}
+              className="h-12 w-auto object-contain md:h-16 lg:h-20"
+            />
+          </div>
+        </Button>
 
-<Button 
-  variant="link" 
-  className="justify-start"
-  onClick={() => router.push(`/fantasy/leagues/${slug}/team/${match.team_away.id}?weekId=${selectedWeek?.id}`)}
->
-  <Image
-    src={teamLogos[match.team_away.name] || "/Logo_LBWL.png"}
-    alt={match.team_away.name}
-    width={40}
-    height={40}
-    className="h-10 w-auto cursor-pointer md:h-12"
-  />
-</Button>
+        <div className="flex items-center justify-center">
+          <Badge
+            variant="outline"
+            className="px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold text-sm sm:text-base shadow-md"
+          >
+            VS
+          </Badge>
+        </div>
 
-                  </CardContent>
-                </Card>
-              ))}
+        <Button
+          variant="link"
+          className="justify-center cursor-pointer hover:scale-110 transition-transform duration-200"
+          onClick={() =>
+            router.push(
+              `/fantasy/leagues/${slug}/team/${match.team_away.id}?weekId=${selectedWeek?.id}`
+            )
+          }
+        >
+          <div className="flex items-center justify-center w-full">
+            <Image
+              src={teamLogos[match.team_away.name] || "/Logo_LBWL.png"}
+              alt={match.team_away.name}
+              width={80}
+              height={80}
+              className="h-12 w-auto object-contain md:h-16 lg:h-20"
+            />
+          </div>
+        </Button>
+
+      </div>
+    </CardContent>
+  </Card>
+))}
             </div>
           )}
         </div>
 
-       {/* Deck */}
-<Card>
-  <CardHeader>
-    <h2 className="text-lg text-center font-bold">Mon Deck de la Semaine</h2>
-  </CardHeader>
-  <CardContent>
-    {deck.length === 0 ? (
-      <p className="text-gray-500 text-center py-4">
-        Aucune joueuse sélectionnée
-      </p>
-    ) : (
-      <div className="space-y-2">
-        {deck.map(({ player }) => (
-          <div
-            key={player.id}
-            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-          >
-            <div className="flex items-center gap-3">
-              <span>{player.name}</span>
-              <span className="text-sm text-gray-500">{player.team}</span>
+        {/* Deck */}
+        <Card className="rounded-2xl shadow-lg border border-gray-100 bg-white">
+          <CardHeader className="border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+            <div className="flex items-center justify-center gap-3">
+         
+              <h2 className="text-xl font-bold text-gray-800">Mon Deck de la Semaine</h2>
             </div>
-            <div className="flex items-center gap-4">
-              <span className="text-green-700 text-sm">
-                {typeof player.player_rate?.[0]?.rate === 'number'
-                  ? `${player.player_rate[0].rate} pts`
-                  : '—'}
-              </span>
-          <Button
-                          variant="destructive"
-                          size="sm"
-                          onClick={() => handleRemove(player.id)}
-                          disabled={weekLocked}
-                          className='cursor-pointer'
-                        >
-                          Retirer
-                        </Button>
-
-            </div>
-          </div>
-        ))}
-      </div>
-    )}
-  </CardContent>
-  <CardFooter className="justify-center">
- <Badge variant="outline">
-  {deck.length}/5 {deck.length <= 1 ? "joueuse sélectionnée" : "joueuses sélectionnées"}
-</Badge>
-
-  </CardFooter>
-</Card>
- </main>
+          </CardHeader>
+          <CardContent className="p-4 sm:p-6">
+            {deck.length === 0 ? (
+              <div className="text-center py-8">
+                <p className="text-gray-500">
+                  Aucune joueuse sélectionnée
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {deck.map(({ player }) => (
+                  <div
+                    key={player.id}
+                    className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-200"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold shadow-md">
+                        {player.name.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-800">{player.name}</p>
+                        <p className="text-sm text-gray-500">{player.team}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <span className="text-green-700 text-sm font-semibold bg-green-50 px-3 py-1 rounded-full">
+                        {typeof player.player_rate?.[0]?.rate === 'number'
+                          ? `${player.player_rate[0].rate} pts`
+                          : '—'}
+                      </span>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => handleRemove(player.id)}
+                        disabled={weekLocked}
+                        className='cursor-pointer rounded-full px-3 py-1 hover:scale-105 transition-transform duration-200'
+                      >
+                        Retirer
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+          <CardFooter className="justify-center border-t border-gray-100 py-4">
+            <Badge 
+              variant="outline" 
+              className={`px-4 py-2 rounded-full text-sm font-semibold ${
+                deck.length === 5 
+                  ? 'bg-green-50 text-green-700 border-green-300' 
+                  : 'bg-yellow-50 text-yellow-700 border-yellow-300'
+              }`}
+            >
+              {deck.length}/5 {deck.length <= 1 ? "joueuse sélectionnée" : "joueuses sélectionnées"}
+            </Badge>
+          </CardFooter>
+        </Card>
+      </main>
       
       <Footer />
     </div>

@@ -12,8 +12,8 @@ type LeagueRanking = {
   username: string;
   week: string;
   weekIndex: number;
-  weekPoints: number;
   totalIndex: number;
+  weekPoints: number;
   totalPoints: number;
 };
 
@@ -49,10 +49,10 @@ export default function DashboardPage() {
 
         const userJson = await resUser.json();
         const rankingJson = await resRanking.json();
-console.log("=== USER JSON ===", userJson);
+        console.log("=== USER JSON ===", userJson);
         if (Array.isArray(userJson) && userJson.length > 0) {
-  setUser(userJson[0]);
-}
+          setUser(userJson[0]);
+        }
 
         setRankingData(rankingJson);
         setData(rankingJson);
@@ -67,65 +67,79 @@ console.log("=== USER JSON ===", userJson);
 
   const weeks = (league: string) =>
     Object.keys(data[league]?.weekly || {}).sort();
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
- const renderTable = (rankings: LeagueRanking[], title: string) => {
-  if (!user?.username) return null;
+    
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const renderTable = (rankings: LeagueRanking[], title: string) => {
+    if (!user?.username) return null;
 
-  // Trouver l'entrée du joueur actuel
-  const currentUserRow = rankings.find(
-    r => r.username.trim().toLowerCase() === user.username.trim().toLowerCase()
-  );
+    // Trouver l'entrée du joueur actuel
+    const currentUserRow = rankings.find(
+      r => r.username.trim().toLowerCase() === user.username.trim().toLowerCase()
+    );
 
-  // Le reste du classement sans l'utilisateur
-  const otherRows = rankings.filter(
-    r => r.username.trim().toLowerCase() !== user.username.trim().toLowerCase()
-  );
+    // Le reste du classement sans l'utilisateur
+    const otherRows = rankings.filter(
+      r => r.username.trim().toLowerCase() !== user.username.trim().toLowerCase()
+    );
 
-  // Nouveau classement : joueur actuel en premier, puis les autres
-  const reorderedRankings = currentUserRow ? [currentUserRow, ...otherRows] : rankings;
+    // Nouveau classement : joueur actuel en premier, puis les autres
+    const reorderedRankings = currentUserRow ? [currentUserRow, ...otherRows] : rankings;
 
-  return (
-    <div className="mt-4 overflow-x-auto max-h-[70vh]">
-      <table className="w-full rounded-lg overflow-hidden border">
-        <thead className="bg-gray-800 sticky top-0">
-          <tr>
-            <th className="p-3 text-left text-white">#</th>
-            <th className="p-3 text-left text-white">Joueur</th>
-            <th className="p-3 text-left text-white">Points</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-200">
-          {reorderedRankings.map((r) => {
-            const isCurrentUser =
-              r.username.trim().toLowerCase() === user.username.trim().toLowerCase();
-            return (
-              <tr
-                key={r.username}
-                className={`${isCurrentUser ? 'bg-yellow-200 font-medium' : 'hover:bg-gray-50'}`}
-              >
-                {/* On affiche toujours la vraie position */}
-                <td className="p-3">
-                  {modal.type === 'weekly' ? r.weekIndex : r.totalIndex}e
-                </td>
-                <td className="p-3">
-                  {isCurrentUser ? (
-                    <span className="py-1 rounded font-semibold">{r.username}</span>
-                  ) : (
-                    r.username
-                  )}
-                </td>
-                <td className="p-3 font-medium">
-                  {modal.type === 'weekly' ? r.weekPoints : r.totalPoints}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
+    return (
+      <div className="mt-6 overflow-x-auto max-h-[70vh] rounded-xl shadow-lg border border-gray-200">
+        <table className="w-full bg-white">
+          <thead className="bg-gradient-to-r from-gray-800 to-gray-900 sticky top-0 z-10">
+            <tr>
+              <th className="p-4 text-left text-white text-sm font-semibold uppercase tracking-wider">#</th>
+              <th className="p-4 text-left text-white text-sm font-semibold uppercase tracking-wider">Joueur</th>
+              <th className="p-4 text-left text-white text-sm font-semibold uppercase tracking-wider">Points</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {reorderedRankings.map((r) => {
+              const isCurrentUser =
+                r.username.trim().toLowerCase() === user.username.trim().toLowerCase();
+              return (
+                <tr
+                  key={r.username}
+                  className={`${
+                    isCurrentUser 
+                      ? 'bg-gradient-to-r from-yellow-100 to-yellow-50 font-semibold shadow-inner' 
+                      : 'hover:bg-gray-50 transition-colors duration-150'
+                  }`}
+                >
+                  {/* On affiche toujours la vraie position */}
+                  <td className="p-4 text-gray-600">
+                    <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-sm ${
+                      isCurrentUser ? 'bg-yellow-500 text-white font-bold' : 'bg-gray-100'
+                    }`}>
+                      {modal.type === 'weekly' ? r.weekIndex : r.totalIndex}
+                    </span>
+                  </td>
+                  <td className="p-4">
+                    {isCurrentUser ? (
+                      <span className="py-1 px-3 bg-yellow-500 text-white rounded-full text-sm font-bold">
+                        {r.username}
+                      </span>
+                    ) : (
+                      <span className="text-gray-800">{r.username}</span>
+                    )}
+                  </td>
+                  <td className="p-4">
+                    <span className={`font-bold text-lg ${
+                      isCurrentUser ? 'text-yellow-700' : 'text-gray-800'
+                    }`}>
+                      {modal.type === 'weekly' ? r.weekPoints : r.totalPoints}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
 
   const openWeeklyModal = (league: string) => {
     const latestWeek = weeks(league).slice(-1)[0];
@@ -145,24 +159,39 @@ console.log("=== USER JSON ===", userJson);
 
   if (loading) {
     return (
-      <div className="p-4 space-y-6">
-        <Skeleton className="h-10 w-full" />
-        <Skeleton className="h-64 w-full" />
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+        <Header />
+        <div className="max-w-4xl mx-auto p-4 space-y-6 mt-8">
+          <Skeleton className="h-16 w-full rounded-xl" />
+          <div className="grid grid-cols-2 gap-4">
+            <Skeleton className="h-32 rounded-xl" />
+            <Skeleton className="h-32 rounded-xl" />
+          </div>
+          <Skeleton className="h-64 w-full rounded-xl" />
+        </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 via-white to-gray-50">
       <Header />
       
-      <main className="flex-grow md:p-8 md:mt-10 md:max-w-4xl p-4 max-w-md mx-auto w-full space-y-8 xl:space-y-16 mt-2 xl:mt-20">
-        <div className="bg-white p-2  shadow-sm border">
-          <p className="text-center text-gray-700 ">
-            Pour chaque journée, sélectionner jusqu&lsquo;à 5 joueuses. Toute joueuse choisie devient indisponible pendant 6 semaines. Les points sont attribués selon leurs performances réelles.
-          </p>
+      <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-8 lg:space-y-16">
+        {/* Description Card */}
+        <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div className="flex items-start space-x-4">
+            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center text-white text-2xl shadow-md">
+              📋
+            </div>
+            <p className="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg">
+              Pour chaque journée, sélectionner jusqu&lsquo;à 5 joueuses par ligue. Toute joueuse choisie devient indisponible pendant 6 journées. Les points sont attribués selon leurs performances réelles.
+            </p>
+          </div>
         </div>
 
+        {/* Leagues */}
         {Object.keys(rankingData).map((league) => {
           const latestWeek = weeks(league).slice(-1)[0];
           const weekRankings = rankingData[league]?.weekly?.[latestWeek] || [];
@@ -172,67 +201,80 @@ console.log("=== USER JSON ===", userJson);
           const userTotal = totalRankings.find((r) => r.username === user?.username);
 
           return (
-            <div key={league} className="space-y-6">
-            
+            <div key={league} className="space-y-6 lg:space-y-8">
               {/* User Stats */}
-              <div className="grid grid-cols-2 gap-4 xl:mt-4">
-                <div className="bg-white p-4 rounded-lg border shadow-sm text-center">
-                  <p className="text-sm font-medium text-gray-500">Semaine</p>
-                  <p className="text-xl font-bold text-gray-800">
+              <div className="grid grid-cols-2 gap-4 lg:gap-8">
+                <div className="bg-white p-6 sm:p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mb-4 shadow-md">
+                    <span className="text-white text-xl">📅</span>
+                  </div>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Semaine</p>
+                  <p className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
                     {userWeekly ? `${userWeekly.weekIndex}e` : '-'}
                   </p>
-                  <p className="text-sm text-gray-600">{userWeekly?.weekPoints || 0} pts</p>
+                  <p className="text-sm sm:text-base text-gray-600 font-medium">
+                    {userWeekly?.weekPoints || 0} pts
+                  </p>
                 </div>
-                <div className="bg-white p-4 rounded-lg border shadow-sm text-center">
-                  <p className="text-sm font-medium text-gray-500">Saison</p>
-                  <p className="text-xl font-bold text-gray-800">
+                <div className="bg-white p-6 sm:p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mb-4 shadow-md">
+                    <span className="text-white text-xl">🏆</span>
+                  </div>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Saison</p>
+                  <p className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
                     {userTotal ? `${userTotal.totalIndex}e` : '-'}
                   </p>
-                  <p className="text-sm text-gray-600">{userTotal?.totalPoints || 0} pts</p>
+                  <p className="text-sm sm:text-base text-gray-600 font-medium">
+                    {userTotal?.totalPoints || 0} pts
+                  </p>
                 </div>
               </div>
 
               {/* Buttons for Rankings */}
-              <div className="grid grid-cols-2 gap-4 xl:mt-6">
-               <Button 
-  variant="outline" 
-  className="w-full bg-white text-sm sm:text-base max-[400px]:text-[13.1px] max-[375px]:text-[11px]"
-  onClick={() => openWeeklyModal(league)}
->
-  Voir classement semaine
-</Button>
-<Button 
-  variant="outline" 
-  className="w-full bg-white text-sm sm:text-base max-[400px]:text-[13.1px] max-[375px]:text-[11px]"
-  onClick={openTotalModal}
->
-  Voir classement saison
-</Button>
+            {/* Buttons for Rankings */}
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 w-full">
+  <Button
+    variant="outline"
+    className="w-full min-w-0 h-auto min-h-[80px] px-3 sm:px-6 py-5 sm:py-8 rounded-xl border-2 border-gray-200 bg-white hover:border-yellow-500 hover:bg-yellow-50 hover:shadow-lg transition-all duration-300 font-semibold text-gray-700 hover:text-yellow-700 whitespace-normal break-words text-sm sm:text-base"
+    onClick={() => openWeeklyModal(league)}
+  >
+    <span className="block w-full text-center leading-snug">
+      📊 Voir classement semaine
+    </span>
+  </Button>
 
-              </div>
+  <Button
+    variant="outline"
+    className="w-full min-w-0 h-auto min-h-[80px] px-3 sm:px-6 py-5 sm:py-8 rounded-xl border-2 border-gray-200 bg-white hover:border-yellow-500 hover:bg-yellow-50 hover:shadow-lg transition-all duration-300 font-semibold text-gray-700 hover:text-yellow-700 whitespace-normal break-words text-sm sm:text-base"
+    onClick={openTotalModal}
+  >
+    <span className="block w-full text-center leading-snug">
+      🏆 Voir classement saison
+    </span>
+  </Button>
+</div>
             </div>
           );
         })}
-         <div className="p-4 max-w-md mx-auto w-full mb-2 xl:mb-10">
-        <Button 
-          size="lg" 
-          className="w-full py-6 text-lg cursor-pointer font-bold shadow-md bg-gradient-to-r from-yellow-600 to-yellow-600 hover:from-yellow-700 hover:to-yellow-700 text-white"
-          onClick={() => router.push('/fantasy/leagues/lfb')}
-        >
-          JOUER
-        </Button>
-      </div>
+        
+        {/* Play Button */}
+        <div className="w-full max-w-2xl mx-auto py-4 lg:py-8">
+          <Button 
+            size="lg" 
+            className="w-full py-6 sm:py-8 text-lg sm:text-xl lg:text-2xl cursor-pointer font-bold shadow-xl bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-2xl transform hover:scale-[1.02] transition-all duration-300"
+            onClick={() => router.push('/fantasy/leagues/lfb')}
+          >
+            ⚡ JOUER
+          </Button>
+        </div>
       </main>
-
-      {/* Play Button */}
-     
 
       {/* Rankings Modals */}
       <Dialog open={modal.open} onOpenChange={(open) => setModal({...modal, open})}>
-        <DialogContent className="sm:max-w-[90%] max-h-[90vh] overflow-auto">
+        <DialogContent className="sm:max-w-[90%] lg:max-w-[70%] max-h-[90vh] overflow-auto rounded-2xl shadow-2xl">
           <DialogHeader>
-            <DialogTitle>
-              {modal.type === 'weekly' ? 'Classement Semaine' : 'Classement Saison'}
+            <DialogTitle className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+              {modal.type === 'weekly' ? '📊 Classement Semaine' : '🏆 Classement Saison'}
             </DialogTitle>
           </DialogHeader>
           {modal.type === 'weekly' && rankingData[Object.keys(rankingData)[0]]?.weekly[modal.week || ''] && (

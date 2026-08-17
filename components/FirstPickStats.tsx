@@ -129,7 +129,7 @@ const selectedYear = year
     (params.view || params.league ? CANONICAL_YEAR : selectedYear)
 
   router.push(
-    `/fantasy/${nextLeague.toLowerCase()}/${nextView}/${nextYear}`,
+    `/${nextLeague.toLowerCase()}/${nextView}/${nextYear}`,
     { scroll: false }
   )
 }

@@ -5,7 +5,6 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
-  directUrl = env("DIRECT_DATABASE_URL")
 }
 
 model alembic_version {
@@ -124,9 +123,9 @@ model user {
   ptl_lfb     Float    @default(0)
   reset_token String?  @db.VarChar(255)
   clerk_id    String?  @unique @db.VarChar(3600)
+  secret      String?
   badge       badge?
   choice      choice[]
-  secret      String?  @db.VarChar(191)
 }
 
 model week {

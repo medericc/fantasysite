@@ -249,7 +249,7 @@ const teamOutlineColors: Record<string, string> = {
    <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1 p-4 md:p-8 md:mt-10 md:max-w-[98rem] max-w-md mx-auto w-full space-y-6">
+      <main className="flex-1 p-4 md:p-8 md:max-w-[98rem] max-w-md mx-auto w-full space-y-6">
         <Button 
           variant="outline" 
           onClick={() => router.back()}
@@ -354,7 +354,14 @@ const teamOutlineColors: Record<string, string> = {
                 )}
               </CardContent>
               <CardFooter className="justify-center">
-               <Badge variant="outline">
+            <Badge 
+              variant="outline" 
+              className={`px-4 py-2 rounded-full text-sm font-semibold ${
+                deck.length === 5 
+                  ? 'bg-green-50 text-green-700 border-green-300' 
+                  : 'bg-yellow-50 text-yellow-700 border-yellow-300'
+              }`}
+            >
   {deck.length}/5 {deck.length <= 1 ? "joueuse sélectionnée" : "joueuses sélectionnées"}
 </Badge>
               </CardFooter>

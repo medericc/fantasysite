@@ -115,3 +115,7 @@ fetch(`/api/deck/${selectedWeek.id}?slug=${slug}`)
 Puis côté API, filtrer avec slug.
 
 Donc oui : actuellement ton slug distingue bien la page LFB/LF2, mais pas forcément toutes les données récupérées.
+
+
+
+a la fin comeplter env de vercel mama evc databse !

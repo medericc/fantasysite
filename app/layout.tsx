@@ -1,5 +1,5 @@
 // app/layout.tsx
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import RegisterSW from "@/components/RegisterSW"
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       "Toutes les stats LFB & LF2 : ratings IA, All-Stars et First Team par First Pick.",
     images: ["https://www.lfbfantasy.com/og-image.jpg"],
   },
-   themeColor: "#f59e0b",
+  
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
@@ -77,6 +77,9 @@ alternates: {
 },
 
 }
+export const viewport: Viewport = {
+   themeColor: "#f59e0b",
+};
 
 export default function RootLayout({
   children,

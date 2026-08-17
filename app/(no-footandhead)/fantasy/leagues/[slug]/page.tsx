@@ -19,7 +19,11 @@ type Player = {
   player_rate: { rate: number }[];
 };
 type Choice = { player: Player };
-type Week = { id: number; name: string };
+type Week = {
+  id: number;
+  name: string;
+  displayId: number;
+};
 
 export default function LeaguePage() {
   const { slug } = useParams<{ slug: string }>();
@@ -228,13 +232,13 @@ const handleRemove = async (playerId: number) => {
             </SelectTrigger>
             <SelectContent className="rounded-xl">
               {weeks.map((week) => (
-                <SelectItem 
-                  key={week.id} 
-                  value={week.id.toString()}
-                  className={week.id === highlightWeekId ? "bg-yellow-100 font-semibold" : ""}
-                >
-                  Journée {week.id}
-                </SelectItem>
+        <SelectItem 
+  key={week.id} 
+  value={week.id.toString()}
+  className={week.id === highlightWeekId ? "bg-yellow-100 font-semibold" : ""}
+>
+  Journée {week.displayId}
+</SelectItem>
               ))}
             </SelectContent>
           </Select>

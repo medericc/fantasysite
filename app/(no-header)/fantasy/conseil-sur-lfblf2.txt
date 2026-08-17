@@ -1,0 +1,117 @@
+Dans ce composant, la différence LFB / LF2 vient uniquement de slug, qui est récupéré ici :
+
+const { slug } = useParams<{ slug: string }>();
+
+Ensuite, slug est utilisé à plusieurs endroits.
+
+1. Les semaines
+fetch(`/api/week/list?slug=${slug}`);
+
+Donc :
+
+/fantasy/leagues/lfb
+
+→ slug = "lfb"
+
+et :
+
+/fantasy/leagues/lf2
+
+→ slug = "lf2"
+
+Ton API peut donc renvoyer des journées différentes selon la ligue.
+
+2. Le localStorage
+
+Tu as :
+
+localStorage.getItem(`selectedWeek-${slug}`);
+
+Donc tu as deux sélections indépendantes :
+
+selectedWeek-lfb
+selectedWeek-lf2
+
+C'est très bien.
+
+3. Les matchs
+
+Les matchs sont récupérés uniquement avec :
+
+fetch(`/api/games/by-week/${selectedWeek.id}`);
+
+⚠️ Ici, le slug n'est PAS envoyé.
+
+Donc la différence LFB/LF2 dépend du fait que les week.id soient propres à chaque ligue.
+
+Si tes journées LFB et LF2 sont dans la même table Week avec des IDs différents, ça fonctionne.
+
+Mais si tu as par exemple :
+
+LFB :
+week 1 → id 1
+week 2 → id 2
+
+
+LF2 :
+week 1 → id 1
+week 2 → id 2
+
+alors là ça pose problème, car /api/games/by-week/1 ne sait pas forcément quelle ligue tu demandes.
+
+4. Le deck
+
+Même chose :
+
+fetch(`/api/deck/${selectedWeek.id}`);
+
+Le slug n'est pas envoyé.
+
+Donc ton backend doit avoir une logique permettant de savoir que le weekId appartient à LFB ou LF2.
+
+5. Les équipes
+
+Ici :
+
+/fantasy/leagues/${slug}/team/${match.team_home.id}
+
+Le slug est bien conservé.
+
+Donc :
+
+/fantasy/leagues/lfb/team/12
+
+ou
+
+/fantasy/leagues/lf2/team/12
+Donc concrètement
+
+Ton composant est déjà prévu pour les deux :
+
+/fantasy/leagues/lfb
+
+et
+
+/fantasy/leagues/lf2
+
+Mais il faut surtout vérifier tes API /api/week/list, /api/games/by-week et /api/deck pour être certain que les données sont bien séparées.
+
+Le point qui me paraît le plus important est celui-ci :
+
+fetch(`/api/games/by-week/${selectedWeek.id}`)
+
+et :
+
+fetch(`/api/deck/${selectedWeek.id}`)
+
+Si tu veux une séparation 100 % propre LFB/LF2, je te conseille de faire passer le slug :
+
+fetch(`/api/games/by-week/${selectedWeek.id}?slug=${slug}`)
+
+et :
+
+fetch(`/api/deck/${selectedWeek.id}?slug=${slug}`)
+
+Puis côté API, filtrer avec slug.
+
+Donc oui : actuellement ton slug distingue bien la page LFB/LF2, mais pas forcément toutes les données récupérées.

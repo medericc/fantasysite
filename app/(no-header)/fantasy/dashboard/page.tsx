@@ -36,6 +36,7 @@ export default function DashboardPage() {
     type: 'weekly' | 'total' | null;
     week?: string;
   }>({ open: false, type: null });
+const [leagueModalOpen, setLeagueModalOpen] = useState(false);
 
   const router = useRouter();
 
@@ -259,15 +260,70 @@ export default function DashboardPage() {
         
         {/* Play Button */}
         <div className="w-full max-w-2xl mx-auto py-4 lg:py-8">
-          <Button 
-            size="lg" 
-            className="w-full py-6 sm:py-8 text-lg sm:text-xl lg:text-2xl cursor-pointer font-bold shadow-xl bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-2xl transform hover:scale-[1.02] transition-all duration-300"
-            onClick={() => router.push('/fantasy/leagues/lfb')}
-          >
-            ⚡ JOUER
-          </Button>
+         <Button 
+  size="lg" 
+  className="w-full py-6 sm:py-8 text-lg sm:text-xl lg:text-2xl cursor-pointer font-bold shadow-xl bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-2xl transform hover:scale-[1.02] transition-all duration-300"
+  onClick={() => setLeagueModalOpen(true)}
+>
+  ⚡ JOUER
+</Button>
         </div>
       </main>
+
+
+{/* League Selection Modal */}
+<Dialog open={leagueModalOpen} onOpenChange={setLeagueModalOpen}>
+  <DialogContent className="w-[calc(100%-2rem)] max-w-md rounded-2xl p-6 sm:p-8 shadow-2xl">
+    
+    <DialogHeader className="text-center">
+      <DialogTitle className="text-2xl sm:text-3xl font-bold text-gray-800 text-center">
+        Choisissez la ligue
+      </DialogTitle>
+    </DialogHeader>
+
+    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      
+      {/* LFB */}
+      <Button
+        variant="outline"
+        className="h-auto min-h-[130px] cursor-pointer flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-yellow-500 hover:bg-yellow-50 hover:shadow-lg transition-all duration-300"
+        onClick={() => {
+          setLeagueModalOpen(false);
+          router.push('/fantasy/leagues/lfb');
+        }}
+      >
+ 
+        <span className="text-xl font-bold text-gray-800">
+          LFB
+        </span>
+        <span className="text-xs text-gray-500">
+          Ligue Féminine de Basket
+        </span>
+      </Button>
+
+      {/* LF2 */}
+      <Button
+        variant="outline"
+        className="h-auto min-h-[130px] cursor-pointer flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-yellow-500 hover:bg-yellow-50 hover:shadow-lg transition-all duration-300"
+        onClick={() => {
+          setLeagueModalOpen(false);
+          router.push('/fantasy/leagues/lf2');
+        }}
+      >
+   
+        <span className="text-xl font-bold text-gray-800">
+          LF2
+        </span>
+        <span className="text-xs text-gray-500">
+          Ligue Féminine 2
+        </span>
+      </Button>
+
+    </div>
+  </DialogContent>
+</Dialog>
+
+
 
       {/* Rankings Modals */}
       <Dialog open={modal.open} onOpenChange={(open) => setModal({...modal, open})}>

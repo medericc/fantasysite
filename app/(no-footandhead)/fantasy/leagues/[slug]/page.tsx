@@ -343,9 +343,7 @@ const handleRemove = async (playerId: number) => {
                     className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-200"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold shadow-md">
-                        {player.name.charAt(0)}
-                      </div>
+                
                       <div>
                         <p className="font-semibold text-gray-800">{player.name}</p>
                         <p className="text-sm text-gray-500">{player.team}</p>

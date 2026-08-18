@@ -120,10 +120,11 @@ model user {
   roles       String   @db.LongText
   password    String   @db.VarChar(255)
   pseudo      String?  @unique @db.VarChar(50)
-  ptl_lfb     Float    @default(0)
+  pt_lfb      Float    @default(0) @db.Float
   reset_token String?  @db.VarChar(255)
   clerk_id    String?  @unique @db.VarChar(3600)
   secret      String?
+  pt_lf2      Float    @default(0) @db.Float
   badge       badge?
   choice      choice[]
 }

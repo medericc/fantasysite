@@ -11748,13 +11748,13 @@ export namespace Prisma {
 
   export type UserAvgAggregateOutputType = {
     id: number | null
-    ptl_lfb: number | null
+    pt_lfb: number | null
     pt_lf2: number | null
   }
 
   export type UserSumAggregateOutputType = {
     id: number | null
-    ptl_lfb: number | null
+    pt_lfb: number | null
     pt_lf2: number | null
   }
 
@@ -11764,7 +11764,7 @@ export namespace Prisma {
     roles: string | null
     password: string | null
     pseudo: string | null
-    ptl_lfb: number | null
+    pt_lfb: number | null
     pt_lf2: number | null
     reset_token: string | null
     clerk_id: string | null
@@ -11776,7 +11776,7 @@ export namespace Prisma {
     roles: string | null
     password: string | null
     pseudo: string | null
-    ptl_lfb: number | null
+    pt_lfb: number | null
     pt_lf2: number | null
     reset_token: string | null
     clerk_id: string | null
@@ -11788,7 +11788,7 @@ export namespace Prisma {
     roles: number
     password: number
     pseudo: number
-    ptl_lfb: number
+    pt_lfb: number
     pt_lf2: number
     reset_token: number
     clerk_id: number
@@ -11798,13 +11798,13 @@ export namespace Prisma {
 
   export type UserAvgAggregateInputType = {
     id?: true
-    ptl_lfb?: true
+    pt_lfb?: true
     pt_lf2?: true
   }
 
   export type UserSumAggregateInputType = {
     id?: true
-    ptl_lfb?: true
+    pt_lfb?: true
     pt_lf2?: true
   }
 
@@ -11814,7 +11814,7 @@ export namespace Prisma {
     roles?: true
     password?: true
     pseudo?: true
-    ptl_lfb?: true
+    pt_lfb?: true
     pt_lf2?: true
     reset_token?: true
     clerk_id?: true
@@ -11826,7 +11826,7 @@ export namespace Prisma {
     roles?: true
     password?: true
     pseudo?: true
-    ptl_lfb?: true
+    pt_lfb?: true
     pt_lf2?: true
     reset_token?: true
     clerk_id?: true
@@ -11838,7 +11838,7 @@ export namespace Prisma {
     roles?: true
     password?: true
     pseudo?: true
-    ptl_lfb?: true
+    pt_lfb?: true
     pt_lf2?: true
     reset_token?: true
     clerk_id?: true
@@ -11937,7 +11937,7 @@ export namespace Prisma {
     roles: string
     password: string
     pseudo: string | null
-    ptl_lfb: number
+    pt_lfb: number
     pt_lf2: number
     reset_token: string | null
     clerk_id: string
@@ -11968,7 +11968,7 @@ export namespace Prisma {
     roles?: boolean
     password?: boolean
     pseudo?: boolean
-    ptl_lfb?: boolean
+    pt_lfb?: boolean
     pt_lf2?: boolean
     reset_token?: boolean
     clerk_id?: boolean
@@ -11985,13 +11985,13 @@ export namespace Prisma {
     roles?: boolean
     password?: boolean
     pseudo?: boolean
-    ptl_lfb?: boolean
+    pt_lfb?: boolean
     pt_lf2?: boolean
     reset_token?: boolean
     clerk_id?: boolean
   }
 
-  export type userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "roles" | "password" | "pseudo" | "ptl_lfb" | "pt_lf2" | "reset_token" | "clerk_id", ExtArgs["result"]["user"]>
+  export type userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "roles" | "password" | "pseudo" | "pt_lfb" | "pt_lf2" | "reset_token" | "clerk_id", ExtArgs["result"]["user"]>
   export type userInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     badge?: boolean | user$badgeArgs<ExtArgs>
     choice?: boolean | user$choiceArgs<ExtArgs>
@@ -12010,7 +12010,7 @@ export namespace Prisma {
       roles: string
       password: string
       pseudo: string | null
-      ptl_lfb: number
+      pt_lfb: number
       pt_lf2: number
       reset_token: string | null
       clerk_id: string
@@ -12390,7 +12390,7 @@ export namespace Prisma {
     readonly roles: FieldRef<"user", 'String'>
     readonly password: FieldRef<"user", 'String'>
     readonly pseudo: FieldRef<"user", 'String'>
-    readonly ptl_lfb: FieldRef<"user", 'Float'>
+    readonly pt_lfb: FieldRef<"user", 'Float'>
     readonly pt_lf2: FieldRef<"user", 'Float'>
     readonly reset_token: FieldRef<"user", 'String'>
     readonly clerk_id: FieldRef<"user", 'String'>
@@ -13942,7 +13942,7 @@ export namespace Prisma {
     roles: 'roles',
     password: 'password',
     pseudo: 'pseudo',
-    ptl_lfb: 'ptl_lfb',
+    pt_lfb: 'pt_lfb',
     pt_lf2: 'pt_lf2',
     reset_token: 'reset_token',
     clerk_id: 'clerk_id'
@@ -14617,7 +14617,7 @@ export namespace Prisma {
     roles?: StringFilter<"user"> | string
     password?: StringFilter<"user"> | string
     pseudo?: StringNullableFilter<"user"> | string | null
-    ptl_lfb?: FloatFilter<"user"> | number
+    pt_lfb?: FloatFilter<"user"> | number
     pt_lf2?: FloatFilter<"user"> | number
     reset_token?: StringNullableFilter<"user"> | string | null
     clerk_id?: StringFilter<"user"> | string
@@ -14631,7 +14631,7 @@ export namespace Prisma {
     roles?: SortOrder
     password?: SortOrder
     pseudo?: SortOrderInput | SortOrder
-    ptl_lfb?: SortOrder
+    pt_lfb?: SortOrder
     pt_lf2?: SortOrder
     reset_token?: SortOrderInput | SortOrder
     clerk_id?: SortOrder
@@ -14649,7 +14649,7 @@ export namespace Prisma {
     NOT?: userWhereInput | userWhereInput[]
     roles?: StringFilter<"user"> | string
     password?: StringFilter<"user"> | string
-    ptl_lfb?: FloatFilter<"user"> | number
+    pt_lfb?: FloatFilter<"user"> | number
     pt_lf2?: FloatFilter<"user"> | number
     reset_token?: StringNullableFilter<"user"> | string | null
     clerk_id?: StringFilter<"user"> | string
@@ -14663,7 +14663,7 @@ export namespace Prisma {
     roles?: SortOrder
     password?: SortOrder
     pseudo?: SortOrderInput | SortOrder
-    ptl_lfb?: SortOrder
+    pt_lfb?: SortOrder
     pt_lf2?: SortOrder
     reset_token?: SortOrderInput | SortOrder
     clerk_id?: SortOrder
@@ -14683,7 +14683,7 @@ export namespace Prisma {
     roles?: StringWithAggregatesFilter<"user"> | string
     password?: StringWithAggregatesFilter<"user"> | string
     pseudo?: StringNullableWithAggregatesFilter<"user"> | string | null
-    ptl_lfb?: FloatWithAggregatesFilter<"user"> | number
+    pt_lfb?: FloatWithAggregatesFilter<"user"> | number
     pt_lf2?: FloatWithAggregatesFilter<"user"> | number
     reset_token?: StringNullableWithAggregatesFilter<"user"> | string | null
     clerk_id?: StringWithAggregatesFilter<"user"> | string
@@ -15196,7 +15196,7 @@ export namespace Prisma {
     roles: string
     password: string
     pseudo?: string | null
-    ptl_lfb?: number
+    pt_lfb?: number
     pt_lf2?: number
     reset_token?: string | null
     clerk_id: string
@@ -15210,7 +15210,7 @@ export namespace Prisma {
     roles: string
     password: string
     pseudo?: string | null
-    ptl_lfb?: number
+    pt_lfb?: number
     pt_lf2?: number
     reset_token?: string | null
     clerk_id: string
@@ -15223,7 +15223,7 @@ export namespace Prisma {
     roles?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     pseudo?: NullableStringFieldUpdateOperationsInput | string | null
-    ptl_lfb?: FloatFieldUpdateOperationsInput | number
+    pt_lfb?: FloatFieldUpdateOperationsInput | number
     pt_lf2?: FloatFieldUpdateOperationsInput | number
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     clerk_id?: StringFieldUpdateOperationsInput | string
@@ -15237,7 +15237,7 @@ export namespace Prisma {
     roles?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     pseudo?: NullableStringFieldUpdateOperationsInput | string | null
-    ptl_lfb?: FloatFieldUpdateOperationsInput | number
+    pt_lfb?: FloatFieldUpdateOperationsInput | number
     pt_lf2?: FloatFieldUpdateOperationsInput | number
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     clerk_id?: StringFieldUpdateOperationsInput | string
@@ -15251,7 +15251,7 @@ export namespace Prisma {
     roles: string
     password: string
     pseudo?: string | null
-    ptl_lfb?: number
+    pt_lfb?: number
     pt_lf2?: number
     reset_token?: string | null
     clerk_id: string
@@ -15262,7 +15262,7 @@ export namespace Prisma {
     roles?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     pseudo?: NullableStringFieldUpdateOperationsInput | string | null
-    ptl_lfb?: FloatFieldUpdateOperationsInput | number
+    pt_lfb?: FloatFieldUpdateOperationsInput | number
     pt_lf2?: FloatFieldUpdateOperationsInput | number
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     clerk_id?: StringFieldUpdateOperationsInput | string
@@ -15274,7 +15274,7 @@ export namespace Prisma {
     roles?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     pseudo?: NullableStringFieldUpdateOperationsInput | string | null
-    ptl_lfb?: FloatFieldUpdateOperationsInput | number
+    pt_lfb?: FloatFieldUpdateOperationsInput | number
     pt_lf2?: FloatFieldUpdateOperationsInput | number
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     clerk_id?: StringFieldUpdateOperationsInput | string
@@ -16012,7 +16012,7 @@ export namespace Prisma {
     roles?: SortOrder
     password?: SortOrder
     pseudo?: SortOrder
-    ptl_lfb?: SortOrder
+    pt_lfb?: SortOrder
     pt_lf2?: SortOrder
     reset_token?: SortOrder
     clerk_id?: SortOrder
@@ -16020,7 +16020,7 @@ export namespace Prisma {
 
   export type userAvgOrderByAggregateInput = {
     id?: SortOrder
-    ptl_lfb?: SortOrder
+    pt_lfb?: SortOrder
     pt_lf2?: SortOrder
   }
 
@@ -16030,7 +16030,7 @@ export namespace Prisma {
     roles?: SortOrder
     password?: SortOrder
     pseudo?: SortOrder
-    ptl_lfb?: SortOrder
+    pt_lfb?: SortOrder
     pt_lf2?: SortOrder
     reset_token?: SortOrder
     clerk_id?: SortOrder
@@ -16042,7 +16042,7 @@ export namespace Prisma {
     roles?: SortOrder
     password?: SortOrder
     pseudo?: SortOrder
-    ptl_lfb?: SortOrder
+    pt_lfb?: SortOrder
     pt_lf2?: SortOrder
     reset_token?: SortOrder
     clerk_id?: SortOrder
@@ -16050,7 +16050,7 @@ export namespace Prisma {
 
   export type userSumOrderByAggregateInput = {
     id?: SortOrder
-    ptl_lfb?: SortOrder
+    pt_lfb?: SortOrder
     pt_lf2?: SortOrder
   }
 
@@ -17133,7 +17133,7 @@ export namespace Prisma {
     roles: string
     password: string
     pseudo?: string | null
-    ptl_lfb?: number
+    pt_lfb?: number
     pt_lf2?: number
     reset_token?: string | null
     clerk_id: string
@@ -17146,7 +17146,7 @@ export namespace Prisma {
     roles: string
     password: string
     pseudo?: string | null
-    ptl_lfb?: number
+    pt_lfb?: number
     pt_lf2?: number
     reset_token?: string | null
     clerk_id: string
@@ -17174,7 +17174,7 @@ export namespace Prisma {
     roles?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     pseudo?: NullableStringFieldUpdateOperationsInput | string | null
-    ptl_lfb?: FloatFieldUpdateOperationsInput | number
+    pt_lfb?: FloatFieldUpdateOperationsInput | number
     pt_lf2?: FloatFieldUpdateOperationsInput | number
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     clerk_id?: StringFieldUpdateOperationsInput | string
@@ -17187,7 +17187,7 @@ export namespace Prisma {
     roles?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     pseudo?: NullableStringFieldUpdateOperationsInput | string | null
-    ptl_lfb?: FloatFieldUpdateOperationsInput | number
+    pt_lfb?: FloatFieldUpdateOperationsInput | number
     pt_lf2?: FloatFieldUpdateOperationsInput | number
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     clerk_id?: StringFieldUpdateOperationsInput | string
@@ -17225,7 +17225,7 @@ export namespace Prisma {
     roles: string
     password: string
     pseudo?: string | null
-    ptl_lfb?: number
+    pt_lfb?: number
     pt_lf2?: number
     reset_token?: string | null
     clerk_id: string
@@ -17238,7 +17238,7 @@ export namespace Prisma {
     roles: string
     password: string
     pseudo?: string | null
-    ptl_lfb?: number
+    pt_lfb?: number
     pt_lf2?: number
     reset_token?: string | null
     clerk_id: string
@@ -17336,7 +17336,7 @@ export namespace Prisma {
     roles?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     pseudo?: NullableStringFieldUpdateOperationsInput | string | null
-    ptl_lfb?: FloatFieldUpdateOperationsInput | number
+    pt_lfb?: FloatFieldUpdateOperationsInput | number
     pt_lf2?: FloatFieldUpdateOperationsInput | number
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     clerk_id?: StringFieldUpdateOperationsInput | string
@@ -17349,7 +17349,7 @@ export namespace Prisma {
     roles?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     pseudo?: NullableStringFieldUpdateOperationsInput | string | null
-    ptl_lfb?: FloatFieldUpdateOperationsInput | number
+    pt_lfb?: FloatFieldUpdateOperationsInput | number
     pt_lf2?: FloatFieldUpdateOperationsInput | number
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     clerk_id?: StringFieldUpdateOperationsInput | string

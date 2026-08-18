@@ -9,7 +9,7 @@ FOR EACH ROW
 BEGIN
   IF NEW.week_id < 22 THEN
     UPDATE user
-      SET ptl_lfb = ptl_lfb + NEW.rate
+      SET pt_lfb = pt_lfb + NEW.rate
       WHERE id IN (
         SELECT user_id FROM choice WHERE player_id = NEW.player_id AND week_id = NEW.week_id
       );
@@ -32,7 +32,7 @@ BEGIN
   SET diff = NEW.rate - OLD.rate;
   IF NEW.week_id < 22 THEN
     UPDATE user
-      SET ptl_lfb = ptl_lfb + diff
+      SET pt_lfb = pt_lfb + diff
       WHERE id IN (
         SELECT user_id FROM choice WHERE player_id = NEW.player_id AND week_id = NEW.week_id
       );
@@ -53,7 +53,7 @@ FOR EACH ROW
 BEGIN
   IF OLD.week_id < 22 THEN
     UPDATE user
-      SET ptl_lfb = ptl_lfb - OLD.rate
+      SET pt_lfb = pt_lfb - OLD.rate
       WHERE id IN (
         SELECT user_id FROM choice WHERE player_id = OLD.player_id AND week_id = OLD.week_id
       );

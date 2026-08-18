@@ -121,7 +121,8 @@ model user {
   roles       String   @db.LongText
   password    String   @db.VarChar(255)
   pseudo      String?  @unique @db.VarChar(50)
-  ptl_lfb     Float    @default(0)
+  pt_lfb     Float    @default(0)
+  pt_lf2     Float    @default(0)
   reset_token String?  @db.VarChar(255)
   clerk_id    String   @db.VarChar(3600)
   badge       badge?

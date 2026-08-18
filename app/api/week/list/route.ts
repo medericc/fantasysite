@@ -7,6 +7,8 @@ import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
   try {
+
+    
     const { searchParams } = new URL(req.url);
     const slug = searchParams.get('slug');
 
@@ -31,7 +33,14 @@ export async function GET(req: Request) {
         id: 'asc',
       },
     });
-
+console.log(
+  "SLUG:",
+  slug,
+  "LEAGUE:",
+  leagueId,
+  "WEEKS:",
+  weeks
+);
     // Numéro de journée propre à chaque ligue
     const formattedWeeks = weeks.map((week, index) => ({
       id: week.id,

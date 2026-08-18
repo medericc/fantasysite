@@ -15,7 +15,7 @@ type Player = {
   name: string;
   forename: string;
   team_id: number;
-  rate?: number; // ajout pour éviter erreur TS
+  rate?: number | null;
   isLocked?: boolean;
 };
 
@@ -43,11 +43,16 @@ const [displayWeekId, setDisplayWeekId] = useState<number | null>(null);
   // const [pointsInput, setPointsInput] = useState<{ [playerId: number]: number }>({});
   const [blockedIds, setBlockedIds] = useState<number[]>([]);
   const isDeckFull = deck.length >= 5;
+  const isAdmin = role === "admin";
   const router = useRouter();
   useEffect(() => {
   fetch('/api/me')
     .then(res => res.json())
-    .then(data => setRole(data.role));
+    .then(data => {
+      setRole(data.role);
+      console.log("aaaaaa",data.role);
+    })
+    .catch(err => console.error(err));
 }, []);
 
 useEffect(() => {
@@ -177,71 +182,162 @@ useEffect(() => {
 //   }
 // };
 const renderPlayerCard = (p: Player) => (
-  <div 
-    key={p.id} 
-    className="flex items-center justify-between p-3 border rounded-lg"
+  <div
+    key={p.id}
+    className="flex items-center justify-between gap-3 p-3 rounded-xl border bg-white shadow-sm"
   >
-    <div>
-      <p className="font-medium">{p.forename} {p.name}</p>
-      {role === 'admin' && (
-        <div className="flex items-center gap-2 mt-1">
-          <Input
-            type="number"
-            value={p.rate ?? ''}
-            onChange={(e) => {
-              const val = parseFloat(e.target.value) || 0;
-              setPlayers(prev => prev.map(pl => pl.id === p.id ? {...pl, rate: val} : pl));
-            }}
-            className="w-20 h-8"
-          />
-          <button
-            type="button"
-            onClick={() => p.rate && handleUpdateRate(p.id, p.rate)}
-            disabled={weekLocked || isNaN(Number(p.rate))}
-            className={`
-              px-3 py-1.5 text-sm font-medium rounded-md border transition-colors
-              ${teamName && teamOutlineColors[teamName]
-                ? teamOutlineColors[teamName]
-                : "text-gray-500 border-gray-500"
-              }
-              ${weekLocked || isNaN(Number(p.rate))
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:bg-gray-100"
-              }
-            `}
-          >
-            Valider
-          </button>
-        </div>
-      )}
+    {/* Joueuse */}
+    <div className="min-w-0">
+      <p className="font-semibold text-gray-800 truncate">
+        {p.forename} {p.name}
+      </p>
     </div>
 
-    {isInDeck(p.id) ? (
-      <Badge variant="secondary">Dans ton deck</Badge>
-    ) : blockedIds.includes(p.id) ? (
-      <Badge variant="outline">Indisponible</Badge>
-    ) : isDeckFull ? (
-      <Badge variant="outline">Limite atteinte</Badge>
-    ) : (
-      <Button size="sm" onClick={() => handleAdd(p.id)} className="cursor-pointer"  disabled={weekLocked}>
-        Ajouter
-      </Button>
-    )}
+    {/* Partie droite */}
+    <div className="flex items-center gap-2">
+
+      {/* ================================= */}
+      {/* ADMIN : saisir / modifier la note */}
+      {/* ================================= */}
+
+      {isAdmin ? (
+        <div className="flex items-center gap-2">
+          <Input
+            type="number"
+            min="0"
+            step="0.5"
+            defaultValue={p.rate ?? ""}
+            placeholder="Pts"
+            className="w-20 h-9 text-center"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                const value = Number(
+                  (e.target as HTMLInputElement).value
+                );
+
+                if (!Number.isNaN(value)) {
+                  handleUpdateRate(p.id, value);
+                }
+              }
+            }}
+          />
+
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={(e) => {
+              const input = e.currentTarget
+                .previousElementSibling as HTMLInputElement | null;
+
+              if (!input) return;
+
+              const value = Number(input.value);
+
+              if (!Number.isNaN(value)) {
+                handleUpdateRate(p.id, value);
+              }
+            }}
+          >
+            Enregistrer
+          </Button>
+        </div>
+      ) : (
+        /* ================================= */
+        /* UTILISATEUR NORMAL */
+        /* ================================= */
+
+        <>
+          {p.rate !== null && p.rate !== undefined ? (
+            <Badge
+              className="bg-green-50 text-green-700 border border-green-200"
+            >
+              {p.rate} pts
+            </Badge>
+          ) : null}
+
+          {isInDeck(p.id) ? (
+            <Badge variant="secondary">
+              Dans ton deck
+            </Badge>
+          ) : blockedIds.includes(p.id) ? (
+            <Badge variant="outline">
+              Indisponible
+            </Badge>
+          ) : isDeckFull ? (
+            <Badge variant="outline">
+              Limite atteinte
+            </Badge>
+          ) : (
+            <Button
+              size="sm"
+              onClick={() => handleAdd(p.id)}
+              className="cursor-pointer"
+              disabled={weekLocked}
+            >
+              Ajouter
+            </Button>
+          )}
+        </>
+      )}
+
+    </div>
   </div>
 );
 
-const handleUpdateRate = async (playerId: number, newRate: number) => {
-    const res = await fetch('/api/admin/update-player-rate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ playerId, weekId: Number(weekId), rate: newRate }),
-    });
-    
+const handleUpdateRate = async (
+  playerId: number,
+  newRate: number
+) => {
+  if (!weekId) return;
+
+  setError(null);
+
+  try {
+    const res = await fetch(
+      "/api/admin/update-player-rate",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          playerId,
+          weekId: Number(weekId),
+          rate: newRate,
+        }),
+      }
+    );
+
+    const data = await res.json();
+
     if (!res.ok) {
-      const data = await res.json();
-      setError(data.error || 'Erreur mise à jour');
+      throw new Error(
+        data.error || "Erreur lors de la sauvegarde"
+      );
     }
-  };
+
+    // Mise à jour immédiate à l'écran
+    setPlayers((prev) =>
+      prev.map((player) =>
+        player.id === playerId
+          ? {
+              ...player,
+              rate: newRate,
+            }
+          : player
+      )
+    );
+
+  } catch (err) {
+    console.error(err);
+
+    setError(
+      err instanceof Error
+        ? err.message
+        : "Erreur lors de la sauvegarde"
+    );
+  }
+};
 const teamOutlineColors: Record<string, string> = {
   "UF Angers": "!text-black !border-black",
   "Lyon ASVEL": "!text-pink-500 !border-pink-500",

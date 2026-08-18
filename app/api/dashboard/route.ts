@@ -1,54 +1,139 @@
 // app/api/dashboard/route.ts
+
 export const runtime = "nodejs";
-import { NextResponse } from 'next/server';
-import { getCurrentUserId } from '@/lib/auth'; // à adapter selon ton auth
-import { getTotalRanking, getWeeklyRanking } from '@/lib/ranking_total';
-import { prisma } from '@/lib/prisma';
+
+import { NextResponse } from "next/server";
+import { getCurrentUserId } from "@/lib/auth";
+import {
+  getTotalRanking,
+  getWeeklyRanking,
+} from "@/lib/ranking_total";
+import { prisma } from "@/lib/prisma";
+
+const LEAGUES = {
+  LFB: {
+    id: 1,
+    minWeek: 1,
+    maxWeek: 22,
+  },
+  LF2: {
+    id: 2,
+    minWeek: 23,
+    maxWeek: 48,
+  },
+};
 
 export async function GET() {
-  const userId = await getCurrentUserId(); // Clerk ou session
-  console.log("User ID récupéré :", userId);
- const dbUser = await prisma.user.findUnique({
-    where: { id: userId },
-    select: { pseudo: true },
-  });
-  const leagueId = 1; // LFB uniquement
-  const leagueName = 'LFB';
+  try {
+    const userId = await getCurrentUserId();
 
-  const latestWeek = await prisma.week.findFirst({
-    where: {
-      league_id: leagueId,
-      player_rate: { some: {} },
-    },
-    orderBy: { id: 'desc' },
-  });
+    const dbUser = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        pseudo: true,
+      },
+    });
 
-  const fallbackWeek = await prisma.week.findFirst({
-    where: { league_id: leagueId },
-    orderBy: { id: 'asc' },
-  });
+    const results = [];
 
-  const weekToUse = latestWeek ?? fallbackWeek;
-  if (!weekToUse) {
-    return NextResponse.json([]);
+    for (const [leagueName, config] of Object.entries(LEAGUES)) {
+      const weeks = await prisma.week.findMany({
+        where: {
+          league_id: config.id,
+          player_rate: {
+            some: {},
+          },
+        },
+        orderBy: {
+          id: "asc",
+        },
+      });
+
+      const validWeeks = weeks.filter((week) => {
+        const number = Number(
+          week.name.replace(/\D/g, "")
+        );
+
+        return (
+          number >= config.minWeek &&
+          number <= config.maxWeek
+        );
+      });
+
+      const latestWeek =
+        validWeeks[validWeeks.length - 1];
+
+      if (!latestWeek) {
+        results.push({
+          league: leagueName,
+          week: null,
+          weekIndex: 0,
+          weekPoints: 0,
+          totalIndex: 0,
+          totalPoints: 0,
+          username: dbUser?.pseudo ?? null,
+        });
+
+        continue;
+      }
+
+      const weekRanking = await getWeeklyRanking(
+        config.id,
+        latestWeek.id
+      );
+
+      const totalRanking = await getTotalRanking(
+        config.id,
+        config.minWeek,
+        config.maxWeek
+      );
+
+      const weekUser = weekRanking.find(
+        (u) => u.userId === userId
+      );
+
+      const totalUser = totalRanking.find(
+        (u) => u.userId === userId
+      );
+
+      results.push({
+        league: leagueName,
+
+        week: latestWeek.name,
+
+        weekIndex: weekUser
+          ? weekRanking.findIndex(
+              (u) => u.userId === userId
+            ) + 1
+          : 0,
+
+        weekPoints: weekUser?.points ?? 0,
+
+        totalIndex: totalUser
+          ? totalRanking.findIndex(
+              (u) => u.userId === userId
+            ) + 1
+          : 0,
+
+        totalPoints: totalUser?.points ?? 0,
+
+        username: dbUser?.pseudo ?? null,
+      });
+    }
+
+    return NextResponse.json(results);
+  } catch (error) {
+    console.error("Dashboard error:", error);
+
+    return NextResponse.json(
+      {
+        error: "Erreur lors du chargement du dashboard",
+      },
+      {
+        status: 500,
+      }
+    );
   }
-
-  const weekRanking = await getWeeklyRanking(leagueId, weekToUse.id);
-  const totalRanking = await getTotalRanking(leagueId);
-
-  const weekIndex = weekRanking.findIndex(u => u.userId === userId) + 1;
-  const totalIndex = totalRanking.findIndex(u => u.userId === userId) + 1;
-
-  const weekPoints = weekRanking.find(u => u.userId === userId)?.points ?? 0;
-  const totalPoints = totalRanking.find(u => u.userId === userId)?.points ?? 0;
-
-  return NextResponse.json([{
-    league: leagueName,
-    week: weekToUse.name,
-    weekIndex,
-    weekPoints,
-    totalIndex,
-    totalPoints,
-     username: dbUser?.pseudo || null, 
-  }]);
 }

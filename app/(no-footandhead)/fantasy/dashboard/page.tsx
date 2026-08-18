@@ -36,8 +36,9 @@ export default function DashboardPage() {
     type: 'weekly' | 'total' | null;
     week?: string;
   }>({ open: false, type: null });
+const [modalLeague, setModalLeague] = useState<'LFB' | 'LF2'>('LFB');
+const [selectedLeague, setSelectedLeague] = useState<'LFB' | 'LF2'>('LFB');
 const [leagueModalOpen, setLeagueModalOpen] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -202,59 +203,192 @@ const [leagueModalOpen, setLeagueModalOpen] = useState(false);
           const userTotal = totalRankings.find((r) => r.username === user?.username);
 
           return (
-            <div key={league} className="space-y-6 lg:space-y-8">
-              {/* User Stats */}
-              <div className="grid grid-cols-2 gap-4 lg:gap-8">
-                <div className="bg-white p-6 sm:p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mb-4 shadow-md">
-                    <span className="text-white text-xl">📅</span>
-                  </div>
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Semaine</p>
-                  <p className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
-                    {userWeekly ? `${userWeekly.weekIndex}e` : '-'}
-                  </p>
-                  <p className="text-sm sm:text-base text-gray-600 font-medium">
-                    {userWeekly?.weekPoints || 0} pts
-                  </p>
-                </div>
-                <div className="bg-white p-6 sm:p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mb-4 shadow-md">
-                    <span className="text-white text-xl">🏆</span>
-                  </div>
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Saison</p>
-                  <p className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
-                    {userTotal ? `${userTotal.totalIndex}e` : '-'}
-                  </p>
-                  <p className="text-sm sm:text-base text-gray-600 font-medium">
-                    {userTotal?.totalPoints || 0} pts
-                  </p>
-                </div>
-              </div>
+          <div key={league} className="space-y-6 lg:space-y-8">
+  {/* User Stats */}
+  <div className="grid grid-cols-2 gap-4 lg:gap-8">
 
-              {/* Buttons for Rankings */}
-            {/* Buttons for Rankings */}
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 w-full">
-  <Button
-    variant="outline"
-    className="w-full min-w-0 h-auto min-h-[80px] px-3 sm:px-6 py-5 sm:py-8 rounded-xl border-2 border-gray-200 bg-white hover:border-yellow-500 hover:bg-yellow-50 hover:shadow-lg transition-all duration-300 font-semibold text-gray-700 hover:text-yellow-700 whitespace-normal break-words text-sm sm:text-base"
-    onClick={() => openWeeklyModal(league)}
-  >
-    <span className="block w-full text-center leading-snug">
-      📊 Voir classement semaine
-    </span>
-  </Button>
+    {/* ===================== SEMAINE ===================== */}
+    <div
+      onClick={() =>
+        setSelectedLeague(selectedLeague === 'LFB' ? 'LF2' : 'LFB')
+      }
+      className="bg-white p-6 sm:p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 text-center cursor-pointer select-none"
+    >
+      <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mb-4 shadow-md">
+        <span className="text-white text-xl">📅</span>
+      </div>
 
-  <Button
-    variant="outline"
-    className="w-full min-w-0 h-auto min-h-[80px] px-3 sm:px-6 py-5 sm:py-8 rounded-xl border-2 border-gray-200 bg-white hover:border-yellow-500 hover:bg-yellow-50 hover:shadow-lg transition-all duration-300 font-semibold text-gray-700 hover:text-yellow-700 whitespace-normal break-words text-sm sm:text-base"
-    onClick={openTotalModal}
-  >
-    <span className="block w-full text-center leading-snug">
-      🏆 Voir classement saison
-    </span>
-  </Button>
+      <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
+        Semaine
+      </p>
+
+      {/* Switch LFB / LF2 */}
+      <div className="flex items-center justify-center gap-4 mb-4">
+        <div className="flex items-center gap-1.5">
+          <span
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              selectedLeague === 'LFB'
+                ? 'bg-blue-500 scale-125'
+                : 'bg-gray-300'
+            }`}
+          />
+          <span
+            className={`text-xs font-semibold transition-all ${
+              selectedLeague === 'LFB'
+                ? 'text-blue-600'
+                : 'text-gray-400'
+            }`}
+          >
+            LFB
+          </span>
+        </div>
+
+        <div className="flex items-center gap-1.5">
+          <span
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              selectedLeague === 'LF2'
+                ? 'bg-blue-500 scale-125'
+                : 'bg-gray-300'
+            }`}
+          />
+          <span
+            className={`text-xs font-semibold transition-all ${
+              selectedLeague === 'LF2'
+                ? 'text-blue-600'
+                : 'text-gray-400'
+            }`}
+          >
+            LF2
+          </span>
+        </div>
+      </div>
+
+      <p className="text-xs text-gray-400 mb-3">
+        Cliquez pour changer de championnat
+      </p>
+
+   <div
+  onClick={(e) => {
+    e.stopPropagation();
+
+    setModalLeague(selectedLeague);
+    setModal({
+      open: true,
+      type: 'weekly',
+      week: latestWeek,
+    });
+  }}
+  className="cursor-pointer group"
+>
+  <p className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+    {userWeekly
+      ? `${userWeekly.weekIndex}e`
+      : '-'}
+  </p>
+
+  <p className="text-sm sm:text-base text-gray-600 font-medium group-hover:text-blue-600 transition-colors">
+    {userWeekly?.weekPoints || 0} pts
+  </p>
 </div>
-            </div>
+
+      <p className="text-xs text-gray-400 mt-2">
+        {selectedLeague === 'LFB'
+          ? `Semaine ${userWeekly?.week || '-'}`
+          : `Semaine ${userWeekly?.week || '-'}`}
+      </p>
+    </div>
+
+
+    {/* ===================== SAISON ===================== */}
+    <div
+      onClick={() =>
+        setSelectedLeague(selectedLeague === 'LFB' ? 'LF2' : 'LFB')
+      }
+      className="bg-white p-6 sm:p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 text-center cursor-pointer select-none"
+    >
+      <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mb-4 shadow-md">
+        <span className="text-white text-xl">🏆</span>
+      </div>
+
+      <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
+        Saison
+      </p>
+
+      {/* Switch LFB / LF2 */}
+      <div className="flex items-center justify-center gap-4 mb-4">
+        <div className="flex items-center gap-1.5">
+          <span
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              selectedLeague === 'LFB'
+                ? 'bg-yellow-500 scale-125'
+                : 'bg-gray-300'
+            }`}
+          />
+          <span
+            className={`text-xs font-semibold transition-all ${
+              selectedLeague === 'LFB'
+                ? 'text-yellow-600'
+                : 'text-gray-400'
+            }`}
+          >
+            LFB
+          </span>
+        </div>
+
+        <div className="flex items-center gap-1.5">
+          <span
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              selectedLeague === 'LF2'
+                ? 'bg-yellow-500 scale-125'
+                : 'bg-gray-300'
+            }`}
+          />
+          <span
+            className={`text-xs font-semibold transition-all ${
+              selectedLeague === 'LF2'
+                ? 'text-yellow-600'
+                : 'text-gray-400'
+            }`}
+          >
+            LF2
+          </span>
+        </div>
+      </div>
+
+      <p className="text-xs text-gray-400 mb-3">
+        Cliquez pour changer de championnat
+      </p>
+
+    <div
+  onClick={(e) => {
+    e.stopPropagation();
+
+    setModalLeague(selectedLeague);
+    setModal({
+      open: true,
+      type: 'total',
+    });
+  }}
+  className="cursor-pointer group"
+>
+  <p className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2 group-hover:text-yellow-600 transition-colors">
+    {userTotal
+      ? `${userTotal.totalIndex}e`
+      : '-'}
+  </p>
+
+  <p className="text-sm sm:text-base text-gray-600 font-medium group-hover:text-yellow-600 transition-colors">
+    {userTotal?.totalPoints || 0} pts
+  </p>
+</div>
+
+      <p className="text-xs text-gray-400 mt-2">
+        Classement {selectedLeague}
+      </p>
+    </div>
+
+  </div>
+</div>
           );
         })}
         
@@ -325,22 +459,95 @@ const [leagueModalOpen, setLeagueModalOpen] = useState(false);
 
 
 
-      {/* Rankings Modals */}
-      <Dialog open={modal.open} onOpenChange={(open) => setModal({...modal, open})}>
-        <DialogContent className="sm:max-w-[90%] lg:max-w-[70%] max-h-[90vh] overflow-auto rounded-2xl shadow-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-              {modal.type === 'weekly' ? '📊 Classement Semaine' : '🏆 Classement Saison'}
-            </DialogTitle>
-          </DialogHeader>
-          {modal.type === 'weekly' && rankingData[Object.keys(rankingData)[0]]?.weekly[modal.week || ''] && (
-            renderTable(rankingData[Object.keys(rankingData)[0]].weekly[modal.week || ''], 'Semaine')
-          )}
-          {modal.type === 'total' && rankingData[Object.keys(rankingData)[0]]?.total && (
-            renderTable(rankingData[Object.keys(rankingData)[0]].total, 'Saison')
-          )}
-        </DialogContent>
-      </Dialog>
+  {/* Rankings Modals */}
+<Dialog
+  open={modal.open}
+  onOpenChange={(open) => setModal({ ...modal, open })}
+>
+  <DialogContent className="sm:max-w-[90%] lg:max-w-[70%] max-h-[90vh] overflow-auto rounded-2xl shadow-2xl">
+
+    <DialogHeader>
+      <DialogTitle className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+        {modal.type === 'weekly'
+          ? '📊 Classement Semaine'
+          : '🏆 Classement Saison'}
+      </DialogTitle>
+    </DialogHeader>
+
+    {/* ===================== SWITCH LFB / LF2 ===================== */}
+    <div className="flex justify-center mt-2 mb-6">
+      <div
+        onClick={() =>
+          setModalLeague(modalLeague === 'LFB' ? 'LF2' : 'LFB')
+        }
+        className="flex items-center gap-5 px-5 py-3 bg-gray-50 rounded-full border border-gray-200 cursor-pointer select-none hover:bg-gray-100 transition-all"
+      >
+
+        {/* LFB */}
+        <div className="flex items-center gap-2">
+          <span
+            className={`w-3 h-3 rounded-full transition-all ${
+              modalLeague === 'LFB'
+                ? 'bg-blue-500 scale-125'
+                : 'bg-gray-300'
+            }`}
+          />
+
+          <span
+            className={`text-sm font-bold transition-all ${
+              modalLeague === 'LFB'
+                ? 'text-blue-600'
+                : 'text-gray-400'
+            }`}
+          >
+            LFB
+          </span>
+        </div>
+
+        <span className="text-gray-300">|</span>
+
+        {/* LF2 */}
+        <div className="flex items-center gap-2">
+          <span
+            className={`w-3 h-3 rounded-full transition-all ${
+              modalLeague === 'LF2'
+                ? 'bg-blue-500 scale-125'
+                : 'bg-gray-300'
+            }`}
+          />
+
+          <span
+            className={`text-sm font-bold transition-all ${
+              modalLeague === 'LF2'
+                ? 'text-blue-600'
+                : 'text-gray-400'
+            }`}
+          >
+            LF2
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    {/* ===================== CLASSEMENT SEMAINE ===================== */}
+    {modal.type === 'weekly' &&
+      rankingData[modalLeague]?.weekly?.[modal.week || ''] &&
+      renderTable(
+        rankingData[modalLeague].weekly[modal.week || ''],
+        'Semaine'
+      )}
+
+    {/* ===================== CLASSEMENT SAISON ===================== */}
+    {modal.type === 'total' &&
+      rankingData[modalLeague]?.total &&
+      renderTable(
+        rankingData[modalLeague].total,
+        'Saison'
+      )}
+
+  </DialogContent>
+</Dialog>
 
       <Footer />
     </div>

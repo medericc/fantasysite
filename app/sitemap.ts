@@ -94,10 +94,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
      JOUEUSES /joueuse/[slug]
   ========================= */
   const notesLFB = loadCSV<PlayerRow>(
-    path.join(process.cwd(), 'public/lfb_notes.csv')
+    path.join(process.cwd(), 'public/lfb_notes_2026.csv')
   )
   const notesLF2 = loadCSV<PlayerRow>(
-    path.join(process.cwd(), 'public/lf2_notes.csv')
+    path.join(process.cwd(), 'public/lf2_notes_2026.csv')
   )
   const allStars = loadCSV<PlayerRow>(
     path.join(process.cwd(), 'public/allstars.csv')

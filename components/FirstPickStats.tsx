@@ -32,7 +32,7 @@ export default function FirstPickStats({
 const selectedLeague = league
 const selectedCategory = view
 const selectedYear = year
-
+const seasonLabel = `Saison ${selectedYear} -1/${Number(selectedYear)}`
 
   // ⏳ loading reste en state normal
   const [isLoading, setIsLoading] = useState(true)
@@ -43,77 +43,93 @@ const selectedYear = year
   const [firstTeams, setFirstTeams] = useState<FirstTeam[]>([])
 
   // ---- Load CSVs once ----
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        Papa.parse('/lfb_notes.csv', {
-          header: true,
-          download: true,
-          complete: (result) => {
-           const rows = (result.data as any[])
-  .filter(r => r.forename && r.name && r.rating)
-  .map(r => ({
-    prenom: r.forename.trim(),
-    nom: r.name.trim(),
-    equipe: r.equipe ?? '',
-    note: r.rating.replace(',', '.'),
-    ranking: r.match ?? '',
-    place: 0,
-  }))
+// ---- Load CSVs for selected season ----
+useEffect(() => {
+  const loadData = async () => {
+    setIsLoading(true)
 
-            setLfbNotes(rows)
-          },
-        })
-        Papa.parse('/lf2_notes.csv', {
-          header: true,
-          download: true,
-          complete: (result) => {
-            const rows = (result.data as any[]).map(r => ({
+    try {
+      const lfbFile = `/lfb_notes_${selectedYear}.csv`
+      const lf2File = `/lf2_notes_${selectedYear}.csv`
+
+      Papa.parse(lfbFile, {
+        header: true,
+        download: true,
+        complete: (result) => {
+          const rows = (result.data as any[])
+            .filter(r => r.forename && r.name && r.rating)
+            .map(r => ({
+              prenom: r.forename.trim(),
+              nom: r.name.trim(),
+              equipe: r.equipe ?? '',
+              note: r.rating.replace(',', '.'),
+              ranking: r.match ?? '',
+              place: 0,
+            }))
+
+          setLfbNotes(rows)
+        },
+      })
+
+      Papa.parse(lf2File, {
+        header: true,
+        download: true,
+        complete: (result) => {
+          const rows = (result.data as any[])
+            .filter(r => r.forename && r.name && r.rating)
+            .map(r => ({
               prenom: r.forename,
               nom: r.name,
               equipe: r.equipe,
               note: r.rating?.replace(',', '.') ?? '',
               ranking: r.match ?? '',
-              place: 0
+              place: 0,
             }))
-            setLf2Notes(rows)
-          },
-        })
-        Papa.parse('/allstars.csv', {
-          header: true,
-          download: true,
-          complete: (result) => {
-            const rows = (result.data as any[]).map(r => ({
-              prenom: r.prenom,
-              nom: r.nom,
-              ligue: r.ligue,
-              annee: r.annee,
-              equipe: r.equipe
-            }))
-            setAllStars(rows)
-          },
-        })
-        Papa.parse('/firstteam.csv', {
-          header: true,
-          download: true,
-          complete: (result) => {
-            const rows = (result.data as any[]).map(r => ({
-              prenom: r.prenom,
-              nom: r.nom,
-              ligue: r.ligue,
-              annee: r.annee,
-              rang: r.rang
-            }))
-            setFirstTeams(rows)
-          },
-        })
-      } finally {
-        setIsLoading(false)
-      }
+
+          setLf2Notes(rows)
+        },
+      })
+
+      // All-Stars
+      Papa.parse('/allstars.csv', {
+        header: true,
+        download: true,
+        complete: (result) => {
+          const rows = (result.data as any[]).map(r => ({
+            prenom: r.prenom,
+            nom: r.nom,
+            ligue: r.ligue,
+            annee: r.annee,
+            equipe: r.equipe
+          }))
+
+          setAllStars(rows)
+        },
+      })
+
+      // First Team
+      Papa.parse('/firstteam.csv', {
+        header: true,
+        download: true,
+        complete: (result) => {
+          const rows = (result.data as any[]).map(r => ({
+            prenom: r.prenom,
+            nom: r.nom,
+            ligue: r.ligue,
+            annee: r.annee,
+            rang: r.rang
+          }))
+
+          setFirstTeams(rows)
+        },
+      })
+    } finally {
+      setIsLoading(false)
     }
-    
-    loadData()
-  }, [])
+  }
+
+  loadData()
+}, [selectedYear])
 
   const updateURL = (params: {
   league?: 'LFB' | 'LF2'
@@ -155,7 +171,7 @@ const topPlayer =
     : null
 
   // Années disponibles
-  const availableYears = ['2024', '2025','2026']
+  const availableYears = ['2024', '2025','2026','2027']
   
   const lfbAllStarCounts = allStars
     .filter(p => p.ligue === 'LFB')
@@ -336,8 +352,8 @@ const topPlayer =
                     selectedCategory === 'firstTeam'
                       ? availableYears
                       : (selectedLeague === 'LFB'
-                          ? ['2023','2024','2025','2026']
-                          : ['2024','2025','2026']
+                          ? ['2023','2024','2025','2026','2027']
+                          : ['2024','2025','2026','2027']
                         )
                   ).map((year) => (
                     <button
@@ -383,7 +399,7 @@ const topPlayer =
                         Classement des Notes
                       </h2>
                       <p className="text-slate-600 dark:text-slate-300">
-                        {selectedLeague} - Saison 2025/2026
+                        {selectedLeague} - {seasonLabel}
                       </p>
                     </div>
                   </div>
@@ -708,7 +724,7 @@ const topPlayer =
         Autres saisons {selectedLeague}
       </h3>
       <div className="flex flex-wrap gap-2">
-        {['2026']
+        {['2026', '2027']
           .filter(y => y !== selectedYear)
           .map((y) => (
             <a

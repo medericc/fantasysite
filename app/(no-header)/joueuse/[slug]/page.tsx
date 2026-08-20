@@ -206,10 +206,10 @@ const slugKey = Array.isArray(slug) ? null : slug?.toLowerCase()
 const override = slugKey ? manualOverrides[slugKey] : null
   /* ===== LOAD DATA ===== */
   const lfbNotes = loadCSV<NoteRow>(
-    path.join(process.cwd(), "public/lfb_notes.csv")
+    path.join(process.cwd(), "public/lfb_notes_2026.csv")
   )
   const lf2Notes = loadCSV<NoteRow>(
-    path.join(process.cwd(), "public/lf2_notes.csv")
+    path.join(process.cwd(), "public/lf2_notes_2026.csv")
   )
   const allStars = loadCSV<AllStarRow>(
     path.join(process.cwd(), "public/allstars.csv")
@@ -390,7 +390,7 @@ const allNotesByLeague = {
       `}
     >
       <div className="text-sm text-white/80 mb-2">
-        Note IA 2026
+        Note IA 2027
       </div>
 
       <div className="text-4xl font-bold text-white mb-1">

@@ -30,28 +30,24 @@ export async function GET() {
     for (const [leagueName, config] of Object.entries(
       LEAGUES
     )) {
-      const weeks = await prisma.week.findMany({
-        where: {
-          league_id: config.id,
-          player_rate: {
-            some: {},
-          },
-        },
-        orderBy: {
-          id: "asc",
-        },
-      });
+    const weeks = await prisma.week.findMany({
+  where: {
+    league_id: config.id,
+    player_rate: {
+      some: {},
+    },
+  },
+  orderBy: {
+    id: "asc",
+  },
+  select: {
+    id: true,
+    name: true,
+    league_id: true,
+  },
+});
 
-      const validWeeks = weeks.filter((week) => {
-        const number = Number(
-          week.name.replace(/\D/g, "")
-        );
-
-        return (
-          number >= config.minWeek &&
-          number <= config.maxWeek
-        );
-      });
+const validWeeks = weeks;
 
       const weekly: Record<string, any[]> = {};
 

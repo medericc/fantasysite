@@ -38,54 +38,47 @@ export async function GET() {
 
     const results = [];
 
-    for (const [leagueName, config] of Object.entries(LEAGUES)) {
-      const weeks = await prisma.week.findMany({
-        where: {
-          league_id: config.id,
-          player_rate: {
-            some: {},
-          },
-        },
-        orderBy: {
-          id: "asc",
-        },
-      });
+   for (const [leagueName, config] of Object.entries(LEAGUES)) {
 
-      const validWeeks = weeks.filter((week) => {
-        const number = Number(
-          week.name.replace(/\D/g, "")
-        );
+  const weeks = await prisma.week.findMany({
+    where: {
+      league_id: config.id,
+      player_rate: {
+        some: {},
+      },
+    },
+    orderBy: {
+      id: "asc",
+    },
+    select: {
+      id: true,
+      name: true,
+      league_id: true,
+    },
+  });
 
-        return (
-          number >= config.minWeek &&
-          number <= config.maxWeek
-        );
-      });
+  const latestWeek = weeks[weeks.length - 1];
 
-      const latestWeek =
-        validWeeks[validWeeks.length - 1];
+  if (!latestWeek) {
+    results.push({
+      league: leagueName,
+      week: null,
+      weekIndex: 0,
+      weekPoints: 0,
+      totalIndex: 0,
+      totalPoints: 0,
+      username: dbUser?.pseudo ?? null,
+    });
 
-      if (!latestWeek) {
-        results.push({
-          league: leagueName,
-          week: null,
-          weekIndex: 0,
-          weekPoints: 0,
-          totalIndex: 0,
-          totalPoints: 0,
-          username: dbUser?.pseudo ?? null,
-        });
+    continue;
+  }
 
-        continue;
-      }
+  const weekRanking = await getWeeklyRanking(
+    config.id,
+    latestWeek.id
+  );
 
-      const weekRanking = await getWeeklyRanking(
-        config.id,
-        latestWeek.id
-      );
-
-   const totalRanking = await getTotalRanking(config.id);
-
+  const totalRanking = await getTotalRanking(config.id);
       const weekUser = weekRanking.find(
         (u) => u.userId === userId
       );

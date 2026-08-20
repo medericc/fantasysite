@@ -73,11 +73,7 @@ export async function GET() {
         );
       }
 
-      const total = await getTotalRanking(
-        config.id,
-        config.minWeek,
-        config.maxWeek
-      );
+ const total = await getTotalRanking(config.id);
 
       const totalFormatted = total.map(
         (r, index) => ({

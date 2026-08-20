@@ -84,11 +84,7 @@ export async function GET() {
         latestWeek.id
       );
 
-      const totalRanking = await getTotalRanking(
-        config.id,
-        config.minWeek,
-        config.maxWeek
-      );
+   const totalRanking = await getTotalRanking(config.id);
 
       const weekUser = weekRanking.find(
         (u) => u.userId === userId

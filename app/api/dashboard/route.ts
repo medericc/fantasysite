@@ -41,23 +41,25 @@ export async function GET() {
    for (const [leagueName, config] of Object.entries(LEAGUES)) {
 
   const weeks = await prisma.week.findMany({
-    where: {
-      league_id: config.id,
-      player_rate: {
-        some: {},
-      },
+  where: {
+    league_id: config.id,
+    player_rate: {
+      some: {},
     },
-    orderBy: {
-      id: "asc",
-    },
-    select: {
-      id: true,
-      name: true,
-      league_id: true,
-    },
-  });
+  },
+  orderBy: {
+    id: "asc",
+  },
+  select: {
+    id: true,
+    name: true,
+    league_id: true,
+  },
+});
 
-  const latestWeek = weeks[weeks.length - 1];
+const validWeeks = weeks;
+
+const latestWeek = validWeeks[validWeeks.length - 1];
 
   if (!latestWeek) {
     results.push({
@@ -86,10 +88,13 @@ export async function GET() {
       const totalUser = totalRanking.find(
         (u) => u.userId === userId
       );
-
+const weekNumber =
+  config.id === 2
+    ? latestWeek.id - 22
+    : latestWeek.id;
       results.push({
         league: leagueName,
-
+weekNumber: weekNumber,
         week: latestWeek.name,
 
         weekIndex: weekUser

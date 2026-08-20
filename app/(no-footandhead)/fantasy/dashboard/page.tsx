@@ -31,7 +31,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [rankingData, setRankingData] = useState<LeagueData>({});
   const [user, setUser] = useState<{ username: string } | null>(null);
-  
+  const [dashboardData, setDashboardData] = useState<any[]>([]);
   const [modal, setModal] = useState<{
     open: boolean;
     type: 'weekly' | 'total' | null;
@@ -56,7 +56,7 @@ export default function DashboardPage() {
         if (Array.isArray(userJson) && userJson.length > 0) {
           setUser(userJson[0]);
         }
-
+setDashboardData(userJson);
         setRankingData(rankingJson);
         setData(rankingJson);
         setLoading(false);
@@ -193,6 +193,15 @@ export default function DashboardPage() {
           const userWeekly = weekRankings.find((r) => r.username === user?.username);
           const userTotal = totalRankings.find((r) => r.username === user?.username);
 
+ // On récupère les infos de cette ligue spécifique depuis l'API
+  const currentLeagueData = dashboardData.find((d) => d.league === league);
+  const weekNumber = currentLeagueData?.weekNumber;
+  
+  // Formatage : "1ère" si c'est 1, sinon "Xème"
+  const formattedWeek = weekNumber 
+    ? (weekNumber === 1 ? '1ère' : `${weekNumber}ème`) 
+    : 'En attente';
+
           return (
             <div key={league} className="space-y-4">
               
@@ -225,7 +234,7 @@ export default function DashboardPage() {
                   </p>
 
                   <p className="text-xs text-gray-400 mt-4 bg-gray-100 py-1 px-3 rounded-full">
-                    {latestWeek || 'En attente'}
+                  {formattedWeek}
                   </p>
                 </div>
 

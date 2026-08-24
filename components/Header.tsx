@@ -35,7 +35,7 @@ export default function Header() {
                   md:justify-center md:gap-[60%] xl:ml-18 xl:gap-[60%] 2xl:gap-[65%] 2xl:ml-55">
     
     {/* Logo + texte */}
-    <Link href="/fantasy/dashboard" 
+    {/* <Link href="/fantasy/dashboard" 
       className="flex items-center gap-2 md:gap-3">
       <Image 
         src="/lololom.png" 
@@ -47,7 +47,30 @@ export default function Header() {
       <span className="text-lg font-semibold tracking-tight">
         Fantasy LFB
       </span>
-    </Link>
+    </Link> */}
+
+
+{/* Logo + texte — temporairement désactivé */}
+<div
+  className="flex items-center gap-2 md:gap-3 opacity-50 cursor-not-allowed"
+  aria-disabled="true"
+>
+  <Image
+    src="/lololom.png"
+    alt="Logo"
+    width={32}
+    height={32}
+    className="rounded-lg"
+  />
+  <span className="text-lg font-semibold tracking-tight">
+    Fantasy LFB
+  </span>
+</div>
+
+
+
+
+
 
     {/* Avatar + pseudo */}
     <button

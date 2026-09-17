@@ -76,7 +76,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-     <head><GoogleTagManager gtmId="GTM-MXF5G4KH" /> </head>
+     <head><GoogleTagManager gtmId="GTM-MXF5G4KH" /> <meta name="google-site-verification" content="Su4aAudUBo8Tx6-mEcQX1fo0_Ore_5ZI4inSPwZEAgM" /> </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-900`}
       >

@@ -617,7 +617,7 @@ const topPlayer =
 
 
 {/* ===== CTA FANTASY LEAGUE ===== */}
-<motion.div
+{/* <motion.div
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ delay: 0.25 }}
@@ -629,9 +629,9 @@ const topPlayer =
       className="group relative block overflow-hidden rounded-2xl bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-600 p-[2px] shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden rounded-[14px] bg-gradient-to-r from-slate-900 to-slate-800 px-6 py-5 md:px-8 md:py-6">
-        
+         */}
         {/* Effet lumineux */}
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/0 via-yellow-500/10 to-yellow-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/0 via-yellow-500/10 to-yellow-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         <div className="relative flex items-center justify-between gap-4">
           
@@ -658,7 +658,7 @@ const topPlayer =
       </div>
     </Link>
   </div>
-</motion.div>
+</motion.div> */}
 
 
 

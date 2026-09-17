@@ -76,7 +76,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-     
+     <head><GoogleTagManager gtmId="GTM-MXF5G4KH" /> </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-900`}
       >
@@ -89,7 +89,7 @@ export default function RootLayout({
   />
 </noscript>
 
-<GoogleTagManager gtmId="GTM-MXF5G4KH" />
+
         <RegisterSW />
         
         {children}

@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import RegisterSW from "@/components/RegisterSW"
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,20 +19,7 @@ export const metadata: Metadata = {
   title: "Stats et Classements Basket LFB & LF2",
   description:
     "First Pick, le média spécialisé basket féminin : analyse des saisons LFB et LF2, classements, notes générées par notre modèle d'intelligence artificielle, sélections All-Stars et équipes de l'année.",
-  keywords: [
-    "basket",
-    "LFB",
- "lf2",
-     "lfb",
-     "basket féminin",
-    "LF2",
-    "stats basket",
-    "all star",
-    "all-stars",
-    "équipes de l'année",
-    "classements",
-    "first pick",
-  ],
+
   authors: [{ name: "First Pick" }],
   openGraph: {
     title: "First Pick - Stats et Classements Basket LFB & LF2",
@@ -92,6 +80,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-900`}
       >
+        <noscript>
+  <iframe
+    src="https://www.googletagmanager.com/ns.html?id=GTM-MXF54KH"
+    height="0"
+    width="0"
+    style={{ display: "none", visibility: "hidden" }}
+  />
+</noscript>
+
+<GoogleTagManager gtmId="GTM-MXF54KH" />
         <RegisterSW />
         
         {children}

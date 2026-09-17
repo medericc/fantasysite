@@ -1,2 +1,0 @@
-directUrl = env("DIRECT_DATABASE_URL")
-retier sous database url

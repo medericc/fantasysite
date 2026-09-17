@@ -4,8 +4,13 @@ import { useEffect, useState } from 'react';
 
 declare global {
   interface Window {
-    dataLayer: Array<Record<string, unknown>>;
-    gtag: (...args: [string, string | Date, Record<string, unknown>?]) => void;
+    gtag: (
+      ...args: [
+        string,
+        string | Date,
+        Record<string, unknown>?
+      ]
+    ) => void;
   }
 }
 
@@ -42,9 +47,10 @@ export default function CookieBanner() {
       document.head.appendChild(script);
 
       script.onload = () => {
-        window.gtag = function (...args) {
-          window.dataLayer.push({ gtag: args });
-        };
+  window.gtag = function (...args) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ gtag: args });
+};
 
         window.gtag('js', new Date());
         window.gtag('config', 'G-XXXXXXXXXX'); // ← remplace ici aussi

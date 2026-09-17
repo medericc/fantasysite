@@ -3,8 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import RegisterSW from "@/components/RegisterSW"
-import { GoogleTagManager } from "@next/third-parties/google";
-
+import CookieBanner from "@/components/CookieBanner"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -76,22 +75,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-     <head><GoogleTagManager gtmId="GTM-MXF5G4KH" /> <meta name="google-site-verification" content="Su4aAudUBo8Tx6-mEcQX1fo0_Ore_5ZI4inSPwZEAgM" /> </head>
-      <body
+  <head>
+  <meta
+    name="google-site-verification"
+    content="Su4aAudUBo8Tx6-mEcQX1fo0_Ore_5ZI4inSPwZEAgM"
+  />
+</head>
+    <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-900`}
       >
-        <noscript>
-  <iframe
-    src="https://www.googletagmanager.com/ns.html?id=GTM-MXF5G4KH"
-    height="0"
-    width="0"
-    style={{ display: "none", visibility: "hidden" }}
-  />
-</noscript>
+    
 
 
         <RegisterSW />
-        
+        <CookieBanner />
         {children}
       </body>
     </html>

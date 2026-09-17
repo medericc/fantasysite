@@ -82,14 +82,14 @@ export default function RootLayout({
       >
         <noscript>
   <iframe
-    src="https://www.googletagmanager.com/ns.html?id=GTM-MXF54KH"
+    src="https://www.googletagmanager.com/ns.html?id=GTM-MXF5G4KH"
     height="0"
     width="0"
     style={{ display: "none", visibility: "hidden" }}
   />
 </noscript>
 
-<GoogleTagManager gtmId="GTM-MXF54KH" />
+<GoogleTagManager gtmId="GTM-MXF5G4KH" />
         <RegisterSW />
         
         {children}

@@ -139,7 +139,7 @@ if (filtered.length === 0) {
                 </div>
                 <div>
                   <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-yellow-500 via-yellow-300 to-yellow-800 bg-clip-text text-transparent">
-                    FIRST PICK
+                    FIRST PICK – Live Stats LFB & LF2
                   </h1>
                   <p className="text-sm text-slate-300 mt-1 font-medium">
                     Livestats personnalisé LFB/LF2

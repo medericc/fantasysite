@@ -11,9 +11,9 @@ export default function WithHeaderLayout({
       {/* Header */}
       <header className="w-full bg-yellow-600 py-4 shadow-md">
         <div className="container mx-auto text-center">
-          <h1 className="text-xl md:text-3xl font-bold text-white tracking-wide">
+          <div className="text-xl md:text-3xl font-bold text-white tracking-wide">
             RÉCOMPENSES FIRST PICK
-          </h1>
+          </div>
         </div>
       </header>
 

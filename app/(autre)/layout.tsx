@@ -17,7 +17,7 @@ export default function NoHeaderLayout({
 }) {
   return (
     <>
-      <main className="min-h-screen">{children}</main>
+      <div  className="min-h-screen">{children}</div >
 
      
 

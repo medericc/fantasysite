@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "First Pick - Stats et Classements Basket LFB & LF2",
     description:
       "Découvrez les meilleurs ratings des championnats LFB et LF2, les All-Stars et les équipes de l'année avec First Pick.",
-    url: "https://www.lfbfantasy.com",
+    url: "https://www.lfbfantasy.com/",
     siteName: "First Pick",
     images: [
       {
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   apple: "/apple-touch-icon.png",
 },
 alternates: {
-  canonical: "https://www.lfbfantasy.com",
+  canonical: "https://www.lfbfantasy.com/",
 },
 
 }

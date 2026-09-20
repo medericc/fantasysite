@@ -685,37 +685,178 @@ const topPlayer =
       </div>
     </div>
 
-    <div className="space-y-4 text-slate-600 dark:text-slate-300">
-      <p className="leading-relaxed">
-        First Pick propose des classements exclusifs des joueuses de {selectedLeague},
-        basés sur un modèle d'intelligence artificielle combinant statistiques
-        individuelles, performances collectives et impact réel sur le jeu.
-      </p>
+   <div className="space-y-7 text-slate-600 dark:text-slate-300">
 
-      <div className="bg-gradient-to-r from-slate-50 to-white dark:from-slate-800/30 dark:to-slate-700/30 rounded-xl p-5 border border-slate-200 dark:border-slate-700">
-        <div className="flex items-start gap-3">
-          <Brain className="w-6 h-6 text-yellow-600 mt-1 flex-shrink-0" />
-          <p className="leading-relaxed">
-            Contrairement aux outils classiques, notre modèle d'IA évalue l'impact réel d'une performance 
-            en fonction de la physionomie du match. Nous mesurons la contribution d'une joueuse 
-            proportionnellement au volume global de la rencontre. L'objectif est simple : noter l'influence 
-            directe sur le match, quel que soit le score final.
-          </p>
-        </div>
+  {/* Introduction SEO */}
+  <p className="leading-8 text-base md:text-lg">
+    First Pick propose un classement détaillé des joueuses de{" "}
+    <span className="font-semibold text-slate-800 dark:text-white">
+      {selectedLeague}
+    </span>{" "}
+    pour la saison{" "}
+    <span className="font-semibold text-slate-800 dark:text-white">
+      {selectedYear}
+    </span>
+    . Notre objectif est de proposer une lecture simple, moderne et
+    accessible du{" "}
+    <span className="font-semibold text-yellow-600">
+      basket féminin français
+    </span>
+    , en mettant en avant les performances individuelles et leur influence
+    sur les rencontres.
+  </p>
+
+  {/* Classement */}
+  <div>
+    <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-3">
+      Classement des joueuses {selectedLeague} {selectedYear}
+    </h3>
+
+    <p className="leading-8">
+      Le classement First Pick permet de suivre les joueuses qui se
+      distinguent au fil de la saison en{" "}
+      <span className="font-semibold">LFB</span> et en{" "}
+      <span className="font-semibold">LF2</span>. Les performances sont
+      étudiées à partir de plusieurs indicateurs afin de proposer une
+      hiérarchie cohérente entre les joueuses. Le classement permet ainsi
+      d’identifier les principales performeuses de la saison, de suivre leur
+      évolution et de comparer leurs résultats sur différentes périodes.
+    </p>
+  </div>
+
+  {/* Méthode First Pick */}
+  <div className="bg-gradient-to-r from-slate-50 to-white dark:from-slate-800/30 dark:to-slate-700/30 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+    <div className="flex items-start gap-4">
+      <Brain className="w-7 h-7 text-yellow-600 mt-1 flex-shrink-0" />
+
+      <div>
+        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3">
+          Comment sont calculées les notes First Pick ?
+        </h3>
+
+        <p className="leading-8">
+          Les notes First Pick reposent sur notre propre modèle
+          d’intelligence artificielle. Celui-ci prend en compte les
+          statistiques individuelles, la performance collective et la
+          régularité des joueuses. L’analyse cherche également à mesurer
+          l’impact réel d’une performance dans le contexte particulier de
+          chaque rencontre. Une bonne prestation n’est donc pas uniquement
+          évaluée à travers une accumulation de statistiques : son
+          importance par rapport au volume global du match est également
+          prise en compte.
+        </p>
       </div>
+    </div>
+  </div>
 
-      <p className="leading-relaxed">
-        Les distinctions <span className="font-semibold text-yellow-600">All-Stars</span> et <span className="font-semibold text-amber-600">First Team</span> mettent en lumière les joueuses les plus
-        performantes de la saison, offrant une vision claire des leaders
-        du basket féminin français. Ce travail vise à valoriser la performance et à proposer
-        une lecture moderne et transparente des championnats.
-      </p>
+  {/* Contenu dynamique selon la page */}
+  {selectedCategory === "notes" && (
+    <div>
+      <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-3">
+        Notes et performances en {selectedLeague}
+      </h3>
 
-      <p className="leading-relaxed font-medium text-slate-700 dark:text-slate-200">
-        Consultez également les saisons précédentes pour suivre l'évolution des joueuses
-        et comparer les performances d'une année sur l'autre.
+      <p className="leading-8">
+        Cette page rassemble les{" "}
+        <span className="font-semibold text-yellow-600">
+          notes des joueuses {selectedLeague}
+        </span>{" "}
+        pour la saison {selectedYear}. Elle permet de consulter le classement
+        des principales joueuses et de mieux comprendre leur niveau de
+        performance au cours de la saison. Les notes sont pensées comme un
+        indicateur complémentaire aux statistiques traditionnelles afin
+        d’apporter une lecture plus globale de l’impact d’une joueuse sur le
+        terrain.
       </p>
     </div>
+  )}
+
+  {selectedCategory === "allStars" && (
+    <div>
+      <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-3">
+        All-Stars {selectedLeague} {selectedYear}
+      </h3>
+
+      <p className="leading-8">
+        La sélection{" "}
+        <span className="font-semibold text-yellow-600">All-Stars</span>{" "}
+        met en avant les joueuses qui se sont particulièrement illustrées
+        durant la saison {selectedYear}. Cette sélection permet de retrouver
+        les profils les plus marquants de{" "}
+        <span className="font-semibold">{selectedLeague}</span> et de mettre
+        en lumière les performances individuelles qui ont retenu
+        l’attention de l’analyse First Pick.
+      </p>
+    </div>
+  )}
+
+  {selectedCategory === "firstTeam" && (
+    <div>
+      <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-3">
+        First Team {selectedLeague} {selectedYear}
+      </h3>
+
+      <p className="leading-8">
+        Le{" "}
+        <span className="font-semibold text-amber-600">
+          First Team {selectedLeague} {selectedYear}
+        </span>{" "}
+        rassemble les joueuses qui ont affiché un niveau de performance
+        particulièrement élevé sur l’ensemble de la saison. Cette sélection
+        offre une synthèse des profils les plus performants et permet de
+        retrouver les joueuses qui ont marqué la saison par leur influence,
+        leur régularité et leur contribution aux résultats de leur équipe.
+      </p>
+    </div>
+  )}
+
+  {/* Lecture de la saison */}
+  <div>
+    <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-3">
+      Suivre l’évolution des joueuses au fil des saisons
+    </h3>
+
+    <p className="leading-8">
+      L’intérêt d’un classement sportif est également de pouvoir suivre son
+      évolution dans le temps. First Pick permet de consulter plusieurs
+      saisons afin de comparer les performances et d’observer les joueuses
+      qui progressent, confirment leur niveau ou s’imposent durablement parmi
+      les références du championnat. Cette approche saison par saison offre
+      une vision plus complète du basket féminin et permet de replacer chaque
+      performance dans son contexte.
+    </p>
+  </div>
+
+  {/* LFB / LF2 */}
+  <div>
+    <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-3">
+      Le basket féminin français au centre de l’analyse
+    </h3>
+
+    <p className="leading-8">
+      Que vous cherchiez le classement des meilleures joueuses de{" "}
+      <span className="font-semibold">LFB</span>, les performances de{" "}
+      <span className="font-semibold">LF2</span>, les sélections All-Stars ou
+      le First Team de la saison, First Pick rassemble ces informations dans
+      une même plateforme. L’objectif est de faciliter le suivi des
+      championnats et de donner aux passionnés de basket féminin des
+      indicateurs lisibles pour analyser les performances individuelles.
+    </p>
+  </div>
+
+  {/* Conclusion SEO */}
+  <p className="leading-8 font-medium text-slate-700 dark:text-slate-200">
+    Consultez le classement {selectedLeague} {selectedYear}, explorez les
+    différentes distinctions et revenez régulièrement pour suivre
+    l’évolution des performances.{" "}
+    <span className="text-yellow-600">
+      First Pick accompagne le suivi du basket féminin français
+    </span>{" "}
+    avec des classements, des notes et des analyses conçus pour mettre en
+    avant l’impact réel des joueuses sur le terrain.
+  </p>
+
+</div>
 
     {/* Navigation des saisons */}
     <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700 ">

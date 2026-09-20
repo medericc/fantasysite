@@ -22,7 +22,7 @@ export async function generateMetadata(
   const leagueLabel = league.toUpperCase()
 
   const titles: Record<View, string> = {
-    notes: `Classement des joueuses ${leagueLabel} ${year} – Notes & Stats IA | First Pick`,
+    notes: `Ligue Féminine de Basketball ${leagueLabel} ${year} classement, notes et statistiques des joueuses`,
     allStars: `All-Stars ${leagueLabel} ${year} – Sélection officielle | First Pick`,
     firstTeam: `First Team ${leagueLabel} ${year} – Meilleur cinq de la saison | First Pick`,
   }

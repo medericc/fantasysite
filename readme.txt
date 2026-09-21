@@ -1,3 +1,6 @@
+' voir dans les csv aussi sa doit faie exeeptioncomem  m'baye si sa a amrché
+
+
 scannng779@
 
 metadata et image ordi dashabord

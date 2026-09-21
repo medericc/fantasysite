@@ -99,6 +99,13 @@ function deslugify(slug?: string | string[] | null) {
   if (lowerClean === "murjanatu-musa" || lowerClean === "mj-musa") {
     return { prenom: "Murjanatu", nom: "MUSA", aliases: ["MJ", "Murjanatu"] }
   }
+  if (lowerClean === "yo-myris-morris") {
+  return {
+    prenom: "Yo’myris",
+    nom: "MORRIS",
+    aliases: ["Yo’myris", "Yo'myris", "Yo-myris"],
+  }
+}
   // -----------------------------------------------
 
   const parts = clean.split("-").filter(Boolean)

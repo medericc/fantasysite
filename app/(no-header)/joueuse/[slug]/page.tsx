@@ -106,6 +106,20 @@ function deslugify(slug?: string | string[] | null) {
     aliases: ["Yo’myris", "Yo'myris", "Yo-myris"],
   }
 }
+  if (lowerClean === "stepha-m-baye") {
+  return {
+    prenom: "Stepha",
+    nom: "M'BAYE",
+    aliases: ["Stepha", "Stepha", "Stepha"],
+  }
+}
+  if (lowerClean === "yo-myris-morris") {
+  return {
+    prenom: "Mariama",
+    nom: "N'DIAYE",
+    aliases: ["Mariama", "Mariama", "Mariama"],
+  }
+}
   // -----------------------------------------------
 
   const parts = clean.split("-").filter(Boolean)

@@ -151,11 +151,13 @@ useEffect(() => {
 }
 const slugify = (str: string) =>
   str
-    .toLowerCase()
-    .normalize("NFD")
+     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[’'`]/g, "-")
     .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
 
   // ---- Filtering ----
   const currentNotes = selectedLeague === 'LFB' ? lfbNotes : lf2Notes

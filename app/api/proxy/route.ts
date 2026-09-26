@@ -20,7 +20,10 @@ export async function GET(request: Request) {
     const response = await fetch(url, {
       cache: "no-store",
       headers: {
-        Accept: "application/json",
+        Accept: "application/json, text/plain, */*",
+        "User-Agent": "Mozilla/5.0",
+        Referer:
+          "https://fibalivestats.dcd.shared.geniussports.com/",
       },
     });
 
@@ -33,32 +36,30 @@ export async function GET(request: Request) {
     if (!response.ok) {
       const errorText = await response.text();
 
-      console.error("Réponse Genius :", errorText);
+      console.error("ERREUR GENIUS :", errorText);
 
       return NextResponse.json(
         {
-          error: "Échec de la récupération des données",
+          error: "Genius Sports refuse la requête",
           status: response.status,
+          details: errorText.substring(0, 500),
         },
         { status: response.status }
       );
     }
 
-    // On récupère d'abord le texte
     const text = await response.text();
 
-    console.log("TAILLE REPONSE :", text.length);
-    console.log("DEBUT REPONSE :", text.substring(0, 500));
+    console.log("TAILLE :", text.length);
+    console.log("DEBUT :", text.substring(0, 500));
 
-    // Puis on parse manuellement
     const data = JSON.parse(text);
 
     console.log("PBP :", data?.pbp?.length);
 
     return NextResponse.json(data);
-
   } catch (error) {
-    console.error("Erreur du proxy :", error);
+    console.error("Erreur proxy :", error);
 
     return NextResponse.json(
       {

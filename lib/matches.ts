@@ -57,7 +57,7 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
           url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875344/bs.html"
         },
         {
-          label: "Geispolsheim vs BCMF",
+          label: "CJSG vs BCMF",
           url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875349/bs.html"
         },
         {

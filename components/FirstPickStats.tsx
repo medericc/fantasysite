@@ -138,11 +138,7 @@ useEffect(() => {
 }) => {
   const nextLeague = params.league ?? selectedLeague
   const nextView = params.view ?? selectedCategory
-
-  // ⭐ RÈGLE SEO
-  const nextYear =
-    params.year ??
-    (params.view || params.league ? CANONICAL_YEAR : selectedYear)
+  const nextYear = params.year ?? selectedYear
 
   router.push(
     `/${nextLeague.toLowerCase()}/${nextView}/${nextYear}`,
@@ -861,25 +857,44 @@ const topPlayer =
 </div>
 
    {/* ===== ARCHIVES ===== */}
-{selectedYear === "2027" && (
-  <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
-    <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-2">
-      <History className="w-5 h-5 text-yellow-600" />
-      Archives {selectedLeague}
-    </h3>
+{/* ===== NAVIGATION SAISON ===== */}
+<div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+  <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-2">
+    <History className="w-5 h-5 text-yellow-600" />
 
-    <div className="flex flex-wrap gap-2">
+    {selectedYear === "2027"
+      ? `Archives ${selectedLeague}`
+      : `Saison actuelle ${selectedLeague}`}
+  </h3>
+
+  <div className="flex flex-wrap gap-2">
+
+    {/* Depuis 2027 → aller vers 2026 */}
+    {selectedYear === "2027" && (
       <Link
         href={`/${selectedLeague.toLowerCase()}/${selectedCategory}/2026`}
         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-500 hover:text-white transition-all duration-300 group"
       >
-        <Calendar className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-        <span>Saison 2026</span>
+        <History className="w-4 h-4" />
+        <span>Archives 2026</span>
         <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
       </Link>
-    </div>
+    )}
+
+    {/* Depuis 2026 → revenir à 2027 */}
+    {selectedYear === "2026" && (
+      <Link
+        href={`/${selectedLeague.toLowerCase()}/${selectedCategory}/2027`}
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-600 to-amber-500 text-white hover:shadow-lg transition-all duration-300 group"
+      >
+        <Calendar className="w-4 h-4" />
+        <span>Actuel · Saison 2027</span>
+        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+      </Link>
+    )}
+
   </div>
-)}
+</div>
   </div>
 </motion.section>
 

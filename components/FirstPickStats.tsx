@@ -146,13 +146,17 @@ useEffect(() => {
 }
 
 useEffect(() => {
-  if (!['2026', '2027'].includes(selectedYear)) {
+  if (
+    selectedCategory === 'notes' &&
+    !['2026', '2027'].includes(selectedYear)
+  ) {
     router.replace(
-      `/${selectedLeague.toLowerCase()}/${selectedCategory}/2027`,
+      `/${selectedLeague.toLowerCase()}/notes/2027`,
       { scroll: false }
     )
   }
 }, [selectedYear, selectedLeague, selectedCategory, router])
+
 const slugify = (str: string) =>
   str
      .normalize("NFD")

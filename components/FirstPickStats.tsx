@@ -860,28 +860,26 @@ const topPlayer =
 
 </div>
 
-    {/* Navigation des saisons */}
-    <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700 ">
-      <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-2">
-        <History className="w-5 h-5 text-yellow-600" />
-        Autres saisons {selectedLeague}
-      </h3>
-      <div className="flex flex-wrap gap-2">
-        {['2026', '2027']
-          .filter(y => y !== selectedYear)
-          .map((y) => (
-            <a
-              key={y}
-              href={`/${selectedLeague.toLowerCase()}/${selectedCategory}/${y}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-500 hover:text-white transition-all duration-300 group"
-            >
-              <Calendar className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-              <span>Saison {y}</span>
-              <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
-            </a>
-          ))}
-      </div>
+   {/* ===== ARCHIVES ===== */}
+{selectedYear === "2027" && (
+  <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+    <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-2">
+      <History className="w-5 h-5 text-yellow-600" />
+      Archives {selectedLeague}
+    </h3>
+
+    <div className="flex flex-wrap gap-2">
+      <Link
+        href={`/${selectedLeague.toLowerCase()}/${selectedCategory}/2026`}
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-500 hover:text-white transition-all duration-300 group"
+      >
+        <Calendar className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+        <span>Saison 2026</span>
+        <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
+      </Link>
     </div>
+  </div>
+)}
   </div>
 </motion.section>
 

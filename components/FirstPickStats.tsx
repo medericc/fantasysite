@@ -32,9 +32,8 @@ export default function FirstPickStats({
 const selectedLeague = league
 const selectedCategory = view
 const selectedYear = year
-const seasonLabel = `Saison ${selectedYear} -1/${Number(selectedYear)}`
-
-  // ⏳ loading reste en state normal
+const seasonLabel = `Saison ${Number(selectedYear) - 1}/${selectedYear}`
+// ⏳ loading reste en state normal
   const [isLoading, setIsLoading] = useState(true)
 
   const [lfbNotes, setLfbNotes] = useState<NotePlayer[]>([])
@@ -145,6 +144,15 @@ useEffect(() => {
     { scroll: false }
   )
 }
+
+useEffect(() => {
+  if (!['2026', '2027'].includes(selectedYear)) {
+    router.replace(
+      `/${selectedLeague.toLowerCase()}/${selectedCategory}/2027`,
+      { scroll: false }
+    )
+  }
+}, [selectedYear, selectedLeague, selectedCategory, router])
 const slugify = (str: string) =>
   str
      .normalize("NFD")

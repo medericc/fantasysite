@@ -45,7 +45,40 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
    
     
       
+{
+      day: "Journée 2",
+      matches: [
 
+
+          {
+          label: "LBB vs UFA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875394/bs.html"
+        },
+        {
+          label: "BLMA vs TB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875397/bs.html"
+        },
+        {
+          label: "ASVEL vs BCTM",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875403/bs.html"
+        },
+        {
+          label: "TMB vs FCB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875406/bs.html"
+        }
+      
+        ,
+        {
+          label: "BL vs ESBVA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875408/bs.html"
+        },
+        {
+          label: "CB vs CBBS",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875399/bs.html"
+        },
+      ]
+    },
+   
 
   ],
   LF2: [
@@ -82,7 +115,41 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
         }
       
       ]
-    }
+    }, {
+      day: "Journée 2",
+      matches: [
+          {
+          label: "RMB vs USOM",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875357/bs.html"
+        },
+        {
+          label: "INSEP vs MBA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875351/bs.html"
+        },
+        {
+          label: "FB vs PVBC",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875352/bs.html"
+        },
+        {
+          label: "BCMF vs Nice",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875353/bs.html"
+        },
+        {
+          label: "RVBC vs CJSG",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875354/bs.html"
+        },
+        {
+            label: "CB vs Trith",
+    
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875356/bs.html"
+        },
+        {
+               label: "SAH vs LFA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875355/bs.html"
+        }
+      
+      ]
+    },
       
       ]
     }

@@ -119,30 +119,11 @@ function deslugify(slug?: string | string[] | null) {
     nom: "N'DIAYE",
     aliases: ["Mariama", "Mariama", "Mariama"],
   }
-  if (lowerClean === "dorcas-nganfina") {
-  return {
-    prenom: "Dorcas",
-    nom: "N'GANFINA",
-    aliases: ["Dorcas"],
-  }
+  
 }
-
-if (lowerClean === "kimberly-k-nsimba") {
-  return {
-    prenom: "Kimberly",
-    nom: "K. N'SIMBA",
-    aliases: ["Kimberly", "K."],
-  }
-}
-
-if (lowerClean === "shainnys-legros" || lowerClean === "shainny-s-legros") {
-  return {
-    prenom: "Shainny's",
-    nom: "LEGROS",
-    aliases: ["Shainny's", "Shainny"],
-  }
-}
-}
+if (lowerClean === "mariama-ndiaye") { return { prenom: "Mariama", nom: "N'DIAYE", aliases: ["Mariama"], }; } 
+if (lowerClean === "dorcas-nganfina") { return { prenom: "Dorcas", nom: "N'GANFINA", aliases: ["Dorcas"], }; } 
+if (lowerClean === "kimberly-k-nsimba") { return { prenom: "Kimberly", nom: "K. N'SIMBA", aliases: ["Kimberly", "K."], }; } if ( lowerClean === "shainnys-legros" || lowerClean === "shainny-s-legros" ) { return { prenom: "Shainny's", nom: "LEGROS", aliases: ["Shainny's", "Shainny"], }; }
   // -----------------------------------------------
 
   const parts = clean.split("-").filter(Boolean)

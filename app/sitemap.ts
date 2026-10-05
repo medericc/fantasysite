@@ -48,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ========================= */
   ;(['lfb', 'lf2'] as const).forEach((league) => {
     routes.push({
-      url: `${baseUrl}/${league}/notes/2026`,
+      url: `${baseUrl}/${league}/notes/2027`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,

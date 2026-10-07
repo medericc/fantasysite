@@ -59,9 +59,7 @@ export const metadata: Metadata = {
   ],
   apple: "/apple-touch-icon.png",
 },
-alternates: {
-  canonical: "https://www.lfbfantasy.com/lfb/notes/2027",
-},
+
 
 }
 export const viewport: Viewport = {

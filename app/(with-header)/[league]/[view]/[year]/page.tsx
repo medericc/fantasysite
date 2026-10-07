@@ -1,6 +1,11 @@
 import FirstPickStats from "@/components/FirstPickStats"
 import type { Metadata } from "next"
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://www.lfbfantasy.com/lfb/notes/2027',
+  },
+}
 type View = "notes" | "allStars" | "firstTeam"
 type League = "lfb" | "lf2"
 

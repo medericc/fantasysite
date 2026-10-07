@@ -77,6 +77,39 @@ export const MATCHES: Record<"LFB" | "LF2", MatchDay[]> = {
           url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875399/bs.html"
         },
       ]
+    }, 
+{
+      day: "Journée 3",
+      matches: [
+
+
+          {
+          label: "TB vs CB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875413/bs.html"
+        },
+        {
+          label: "CBBS vs ASVEL",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875415/bs.html"
+        },
+        {
+          label: "BCTM vs TMB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875417/bs.html"
+        },
+        {
+          label: "ESBVA vs LBB",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875420/bs.html"
+        }
+      
+        ,
+        {
+          label: "FCB vs BL",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875419/bs.html"
+        },
+        {
+          label: "UFA vs BLMA",
+          url: "https://fibalivestats.dcd.shared.geniussports.com/u/FFBB/2875410/bs.html"
+        },
+      ]
     },
    
 

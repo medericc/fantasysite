@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   apple: "/apple-touch-icon.png",
 },
 alternates: {
-  canonical: "https://www.lfbfantasy.com/",
+  canonical: "https://www.lfbfantasy.com/lfb/notes/2027",
 },
 
 }
@@ -73,6 +73,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "First Pick",
+    "url": "https://www.lfbfantasy.com",
+    "logo": "https://www.lfbfantasy.com/og-image.jpg",
+  }
+
   return (
     <html lang="fr">
   <head>
@@ -80,6 +89,12 @@ export default function RootLayout({
     name="google-site-verification"
     content="Su4aAudUBo8Tx6-mEcQX1fo0_Ore_5ZI4inSPwZEAgM"
   />
+    <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
 </head>
     <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-900`}

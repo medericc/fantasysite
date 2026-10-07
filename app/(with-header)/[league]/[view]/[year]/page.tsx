@@ -1,5 +1,4 @@
 import FirstPickStats from "@/components/FirstPickStats"
-import Script from "next/script"
 import type { Metadata } from "next"
 
 type View = "notes" | "allStars" | "firstTeam"
@@ -63,13 +62,55 @@ export default async function Page({
 }) {
   const { league, view, year } = await params
 
+
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://www.lfbfantasy.com/",
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": league.toUpperCase(),
+      "item": `https://www.lfbfantasy.com/${league}`,
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name":
+        view === "notes"
+          ? "Notes"
+          : view === "allStars"
+          ? "All-Stars"
+          : "First Team",
+      "item": `https://www.lfbfantasy.com/${league}/${view}`,
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": year,
+      "item": `https://www.lfbfantasy.com/${league}/${view}/${year}`,
+    },
+  ],
+}
+
   return (
     <>
-      <Script
-        id="structured-data-page"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
+     <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(breadcrumbSchema),
+      }}
+    />
+     <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ItemList",
@@ -85,10 +126,8 @@ export default async function Page({
           }),
         }}
       />
-<Script
-  id="faq-schema"
+<script
   type="application/ld+json"
-  strategy="afterInteractive"
   dangerouslySetInnerHTML={{
     __html: JSON.stringify({
       "@context": "https://schema.org",
